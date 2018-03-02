@@ -8,10 +8,10 @@ sass:
   style: compressed
 
 # Site settings
-title: VestHQ
-description: "A fintech lab."
-keywords: fintech, news, media
+title: HarborHQ
+description: "All-in-one 401(k) plan"
+keywords: affordable, modern, 401(k), retirement 
 email: tripathi@vesthq.com
-url: http://www.vesthq.com
-repository: https://github.com/vesthq/vesthq
-google_analytics: UA-72011621-1
+url: http://www.harborhq.com
+repository: https://github.com/VestHQ/Harbor
+# google_analytics: UA-72011621-1
