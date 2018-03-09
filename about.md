@@ -1,7 +1,5 @@
 ---
 title: About
 ---
-VestHQ [title]
-We are a fintech lab. Our experiments are built to empower. Our latest project is [Fintech to Go](http://fintechtogo.com).
-
-For our most adventurous fans, join our [beta list](http://www.tinyletter.com/vest), and for something lighter, follow our journey on these networks - [Medium](https://medium.com/voyage-into-fintech) [Twitter](http://www.twitter.com/thisisvest) [RSS](www.vesthq.com/feed.xml)
+Harbor [title]
+We are making retirement accessible to small businesses. Our proprietary technology makes us the first completely mobile end-to-end solution, we can balance student debt with saving for retirement, and decrease fiduciary liability for employers. Please reach out to us with any questions at hi@harborhq.com. 
