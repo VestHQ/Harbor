@@ -1,0 +1,34 @@
+.main {
+  font-family: "Avenir Next", $avenir;
+  color: $dark-blue;
+  width: 100%;
+  margin: 5rem 0 5rem 5rem;
+  flex: 1;
+
+
+  .heading {
+    width: 45vw;
+    float: left;
+
+    &__primary {
+      font-size: 3.5rem;
+      width: 45vw;
+    }
+
+    &__secondary {
+      font-size: 2rem;
+      font-weight: 500;
+      margin-bottom: 4rem;
+    }
+  }
+
+  .buttons {
+    margin: 0 auto;
+  }
+
+  .cloudImg {
+    width: 40vw;
+    height: 40vh;
+    float: right;
+  }
+}

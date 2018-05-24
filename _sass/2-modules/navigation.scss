@@ -1,0 +1,28 @@
+.nav {
+  display: flex;
+  margin: 3rem;
+
+
+  .logo {
+    width: 13rem;
+    //margin-right: auto;
+    flex: 1;
+  }
+
+  .login {
+    font-family: "Avenir Next", $avenir;
+    font-weight: 600;
+    font-size: 1.8rem;
+    color: $dark-blue;
+    margin: auto 3rem auto auto;
+    text-decoration: none;
+
+  }
+
+  .btn--1 {
+
+  }
+
+}
+
+      

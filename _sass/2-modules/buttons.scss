@@ -1,0 +1,19 @@
+.btn {
+  font-family: "Avenir Next", $avenir;
+  font-weight: 600;
+  font-size: 1.4rem;
+  border-radius: 5px;
+  text-align: center;
+  padding: 1.5rem 2.3rem;
+  text-decoration: none;
+
+  &--1 {
+    color: $strong-red;
+    border: 1px solid $strong-red;
+  }
+
+  &--2 {
+    color: white;
+    background-color: $strong-red;
+  }
+}
