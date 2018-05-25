@@ -10,11 +10,11 @@
     width: 35vw;
     display: flex;
     flex-direction: column;
+    justify-content: center;
 
     &__primary {
       font-size: 3.5rem;
       width: 45vw;
-      margin-top: 10rem;
     }
 
     &__secondary {
@@ -24,29 +24,70 @@
     }
   }
 
-  .btn {
-    margin-right: 2rem;
+  .buttons {
+    margin-bottom: 4rem;
+    .btn {
+      margin: 2rem 2rem 0 0;
+    }
   }
 
   .cloudImg {
-    width: 35vw;
+    width: 40vw;
+    height: auto;
+    max-height: 380px;
+    max-width: 680px;
+    min-height: 200px;
+    min-width: 300px;
+    align-self: center;
+    margin-bottom: 2rem;
+  }
+
+  @include respond(tab-port) {
+    .heading {
+      &__primary {
+        font-size: 3rem;
+      }
+    }
+  }
+
+  @include respond(column) {
+
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 2rem;
+
+    .heading {
+      align-self: center;
+      text-align: center;
+      width: 75vw;
+
+      &__primary {
+        font-size: 2.5rem;
+      }
+      &__secondary {
+        font-size: 1.8rem;
+      }
+    }
+
+    .cloudImg {
+      order: -1;
+    }
   }
 }
 
 
 .product {
   background-color: $light1-blue;
-  height: 33vh;
+  height: auto;
+  padding-bottom: 5rem;
   width: 100vw;
   color: $dark-blue;
   font-family: "Avenir Next", $avenir;
 
-
-
   .title-center {
     margin: 3rem auto;
     text-align: center;
-    font-weight: 600;
+    font-weight: 700;
     font-size: 2.6rem;
   }
 
@@ -55,8 +96,6 @@
     justify-content: center;
     align-items: flex-start;
     align-content: center;
-
-
 
     .img-box {
       background-color: $cold-blue;
@@ -75,7 +114,6 @@
         margin-right: 10rem;
       }
 
-
       .title {
         font-size: 2rem;
 
@@ -83,8 +121,22 @@
           font-size: 1.6rem;
         }
       }
+
+      @include respond(column) {
+
+      }
     }
 
+    @include respond(column) {
+
+
+      .img-box {
+
+      }
+      .text-col {
+
+      }
+    }
   }
 
 }
