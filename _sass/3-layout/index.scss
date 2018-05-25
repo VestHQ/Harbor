@@ -2,13 +2,14 @@
   font-family: "Avenir Next", $avenir;
   color: $dark-blue;
   width: 100%;
-  margin: 5rem;
   flex: 1;
+  display: flex;
+  justify-content: space-around;
 
   .heading {
     width: 35vw;
-    float: left;
-
+    display: flex;
+    flex-direction: column;
 
     &__primary {
       font-size: 3.5rem;
@@ -23,15 +24,12 @@
     }
   }
 
-  .buttons {
-    margin: 0 auto;
+  .btn {
+    margin-right: 2rem;
   }
 
   .cloudImg {
-    width: 40vw;
-    //height: 40vh;
-    float: right;
-    margin: 0 5rem;
+    width: 35vw;
   }
 }
 
@@ -46,7 +44,7 @@
 
 
   .title-center {
-    margin: 1rem auto;
+    margin: 3rem auto;
     text-align: center;
     font-weight: 600;
     font-size: 2.6rem;
