@@ -2,17 +2,18 @@
   font-family: "Avenir Next", $avenir;
   color: $dark-blue;
   width: 100%;
-  margin: 5rem 0 5rem 5rem;
+  margin: 5rem;
   flex: 1;
 
-
   .heading {
-    width: 45vw;
+    width: 35vw;
     float: left;
+
 
     &__primary {
       font-size: 3.5rem;
       width: 45vw;
+      margin-top: 10rem;
     }
 
     &__secondary {
@@ -28,7 +29,89 @@
 
   .cloudImg {
     width: 40vw;
-    height: 40vh;
+    //height: 40vh;
     float: right;
+    margin: 0 5rem;
   }
 }
+
+
+.product {
+  background-color: $light1-blue;
+  height: 33vh;
+  width: 100vw;
+  color: $dark-blue;
+  font-family: "Avenir Next", $avenir;
+
+
+
+  .title-center {
+    margin: 1rem auto;
+    text-align: center;
+    font-weight: 600;
+    font-size: 2.6rem;
+  }
+
+  .product-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    align-content: center;
+
+
+
+    .img-box {
+      background-color: $cold-blue;
+      height: 15rem;
+      width: 15rem;
+      margin-right: 5rem;
+      align-self: flex-start;
+    }
+
+    .text-col {
+      display: flex;
+      flex-direction: column;
+      width: 15vw;
+
+      &:not(:last-child){
+        margin-right: 10rem;
+      }
+
+
+      .title {
+        font-size: 2rem;
+
+        &__description {
+          font-size: 1.6rem;
+        }
+      }
+    }
+
+  }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
