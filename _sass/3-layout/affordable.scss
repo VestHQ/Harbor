@@ -1,0 +1,71 @@
+.container {
+  font-family: "Avenir Next", $avenir;
+  margin: 5rem;
+  color: $cold-blue;
+
+  .flex {
+    display: flex;
+  }
+
+  .header {
+
+    .btn-beside-text {
+      display: flex;
+      margin-bottom: 4rem;
+    }
+
+    &__primary {
+      color: $dark-blue;
+      font-size: 4.5rem;
+
+    }
+
+    &__secondary {
+      font-size: 2rem;
+      font-weight: 500;
+      width: 37vw;
+    }
+
+    .button {
+      margin: 3rem;
+    }
+  }
+  .graph-text {
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: $cold-blue;
+  }
+
+  .highlight {
+    color: $strong-red;
+  }
+
+  .employers {
+    margin-right: 15rem;
+
+    .graph--1 {
+      margin: 3rem auto;
+      max-width: 350px;
+    }
+
+    .button-calc {
+      margin-right: 5rem;
+    }
+  }
+
+  .employees {
+
+
+    .graph--2 {
+      max-width: 350px;
+      margin: 3rem auto;
+    }
+
+    .fine-print {
+      font-size: 1rem;
+      color: $light3-blue;
+      width: 40vw;
+    }
+  }
+}
+

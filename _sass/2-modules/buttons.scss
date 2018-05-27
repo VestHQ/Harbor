@@ -17,6 +17,10 @@
     background-color: $strong-red;
   }
 
+  &__calc {
+    margin-left: 2rem;
+  }
+
   @include respond(xl-phone) {
     padding: 1rem 1.5rem;
   }
