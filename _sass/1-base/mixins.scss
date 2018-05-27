@@ -17,8 +17,14 @@
   @if $breakpoint == xl-phone {
     @media (max-width: 43.125em) { @content } //690px
   }
+  @if $breakpoint == mid-header {
+    @media (max-width: 800px) { @content } //800px
+  }
   @if $breakpoint == tab-port {
     @media (max-width: 56em) { @content } //900px
+  }
+  @if $breakpoint == column2 {
+    @media (max-width: 960px) { @content } //960px
   }
   @if $breakpoint == laptop {
     @media (max-width: 1024px) { @content } //1024px
