@@ -12,6 +12,7 @@
     flex-direction: column;
     justify-content: center;
 
+
     &__primary {
       font-size: 3.5rem;
       width: 45vw;
@@ -34,13 +35,13 @@
 
   .cloudImg {
     width: 40vw;
-    height: auto;
-    max-height: 380px;
-    max-width: 680px;
-    min-height: 200px;
-    min-width: 300px;
+    min-width: 500px;
     align-self: center;
     margin-bottom: 2rem;
+
+    @include respond(xs-phone) {
+      min-width: 300px;
+    }
   }
 
   @include respond(tab-port) {
@@ -51,7 +52,7 @@
     }
   }
 
-  @include respond(column) {
+  @include respond(column2) {
 
     flex-direction: column;
     justify-content: center;
