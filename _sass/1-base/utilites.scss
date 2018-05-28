@@ -1,16 +1,27 @@
 .u-margin-bottom-big {
-  margin-bottom: 15rem;
+  margin-bottom: 11rem;
 
   @include respond(big-desktop) {
-    margin-bottom: 12.5rem;
+    margin-bottom: 8.5rem;
   }
   @include respond(tab-land) {
-    margin-bottom: 17rem;
+    margin-bottom: 13rem;
   }
-  @media screen and (max-width: 1089px) {
-    margin-bottom: 15rem;
+  @include respond(column2) {
+    margin-bottom: 5rem;
   }
 }
 .u-margin-bottom-small {
+  margin-bottom: 2rem;
+
+  @include respond(column2) {
+    margin-bottom: 0;
+  }
+}
+.u-margin-bottom-mid {
   margin-bottom: 4rem;
+}
+
+.u-margin-left-small {
+  margin-left: 2rem;
 }

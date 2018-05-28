@@ -1,10 +1,10 @@
 .btn {
   font-family: "Avenir Next", $avenir;
   font-weight: 600;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   border-radius: 5px;
   text-align: center;
-  padding: 1.5rem 2.3rem;
+  padding: 1rem 1.4rem;
   text-decoration: none;
 
   &--1 {
@@ -17,14 +17,6 @@
     background-color: $strong-red;
   }
 
-  &__calc {
-    margin-left: 2rem;
-    padding: 1.2rem 1.8rem;
-  }
-
-  @include respond(xl-phone) {
-    padding: 1rem 1.5rem;
-  }
   @include respond(sm-phone) {
     padding: 8px 10px;
     font-size: 1rem;
