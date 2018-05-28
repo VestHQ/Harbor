@@ -22,6 +22,7 @@
       @include respond(mid-header){
         flex-wrap: wrap;
       }
+
     }
 
     &__primary {
@@ -30,6 +31,12 @@
 
       @include respond(column){
         font-size: 3.7rem;
+      }
+      @include respond(sm-phone){
+        font-size: 3rem;
+      }
+      @media screen and (max-width: 340px) {
+        font-size: 2.7rem;
       }
     }
 
@@ -41,6 +48,10 @@
 
       @media screen and (min-width: 1005px) {
         width: 40vw;
+      }
+
+      @include respond(m-phone){
+        width: 90vw;
       }
     }
 
@@ -70,8 +81,12 @@
 
     .graph--1 {
       margin: 3rem auto;
-      min-width: 200px;
       max-width: 350px;
+      min-width: 250px;
+
+      @include respond(xl-phone) {
+        width: 250px;
+      }
     }
 
     .dropdown-list {
@@ -94,9 +109,12 @@
 
     .graph--2 {
       max-width: 400px;
-      min-width: 200px;
-      height: auto;
+      min-width: 260px;
       margin: 3rem auto;
+
+      @include respond(xl-phone) {
+        width: 250px;
+      }
     }
 
     .fine-print {
@@ -107,6 +125,9 @@
 
       @include respond(mid-header) {
         width: 46vw;
+      }
+      @include respond(m-phone){
+        width: 80vw;
       }
     }
   }
