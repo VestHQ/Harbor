@@ -1,0 +1,31 @@
+.nav {
+  display: flex;
+  align-items: center;
+  margin: 3rem;
+
+  .logo {
+    width: 13rem;
+    flex: 1;
+  }
+
+  .login {
+    font-family: "Avenir Next", $avenir;
+    font-weight: 600;
+    font-size: 1.8rem;
+    color: $dark-blue;
+    margin: auto 3rem auto auto;
+    text-decoration: none;
+
+  }
+
+  @include respond(sm-phone) {
+    .logo {
+      width: 10rem;
+    }
+    .login {
+      font-size: 1.6rem;
+    }
+  }
+}
+
+      

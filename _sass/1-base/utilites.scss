@@ -1,0 +1,35 @@
+.u-margin-bottom-big {
+  margin-bottom: 11rem;
+
+  @include respond(big-desktop) {
+    margin-bottom: 8.5rem;
+  }
+  @include respond(tab-land) {
+    margin-bottom: 13rem;
+  }
+  @include respond(column2) {
+    margin-bottom: 5rem;
+  }
+}
+.u-margin-bottom-small {
+  margin-bottom: 2rem;
+
+  @include respond(column2) {
+    margin-bottom: 0;
+  }
+}
+.u-margin-bottom-mid {
+  margin-bottom: 4rem;
+}
+
+.u-margin-left-small {
+  margin-left: 2rem;
+}
+
+.u-margin-left-mid {
+  //margin-left: 5rem;
+}
+.u-flex-no-grow {
+  flex-grow: 0;
+}
+

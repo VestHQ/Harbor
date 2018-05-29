@@ -1,0 +1,97 @@
+.container {
+  .flex {
+    display: flex;
+
+    @include respond(column2){
+      flex-wrap: wrap;
+    }
+  }
+
+  .header {
+
+    .btn-beside-text {
+      display: flex;
+      margin-bottom: 4rem;
+
+      @include respond(mid-header){
+        flex-wrap: wrap;
+      }
+    }
+
+    .button {
+      margin: 3rem;
+
+      @media screen and (max-width: 590px) {
+        margin-left: 0;
+      }
+    }
+  }
+
+  .graph-text {
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: $cold-blue;
+  }
+
+  .highlight {
+    color: $strong-red;
+    font-weight: 600;
+  }
+
+  .employers {
+    margin-right: 15rem;
+
+    .graph--1 {
+      margin: 3rem auto;
+      max-width: 350px;
+      min-width: 250px;
+
+      @include respond(xl-phone) {
+        width: 250px;
+      }
+    }
+
+    .dropdown-list {
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: $strong-red;
+      width: 5.5rem;
+      height: 3rem;
+      margin: 0 .5rem;
+
+      &:focus{
+        outline: none;
+        box-shadow: 0 1rem 2rem rgba(black,.1);
+      }
+    }
+  }
+
+  .employees {
+    //display: flex;
+    flex-grow: 1;
+    .graph--2 {
+      max-width: 400px;
+      min-width: 260px;
+      margin: 3rem auto;
+
+      @include respond(xl-phone) {
+        width: 250px;
+      }
+    }
+
+    .fine-print {
+      font-size: 1rem;
+      color: $light3-blue;
+      width: 35vw;
+      margin-top: 1rem;
+
+      @include respond(mid-header) {
+        width: 46vw;
+      }
+      @include respond(m-phone){
+        width: 80vw;
+      }
+    }
+  }
+}
+

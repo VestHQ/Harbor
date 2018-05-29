@@ -1,0 +1,24 @@
+.btn {
+  font-family: "Avenir Next", $avenir;
+  font-weight: 600;
+  font-size: 1.2rem;
+  border-radius: 5px;
+  text-align: center;
+  padding: 1rem 1.4rem;
+  text-decoration: none;
+
+  &--1 {
+    color: $strong-red;
+    border: 1px solid $strong-red;
+  }
+
+  &--2 {
+    color: white;
+    background-color: $strong-red;
+  }
+
+  @include respond(sm-phone) {
+    padding: 8px 10px;
+    font-size: 1rem;
+  }
+}

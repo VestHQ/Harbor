@@ -1,0 +1,185 @@
+.main {
+  font-family: "Avenir Next", $avenir;
+  color: $dark-blue;
+  width: 100%;
+  flex-grow: 1;
+  display: flex;
+  justify-content: space-around;
+
+  .heading {
+    width: 35vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+
+    &__primary {
+      font-size: 3.5rem;
+      width: 45vw;
+      margin-bottom: 1rem;
+    }
+
+    &__secondary {
+      font-size: 2rem;
+      font-weight: 500;
+      margin-bottom: 4rem;
+    }
+  }
+
+  .buttons {
+    margin-bottom: 4rem;
+    .btn {
+      margin: 2rem 2rem 0 0;
+    }
+  }
+
+  .cloudImg {
+    width: 40vw;
+    min-width: 500px;
+    align-self: center;
+    margin-bottom: 2rem;
+
+    @include respond(xs-phone) {
+      min-width: 300px;
+    }
+  }
+
+  @include respond(column2) {
+
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 2rem;
+
+    .heading {
+      align-self: center;
+      text-align: center;
+      width: 75vw;
+
+      &__primary {
+        font-size: 2.5rem;
+      }
+      &__secondary {
+        font-size: 1.8rem;
+        margin-bottom: 2.5rem;
+      }
+    }
+
+    .cloudImg {
+      order: -1;
+    }
+  }
+}
+
+
+.product {
+  background-color: $light1-blue;
+  height: auto;
+  padding-bottom: 5rem;
+  width: 100vw;
+  color: $dark-blue;
+  font-family: "Avenir Next", $avenir;
+
+  .title-center {
+    margin: 3rem auto;
+    text-align: center;
+    font-weight: 700;
+    font-size: 2.6rem;
+  }
+
+  .product-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    align-content: center;
+
+
+    .img-box {
+      background-color: $cold-blue;
+      height: 15rem;
+      width: 15rem;
+      margin: 0 5rem 3rem 0;
+      align-self: flex-start;
+    }
+
+    .text-col {
+      display: flex;
+      flex-direction: column;
+      width: 18vw;
+
+
+      @media screen and (min-width: 609px){
+        &:not(:last-child){
+          margin-right: 8rem;
+        }
+      }
+
+      .title {
+        font-size: 2rem;
+
+        &__description {
+          font-size: 1.6rem;
+        }
+      }
+    }
+
+    @media screen and (max-width: 760px) {
+      .img-box {
+        margin-right: 2rem;
+      }
+    }
+
+    @include respond(column) {
+      margin: 4rem 0 auto 4rem;
+      flex-wrap: wrap;
+
+
+      .img-box {
+        margin-bottom: 3rem;
+        margin-left: 5rem;
+      }
+
+      .text-col {
+        width: 33vw;
+        margin-right: 3rem;
+      }
+    }
+
+    @media screen and (max-width: 389px) {
+      margin: 0;
+    }
+
+    @media screen and (max-width: 335px) {
+      .product, .product-container, .img-box {
+        margin: 0 1rem 1rem 1rem;
+      }
+
+    }
+
+  }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
