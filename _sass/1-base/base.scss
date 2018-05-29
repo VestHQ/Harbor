@@ -43,11 +43,12 @@ body{
   min-width: 100vw;
   flex-direction: column;
   overflow: auto;
+  //flex: 1;
 }
 
 .container {
   font-family: "Avenir Next", $avenir;
   margin: 5rem 5rem 0 5rem;
   color: $cold-blue;
-  flex-grow: 1;
+  flex: 1;
 }

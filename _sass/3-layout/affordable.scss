@@ -67,7 +67,8 @@
   }
 
   .employees {
-
+    //display: flex;
+    flex-grow: 1;
     .graph--2 {
       max-width: 400px;
       min-width: 260px;
