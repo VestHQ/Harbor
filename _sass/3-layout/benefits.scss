@@ -79,3 +79,13 @@
     justify-content: center;
   }
 }
+
+.max-height {
+
+  .container{
+    @media screen and (min-height: 750px) and (min-width: 898px) {
+      //flex: 0;
+    }
+  }
+
+}

@@ -44,14 +44,6 @@
     }
   }
 
-  @include respond(tab-port) {
-    .heading {
-      &__primary {
-        font-size: 3rem;
-      }
-    }
-  }
-
   @include respond(column2) {
 
     flex-direction: column;

@@ -1,0 +1,32 @@
+.header {
+
+  &__primary {
+    color: $dark-blue;
+    font-size: 3.5rem;
+
+    @include respond(column) {
+      font-size: 3.7rem;
+    }
+    @include respond(sm-phone) {
+      font-size: 3rem;
+    }
+    @media screen and (max-width: 340px) {
+      font-size: 2.7rem;
+    }
+  }
+
+  &__secondary {
+    font-size: 2rem;
+    font-weight: 500;
+    width: 60vw;
+    margin-right: 2rem;
+
+    @media screen and (min-width: 1005px) {
+      width: 40vw;
+    }
+
+    @include respond(m-phone) {
+      width: 90vw;
+    }
+  }
+}
