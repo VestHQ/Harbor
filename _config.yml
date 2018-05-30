@@ -15,3 +15,12 @@ email: tripathi@vesthq.com
 url: http://www.harborhq.com
 repository: https://github.com/VestHQ/Harbor
 # google_analytics: UA-72011621-1
+
+
+plugins:
+  - jekyll-sitemap
+  - jekyll-autoprefixer
+
+autoprefixer:
+  browsers:
+    - last 10 versions

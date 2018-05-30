@@ -32,13 +32,11 @@ ul{
 
 * {
   -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
           box-sizing: border-box;
 }
 *:before,
 *:after {
   -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
           box-sizing: border-box;
 }
 
@@ -197,7 +195,8 @@ p{
     background-color: #367BF4;
     padding: 10px 14px 6px 14px;
     color: white;
-    border-radius: 5px;
+    -webkit-border-radius: 5px;
+            border-radius: 5px;
 }
 
 .white-blue{
@@ -205,7 +204,8 @@ p{
     background-color: #FCFCFC;
     padding: 10px 14px 6px 14px;
     color: #367BF4;
-    border-radius: 5px;
+    -webkit-border-radius: 5px;
+            border-radius: 5px;
 
 }
 
@@ -230,7 +230,8 @@ input[type="number"]{
     font-size: 20px;
     font-weight: none;
     color: #367BF4;
-    border-radius: 5px;
+    -webkit-border-radius: 5px;
+            border-radius: 5px;
     text-align: center;
     width: 80px;
 }
@@ -242,14 +243,16 @@ input[type="submit"]{
     background-color: #367BF4;
     padding: 8px 14px 7px 14px;
     color: white;
-    border-radius: 5px;
+    -webkit-border-radius: 5px;
+            border-radius: 5px;
     text-align: center;
 }
 
 .box{
     border: 2px solid #FCFCFC;
     padding-bottom: 20px;
-    box-shadow: 0px 0px 4px 4px #ABC7F9;
+    -webkit-box-shadow: 0px 0px 4px 4px #ABC7F9;
+            box-shadow: 0px 0px 4px 4px #ABC7F9;
     z-index: 1;
     background-color: #FCFCFC;
 }
