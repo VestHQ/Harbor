@@ -10,15 +10,30 @@
   &--1 {
     color: $strong-red;
     border: 1px solid $strong-red;
+
+    &:hover {
+      background-color: $strong-red;
+      color: #fff;
+    }
   }
 
   &--2 {
     color: white;
     background-color: $strong-red;
+
+    &:hover {
+      background-color: #fff;
+      color: $strong-red;
+      border: 1px solid $strong-red;
+    }
   }
 
   @include respond(sm-phone) {
     padding: 8px 10px;
     font-size: 1rem;
   }
+}
+
+.btn-small {
+  padding: .8rem 1.2rem;
 }

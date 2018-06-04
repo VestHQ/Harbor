@@ -28,8 +28,7 @@ html {
 
 body{
   box-sizing: border-box;
-  font-family: $avenir;
-  //max-width: 134rem;
+  font-family: "Avenir Next", $avenir;
   width: 100%;
   margin: 0 auto;
   min-height: 100vh;
@@ -40,10 +39,10 @@ body{
 .wrapper {
   display: flex;
   min-height: 100vh;
-  min-width: 100vw;
+  max-width: 1200px;
+  margin: 0 auto;
   flex-direction: column;
   overflow: auto;
-  //flex: 1;
 }
 
 .container {
