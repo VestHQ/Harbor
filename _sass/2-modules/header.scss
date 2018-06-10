@@ -19,14 +19,7 @@
     font-size: 2rem;
     font-weight: 500;
     width: 60vw;
+    max-width: 530px;
     margin-right: 2rem;
-
-    @media screen and (min-width: 1005px) {
-      width: 40vw;
-    }
-
-    @include respond(m-phone) {
-      width: 90vw;
-    }
   }
 }
