@@ -1,10 +1,14 @@
 .container {
   .flex {
     display: flex;
+    margin-left: 3rem;
+    //justify-content: space-between;
 
     @include respond(column2){
-      flex-wrap: wrap;
+      flex-direction: column;
       justify-content: center;
+      align-content: center;
+      align-items: center;
     }
   }
 
@@ -15,14 +19,14 @@
       margin-bottom: 4rem;
 
       @include respond(mid-header){
-        flex-wrap: wrap;
+        flex-direction: column;
       }
     }
 
     .button {
       margin: 3rem;
 
-      @media screen and (max-width: 590px) {
+      @include respond(mid-header) {
         margin-left: 0;
       }
     }
@@ -31,6 +35,7 @@
   .graph-text {
     font-size: 1.8rem;
     font-weight: 500;
+    width: 120%;
     color: $cold-blue;
   }
 
@@ -41,6 +46,7 @@
 
   .employers {
     margin-right: 15rem;
+
 
     .graph--1 {
       margin: 3rem auto;
@@ -65,11 +71,16 @@
         box-shadow: 0 1rem 2rem rgba(black,.1);
       }
     }
+
+    @include respond(column2) {
+      width: 300px;
+      margin-right: 0;
+    }
   }
 
   .employees {
     //display: flex;
-    flex-grow: 1;
+
     .graph--2 {
       max-width: 400px;
       min-width: 260px;
@@ -83,17 +94,14 @@
     .fine-print {
       font-size: 1rem;
       color: $light3-blue;
-      width: 35vw;
-      max-width: 525px;
+      width: 100%;
+      max-width: 380px;
+      min-width: 300px;
       margin-top: 1rem;
+    }
 
-      @include respond(mid-header) {
-        width: 46vw;
-      }
-      @include respond(m-phone){
-        width: 80vw;
-      }
+    @include respond(column2) {
+      width: 300px;
     }
   }
 }
-
