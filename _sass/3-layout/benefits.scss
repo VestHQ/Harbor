@@ -1,5 +1,6 @@
 .benefits-container {
   display: flex;
+  justify-content: center;
   max-width: 950px;
   margin: 0 4rem;
 
@@ -39,6 +40,11 @@
         margin-left: 3rem;
       }
     }
+  }
+
+  @include respond(m-phone) {
+    margin: 0;
+    justify-content: space-around;
   }
 }
 
