@@ -1,5 +1,0 @@
----
-title: About
----
-Harbor [title]
-We are making retirement accessible to small businesses. Our proprietary technology makes us the first completely mobile end-to-end solution, we can balance student debt with saving for retirement, and decrease fiduciary liability for employers. Please reach out to us with any questions at hi@harborhq.com. 
