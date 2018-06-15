@@ -59,6 +59,7 @@
     border: 2px solid #fff;
     color: #fff;
     background-color: black;
+    outline: none;
 
     &:hover {
       color: $yellow;
@@ -85,7 +86,7 @@
 
 
     .coin {
-      margin-top: 10%;
+      margin-top: 6%;
       max-width: 20rem;
       width: 100%;
       height: auto;
@@ -138,12 +139,21 @@
     .btn--large {
       text-transform: uppercase;
       font-family: joystix monospace;
+
+      opacity: 0;
+      animation: fadeIn 2s;
+      animation-delay: 4.5s;
+      animation-fill-mode: forwards;
     }
   }
 
 }
 
 
+@keyframes fadeIn {
+  from, to { opacity: 0;}
+  100% { opacity: 1; }
+}
 
 @keyframes blink-cursor {
   from, to { border-color: transparent }
