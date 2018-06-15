@@ -138,12 +138,21 @@
     .btn--large {
       text-transform: uppercase;
       font-family: joystix monospace;
+
+      opacity: 0;
+      animation: fadeIn 1s;
+      animation-delay: 4.5s;
+      animation-fill-mode: forwards;
     }
   }
 
 }
 
 
+@keyframes fadeIn {
+  from, to { opacity: 0; }
+  100% { opacity: 1; }
+}
 
 @keyframes blink-cursor {
   from, to { border-color: transparent }
