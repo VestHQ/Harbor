@@ -1,15 +1,17 @@
 .btn {
   font-family: "Avenir Next", $avenir;
   font-weight: 600;
+  letter-spacing: 1px;
   font-size: 1.2rem;
-  border-radius: 5px;
+  border-radius: 2px;
   text-align: center;
   padding: 1rem 1.4rem;
   text-decoration: none;
+  text-transform: uppercase;
 
   &--1 {
     color: $strong-red;
-    border: 1px solid $strong-red;
+    border: 2px solid $strong-red;
 
     &:hover {
       background-color: $strong-red;
@@ -24,9 +26,20 @@
     &:hover {
       background-color: #fff;
       color: $strong-red;
-      border: 1px solid $strong-red;
+      border: 2px solid $strong-red;
     }
   }
+
+  //&--3 {
+  //  font-family: "Avenir Next", $avenir;
+  //  font-weight: 500;
+  //  letter-spacing: 1px;
+  //  font-size: 1.8rem;
+  //  color: $dark-blue;
+  //  margin: auto 3rem auto auto;
+  //  text-decoration: none;
+  //  text-transform: uppercase;
+  //}
 
   @include respond(sm-phone) {
     padding: 8px 10px;

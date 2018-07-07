@@ -3,6 +3,7 @@
   color: $dark-blue;
   display: flex;
   justify-content: space-around;
+  //min-height: 90vh;
 
   .heading {
     width: 35vw;
@@ -14,14 +15,22 @@
 
     &__primary {
       font-size: 3.5rem;
+      text-transform: uppercase;
       width: 45vw;
       margin-bottom: 1rem;
     }
 
     &__secondary {
-      font-size: 2rem;
+      font-size: 2.4rem;
       font-weight: 500;
-      margin-bottom: 4rem;
+      margin-bottom: 1.5rem;
+    }
+
+    &__tertiary {
+      color: $cold-blue;
+      font-size: 2rem;
+      font-weight: 400;
+      margin-bottom: 2.5rem;
     }
   }
 
@@ -32,11 +41,11 @@
     }
   }
 
-  .cloudImg {
-    width: 40vw;
+  .mainImg {
+    width: 60vw;
     min-width: 500px;
     align-self: center;
-    margin-bottom: 2rem;
+    //margin-bottom: 2rem;
 
     @include respond(xs-phone) {
       min-width: 300px;
@@ -63,7 +72,7 @@
       }
     }
 
-    .cloudImg {
+    .mainImg {
       order: -1;
     }
   }

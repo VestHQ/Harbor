@@ -20,8 +20,8 @@ repository: https://github.com/VestHQ/Harbor
 
 plugins:
   - jekyll-sitemap
-  - jekyll-autoprefixer
+#  - jekyll-autoprefixer
 
 autoprefixer:
   browsers:
-    - last 10 versions
+#    - last 6 versions
