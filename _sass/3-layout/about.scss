@@ -1,172 +1,98 @@
 .main {
-  font-family: "Avenir Next", $avenir;
-  color: $dark-blue;
-  display: flex;
-  justify-content: space-around;
-  //min-height: 90vh;
-
-  .heading {
-    width: 35vw;
-    max-width: 620px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
 
 
-    &__primary {
-      font-size: 3.5rem;
-      text-transform: uppercase;
-      width: 45vw;
-      margin-bottom: 1rem;
-    }
+  .explore {
+    font-weight: 500;
+    font-size: 2rem;
+    text-align: center;
+    text-transform: uppercase;
 
-    &__secondary {
-      font-size: 2.4rem;
-      font-weight: 500;
-      margin-bottom: 1.5rem;
-    }
-
-    &__tertiary {
-      color: $cold-blue;
+    &__arrow {
+      text-align: center;
+      margin-bottom: 3rem;
       font-size: 2rem;
-      font-weight: 400;
-      margin-bottom: 2.5rem;
+      font-weight: 300;
     }
   }
 
-  .buttons {
-    margin-bottom: 4rem;
-    .btn {
-      margin: 2rem 2rem 0 0;
+  .main-group {
+    font-family: "Avenir Next", $avenir;
+    color: $dark-blue;
+    display: flex;
+    justify-content: space-between;
+    min-height: 80vh;
+    width: 100%;
+
+    @media screen and (max-width: 1200px) {
+      margin-left: 3rem;
     }
-  }
 
-  .mainImg {
-    width: 60vw;
-    min-width: 500px;
-    align-self: center;
-    //margin-bottom: 2rem;
-
-    @include respond(xs-phone) {
-      min-width: 300px;
-    }
-  }
-
-  @include respond(column2) {
-
-    flex-direction: column;
-    justify-content: center;
-    margin-bottom: 2rem;
 
     .heading {
-      align-self: center;
-      text-align: center;
-      width: 75vw;
+      width: 30vw;
+      max-width: 60rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
 
       &__primary {
-        font-size: 2.5rem;
+        font-size: 3.5rem;
+        text-transform: uppercase;
+        width: 45vw;
+        margin-bottom: 1rem;
       }
+
       &__secondary {
+        font-size: 2.4rem;
+        font-weight: 500;
+        margin-bottom: 1rem;
+      }
+
+      &__tertiary {
+        color: #61728C;
         font-size: 1.8rem;
+        font-weight: 300;
         margin-bottom: 2.5rem;
       }
     }
 
     .mainImg {
-      order: -1;
-    }
-  }
-}
+      width: auto;
+      //min-width: 500px;
+      height: 70vh;
+      align-self: center;
 
-
-.product {
-  background-color: $light1-blue;
-  padding-bottom: 5rem;
-  flex-grow: 1;
-
-  color: $dark-blue;
-  font-family: "Avenir Next", $avenir;
-
-  .title-center {
-    margin: 4rem auto;
-    text-align: center;
-    font-weight: 700;
-    font-size: 2.6rem;
-  }
-
-  .product-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
-
-
-    .img-box {
-      background-color: #dadde1;
-      height: 15rem;
-      width: 15rem;
-      margin-right: 5rem;
-      align-self: flex-start;
+      @include respond(xs-phone) {
+        min-width: 300px;
+      }
     }
 
-    .text-col {
-      display: flex;
+    @include respond(column2) {
+
       flex-direction: column;
-      width: 18vw;
-      max-width: 270px;
+      justify-content: center;
+      margin-bottom: 2rem;
 
-      @media screen and (min-width: 609px){
-        &:not(:last-child){
-          margin-right: 8rem;
+      .heading {
+        align-self: center;
+        text-align: center;
+        width: 75vw;
+
+        &__primary {
+          font-size: 2.5rem;
+          margin: 1rem auto;
+        }
+        &__secondary {
+          font-size: 1.8rem;
+          margin-bottom: .5rem;
         }
       }
 
-      .title {
-        font-size: 2rem;
-
-        &__description {
-          font-size: 1.6rem;
-        }
+      .mainImg {
+        order: -1;
       }
-    }
-
-    @media screen and (max-width: 760px) {
-      .img-box {
-        margin-right: 2rem;
-      }
-    }
-
-    @include respond(column) {
-      margin: 4rem 0 auto 4rem;
-      flex-wrap: wrap;
-      align-items: flex-start;
-
-
-      .img-box {
-        margin-bottom: 3rem;
-        margin-left: 5rem;
-        height: 12rem;
-        width: 12rem;
-      }
-
-      .text-col {
-        width: 33vw;
-        margin-right: 3rem;
-      }
-    }
-
-    @media screen and (max-width: 389px) {
-      margin: 0;
-    }
-
-    @media screen and (max-width: 335px) {
-      .product, .product-container, .img-box {
-        margin: 0 1rem 1rem 1rem;
-      }
-
     }
   }
-
 }
 
 

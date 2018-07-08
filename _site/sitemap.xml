@@ -8,12 +8,6 @@
 <loc>http://localhost:4000/about/</loc>
 </url>
 <url>
-<loc>http://localhost:4000/affordable/</loc>
-</url>
-<url>
-<loc>http://localhost:4000/benefits/</loc>
-</url>
-<url>
 <loc>http://localhost:4000/</loc>
 </url>
 </urlset>
