@@ -1,3 +1,8 @@
+@font-face {
+  font-family: "Frankin Gothic";
+  src: url("../../assets/fonts/franklin_gothic_heavy.ttf");
+}
+
 .choice {
   display: flex;
   display: -webkit-box;
@@ -66,6 +71,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  margin-bottom: 2rem;
 
   &__item {
     display: flex;
@@ -103,6 +109,96 @@
   }
 }
 
+/////// ENGAGEMENT /////////
+
+.list-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @include respond(mid-header) {
+    flex-direction: column;
+  }
+
+  .list-header {
+    width: 50%;
+    margin-bottom: 3rem;
+
+    &__primary {
+      @include text;
+      text-align: left;
+      font-weight: 700;
+      font-size: 4rem;
+      color: $dark-blue;
+
+      &--number {
+        font-family: Frankin Gothic, Heavy, 'Chivo', sans-serif;
+        font-weight: 500;
+        font-size: 8rem;
+        color: $light2-blue;
+      }
+    }
+
+    &__secondary {
+      font-size: 2rem;
+      font-weight: 400;
+      color: $grey-blue;
+      margin-left: 6rem;
+      width: 66.6%;
+    }
+  }
+
+  .list-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: $light1-blue;
+    width: 40%;
+    height: 42rem;
+    padding: 1.5rem;
+
+    @include respond(mid-header) {
+      height: 35rem;
+    }
+
+    &__item {
+      align-self: center;
+      margin-left: 10%;
+      padding: 1rem;
+      width: 75%;
+
+      &__primary {
+        font-size: 2.8rem;
+        color: $dark-blue;
+        margin-bottom: 1rem;
+        font-family: Frankin Gothic, Heavy, 'Chivo', sans-serif;
+        font-weight: 300;
+        
+        &::before {
+          content:" ";
+          position: absolute;
+          font-family:sans-serif;
+          border-radius: 50%;
+          background-color: $dark-sky-blue;
+          margin: 1rem 0 0 -4rem;
+          align-self: center;
+          height: 1.5rem;
+          width: 1.5rem;
+        }
+      }
+
+      &__secondary {
+        color: $grey-blue;
+        font-size: 1.8rem;
+        font-weight: 500;
+
+        &:not(:last-child){
+          margin-bottom: 3rem;
+        }
+      }
+    }
+  }
+}
 
 
 

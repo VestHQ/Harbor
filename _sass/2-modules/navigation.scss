@@ -20,6 +20,10 @@
     text-transform: uppercase;
     text-align: center;
     padding: 1rem 1.4rem;
+
+    &:hover {
+      border-bottom: 2px solid $dark-sky-blue;
+    }
   }
 
   @include respond(sm-phone) {
