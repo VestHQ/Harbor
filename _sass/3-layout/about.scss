@@ -21,12 +21,9 @@
     display: flex;
     justify-content: space-between;
     min-height: 80vh;
-    width: 100%;
+    //width: 100%;
 
-    @media screen and (max-width: 1200px) {
-      margin-left: 3rem;
-    }
-
+    margin-left: 3rem;
 
     .heading {
       width: 30vw;
@@ -57,9 +54,14 @@
     }
 
     .mainImg {
-      width: auto;
-      height: 60vh;
+      //width: auto;
+      //height: 60vh;
+      //align-self: center;
+
+      width: 40vw;
+      min-width: 500px;
       align-self: center;
+      margin-bottom: 2rem;
 
       @include respond(xs-phone) {
         min-width: 300px;

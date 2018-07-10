@@ -35,7 +35,11 @@
 }
 
 .u-margin-left-mid {
-  //margin-left: 5rem;
+  margin-left: 4rem;
+}
+
+.u-margin-right-small {
+  margin-right: 3rem;
 }
 .u-flex-no-grow {
   flex-grow: 0;
@@ -43,4 +47,8 @@
 
 .u-word-space {
   word-spacing: 0;
+}
+
+.u-flex {
+  display: flex;
 }

@@ -40,6 +40,13 @@
     height: 12rem;
     width: auto;
     align-self: center;
+
+    @include respond(mid-header) {
+      height: 10rem;
+    }
+    @include respond(sm-phone) {
+      height: 8rem;
+    }
   }
 
   .text {
@@ -84,6 +91,15 @@
     height: 22rem;
     transition: all .3s;
 
+    @include respond(mid-header) {
+      width: 18rem;
+      height: 20rem;
+    }
+    @include respond(sm-phone) {
+      width: 16rem;
+      height: 18rem;
+    }
+
     &:not(:last-child) {
       margin-right: 1.3rem;
     }
@@ -95,6 +111,13 @@
       height: 12rem;
       width: auto;
       align-self: center;
+
+      @include respond(mid-header) {
+        height: 10rem;
+      }
+      @include respond(sm-phone) {
+        height: 8rem;
+      }
     }
 
     &__text {
@@ -110,13 +133,13 @@
   }
 }
 
-/////// ENGAGEMENT /////////
+/////// LIST /////////
 
 .list-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 3rem;
+  margin: 5% auto 15% auto;
 
   @include respond(mid-header) {
     flex-direction: column;
@@ -133,6 +156,7 @@
 
     @include respond(mid-header) {
       height: 35rem;
+      width: 60%;
     }
 
     &--2 {
@@ -143,23 +167,37 @@
     &__item {
       align-self: center;
       margin-left: 10%;
-      padding: 1rem;
+      margin-bottom: 1rem;
       width: 75%;
       position: relative;
       z-index: 1;
 
-
-      &--2::before {
-        content: " ";
-        background-color: $light1-blue;
-        height: 13rem;
-        width: 13rem;
-        position: absolute;
-        margin-left: -10rem;
-        margin-top: -4rem;
-        z-index: -1;
+      &--3 {
+        @include respond(mid-header) {
+          margin-left: 0;
+        }
       }
 
+      &--1::before {
+        content: " ";
+        background-color: $light1-blue;
+        height: 12rem;
+        width: 13rem;
+        position: absolute;
+        margin: -4rem 0 0 -10rem;
+        z-index: -1;
+
+        @include respond(mid-header) {
+          height: 10rem;
+          width: 11rem;
+          margin: -4rem 0 0 -8rem;
+        }
+        @include respond(sm-phone) {
+          height: 7rem;
+          width: 8rem;
+          margin: -2.5rem 0 0 -5.5rem;
+        }
+      }
 
       &__primary {
         @include bullet;
@@ -168,7 +206,14 @@
         margin-bottom: 1rem;
         font-family: Frankin Gothic, Heavy, 'Chivo', sans-serif;
         text-transform: uppercase;
-        font-weight: 300;
+        //font-weight: 300;
+
+        @include respond(mid-header) {
+          font-size: 2.4rem;
+        }
+        @include respond(sm-phone) {
+          font-size: 2rem;
+        }
       }
 
       &__secondary {
@@ -179,11 +224,51 @@
         &:not(:last-child){
           margin-bottom: 3rem;
         }
+
+        @include respond(mid-header) {
+          font-size: 1.6rem;
+        }
+      }
+
+      &__tertiary {
+        @include text;
+        font-size: 1.4rem;
+        text-align: left;
+        margin: 2rem auto;
+
+        @include respond(l-phone){
+          font-size: 1rem;
+          letter-spacing: 0;
+        }
+        @include respond(sm-phone){
+          font-size: 6pt;
+        }
+
+        @media screen and (max-width: 355px) {
+          margin-top: 6rem;
+        }
+      }
+
+      &__img {
+        height: 5.5rem;
+        width: auto;
+
+        @include respond(mid-header){
+          height: 4rem;
+        }
       }
     }
   }
 }
-
+.fine-print {
+  font-size: 1rem;
+  color: $grey-blue;
+}
+.slider {
+  width: 100%;
+  height: auto;
+  //min-height: 2rem;
+}
 
 
 
