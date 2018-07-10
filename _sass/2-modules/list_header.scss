@@ -1,0 +1,27 @@
+.list-header {
+  width: 50%;
+  margin-bottom: 3rem;
+
+  &__primary {
+    @include text;
+    text-align: left;
+    font-weight: 700;
+    font-size: 4rem;
+    color: $dark-blue;
+
+    &--number {
+      font-family: Frankin Gothic, Heavy, 'Chivo', sans-serif;
+      font-weight: 500;
+      font-size: 8rem;
+      color: $light2-blue;
+    }
+  }
+
+  &__secondary {
+    font-size: 2rem;
+    font-weight: 400;
+    color: $grey-blue;
+    margin-left: 6rem;
+    width: 66.6%;
+  }
+}

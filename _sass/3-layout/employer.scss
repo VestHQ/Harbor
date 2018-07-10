@@ -24,12 +24,12 @@
   }
 
   .employer {
-    background-color: $light2-blue;
+    background-color: $hover-light-blue;
     border-bottom: .5rem solid $dark-sky-blue;
   }
 
   .employee {
-    background-color: $light1-blue;
+    background-color: $non-hover-light-blue;
 
     &:hover {
       border-bottom: .5rem solid $dark-sky-blue;
@@ -51,6 +51,7 @@
 .learn-heading {
   @include text;
   font-size: 2.4rem;
+  color: $dark-blue;
   margin: 10rem auto;
   position: relative;
   display: flex;
@@ -115,37 +116,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 3rem;
 
   @include respond(mid-header) {
     flex-direction: column;
-  }
-
-  .list-header {
-    width: 50%;
-    margin-bottom: 3rem;
-
-    &__primary {
-      @include text;
-      text-align: left;
-      font-weight: 700;
-      font-size: 4rem;
-      color: $dark-blue;
-
-      &--number {
-        font-family: Frankin Gothic, Heavy, 'Chivo', sans-serif;
-        font-weight: 500;
-        font-size: 8rem;
-        color: $light2-blue;
-      }
-    }
-
-    &__secondary {
-      font-size: 2rem;
-      font-weight: 400;
-      color: $grey-blue;
-      margin-left: 6rem;
-      width: 66.6%;
-    }
   }
 
   .list-box {
@@ -161,36 +135,46 @@
       height: 35rem;
     }
 
+    &--2 {
+      @extend .list-box;
+      background-color: #fff;
+    }
+
     &__item {
       align-self: center;
       margin-left: 10%;
       padding: 1rem;
       width: 75%;
+      position: relative;
+      z-index: 1;
+
+
+      &--2::before {
+        content: " ";
+        background-color: $light1-blue;
+        height: 13rem;
+        width: 13rem;
+        position: absolute;
+        margin-left: -10rem;
+        margin-top: -4rem;
+        z-index: -1;
+      }
+
 
       &__primary {
+        @include bullet;
         font-size: 2.8rem;
         color: $dark-blue;
         margin-bottom: 1rem;
         font-family: Frankin Gothic, Heavy, 'Chivo', sans-serif;
+        text-transform: uppercase;
         font-weight: 300;
-        
-        &::before {
-          content:" ";
-          position: absolute;
-          font-family:sans-serif;
-          border-radius: 50%;
-          background-color: $dark-sky-blue;
-          margin: 1rem 0 0 -4rem;
-          align-self: center;
-          height: 1.5rem;
-          width: 1.5rem;
-        }
       }
 
       &__secondary {
         color: $grey-blue;
         font-size: 1.8rem;
-        font-weight: 500;
+        font-weight: 400;
 
         &:not(:last-child){
           margin-bottom: 3rem;

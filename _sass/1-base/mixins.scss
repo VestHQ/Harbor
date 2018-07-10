@@ -43,3 +43,17 @@
   font-weight: 600;
   letter-spacing: 1px;
 }
+
+@mixin bullet {
+  &::before {
+    content:" ";
+    position: absolute;
+    font-family:sans-serif;
+    border-radius: 50%;
+    background-color: $dark-sky-blue;
+    margin: 1rem 0 0 -4rem;
+    align-self: center;
+    height: 1.5rem;
+    width: 1.5rem;
+  }
+}
