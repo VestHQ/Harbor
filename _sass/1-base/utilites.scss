@@ -50,13 +50,10 @@
   display: flex;
 }
 
+.u-no-margin { margin: 0 !important; }
+
 #u-margin-bottom-mid {
-  @media screen and (min-width: 800px){
-    margin-bottom: 6rem !important;
-  }
-  @media screen and (max-width: 340px){
-    margin-bottom: 6rem !important;
-  }
+  margin-bottom: 6rem;
 }
 
 .u-flex-media {
@@ -64,12 +61,16 @@
     align-self: center;
     display: flex;
     flex-direction: row !important;
-    width: 100% !important;
-    margin-left: 15%;
+    justify-content: center;
+    width: 80% !important;
     margin-bottom: 0 !important;
   }
-  @media screen and (max-width: 340px){
+  @include respond(m-phone) {
+    //width: 100% !important;
+  }
+  @media screen and (max-width: 515px){
     flex-direction: column !important;
-    margin-left: 25%;
+    margin: 3rem;
+    width: 40% !important;
   }
 }

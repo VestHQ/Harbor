@@ -51,6 +51,9 @@
 
     .contact {
       margin-top: -1.6rem;
+      @media screen and (max-width: 330px) {
+        margin-top: 0;
+      }
     }
 
     .social {
@@ -59,7 +62,12 @@
 
     .legal {
       width: 30rem;
-
+      @include respond(m-phone) {
+        font-size: 8px;
+      }
+      @include respond(sm-phone) {
+        font-size: 6px;
+      }
     }
   }
 

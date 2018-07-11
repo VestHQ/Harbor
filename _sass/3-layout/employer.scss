@@ -152,18 +152,32 @@
     background-color: $light1-blue;
     width: 40%;
     height: 42rem;
-    padding: 1.5rem;
+    padding: 2rem 0;
 
     @include respond(mid-header) {
-       height: 35rem;
+       height: 30rem;
        width: 60%;
     }
     @include respond(l-phone) {
       width: 75%;
+      height: 25rem;
+    }
+
+    &--blue {
+      max-width: 380px;
+      @include respond(mid-header) {
+        height: 30rem;
+        width: 50%;
+      }
+      @include respond(l-phone) {
+        width: 50%;
+        height: 25rem;
+      }
     }
 
     &--2 {
       @extend .list-box;
+      align-items: center;
       background-color: #fff;
     }
 
@@ -225,7 +239,7 @@
         font-weight: 400;
 
         &:not(:last-child){
-          margin-bottom: 3rem;
+          margin-bottom: 1.5rem;
         }
 
         @include respond(mid-header) {
@@ -246,9 +260,6 @@
         @include respond(sm-phone){
           font-size: 6pt;
         }
-        @media screen and (max-width: 355px) {
-          //margin-top: 6rem;
-        }
       }
 
       &__img {
@@ -259,8 +270,11 @@
           margin-bottom: 3rem;
         }
 
-        @include respond(sm-phone){
+        @include respond(l-phone){
           height: 4rem;
+        }
+        @include respond(sm-phone){
+          height: 3rem;
         }
       }
     }
@@ -269,11 +283,13 @@
 .fine-print {
   font-size: 1rem;
   color: $grey-blue;
+  @include respond(l-phone){
+    font-size: 6px;
+  }
 }
 .slider {
   width: 100%;
   height: auto;
-  //min-height: 2rem;
 }
 
 
