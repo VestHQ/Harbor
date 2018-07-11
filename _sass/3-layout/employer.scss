@@ -164,7 +164,7 @@
     }
 
     &--blue {
-      max-width: 380px;
+      //max-width: 380px;
       @include respond(mid-header) {
         height: 30rem;
         width: 50%;
