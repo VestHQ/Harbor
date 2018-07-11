@@ -155,8 +155,11 @@
     padding: 1.5rem;
 
     @include respond(mid-header) {
-      height: 35rem;
-      width: 60%;
+       height: 35rem;
+       width: 60%;
+    }
+    @include respond(l-phone) {
+      width: 75%;
     }
 
     &--2 {
@@ -190,7 +193,7 @@
         @include respond(mid-header) {
           height: 10rem;
           width: 11rem;
-          margin: -4rem 0 0 -8rem;
+          margin: -4rem 0 0 -6rem;
         }
         @include respond(sm-phone) {
           height: 7rem;
@@ -206,7 +209,7 @@
         margin-bottom: 1rem;
         font-family: Frankin Gothic, Heavy, 'Chivo', sans-serif;
         text-transform: uppercase;
-        //font-weight: 300;
+        font-weight: 400;
 
         @include respond(mid-header) {
           font-size: 2.4rem;
@@ -243,9 +246,8 @@
         @include respond(sm-phone){
           font-size: 6pt;
         }
-
         @media screen and (max-width: 355px) {
-          margin-top: 6rem;
+          //margin-top: 6rem;
         }
       }
 
@@ -253,7 +255,11 @@
         height: 5.5rem;
         width: auto;
 
-        @include respond(mid-header){
+        &:first-child {
+          margin-bottom: 3rem;
+        }
+
+        @include respond(sm-phone){
           height: 4rem;
         }
       }

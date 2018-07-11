@@ -18,9 +18,6 @@
     margin-bottom: 0;
   }
 }
-.u-margin-bottom-mid {
-  margin-bottom: 4rem;
-}
 .u-margin-bottom-large {
   margin-bottom: 6rem;
 }
@@ -51,4 +48,28 @@
 
 .u-flex {
   display: flex;
+}
+
+#u-margin-bottom-mid {
+  @media screen and (min-width: 800px){
+    margin-bottom: 6rem !important;
+  }
+  @media screen and (max-width: 340px){
+    margin-bottom: 6rem !important;
+  }
+}
+
+.u-flex-media {
+  @include respond(mid-header){
+    align-self: center;
+    display: flex;
+    flex-direction: row !important;
+    width: 100% !important;
+    margin-left: 15%;
+    margin-bottom: 0 !important;
+  }
+  @media screen and (max-width: 340px){
+    flex-direction: column !important;
+    margin-left: 25%;
+  }
 }
