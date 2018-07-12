@@ -152,7 +152,7 @@
     background-color: $light1-blue;
     width: 40%;
     height: 42rem;
-    padding: 2rem 0;
+    padding: 4rem 0;
 
     @include respond(mid-header) {
        height: 30rem;
@@ -184,7 +184,7 @@
     &__item {
       align-self: center;
       margin-left: 10%;
-      margin-bottom: 1rem;
+      margin-bottom: 3rem;
       width: 75%;
       position: relative;
       z-index: 1;
@@ -195,25 +195,8 @@
         }
       }
 
-      &--1::before {
-        content: " ";
-        background-color: $light1-blue;
-        height: 12rem;
-        width: 13rem;
-        position: absolute;
-        margin: -4rem 0 0 -10rem;
-        z-index: -1;
-
-        @include respond(mid-header) {
-          height: 10rem;
-          width: 11rem;
-          margin: -4rem 0 0 -6rem;
-        }
-        @include respond(sm-phone) {
-          height: 7rem;
-          width: 8rem;
-          margin: -2.5rem 0 0 -5.5rem;
-        }
+      &--1 {
+        @include blueBox;
       }
 
       &__primary {

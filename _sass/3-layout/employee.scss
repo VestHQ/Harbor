@@ -1,0 +1,61 @@
+.chart-img {
+  height: 25rem;
+  width: auto;
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+
+.list-support {
+
+  &__primary {
+    @extend .list-box__item__primary;
+    text-align: center;
+
+    &::before {
+      content: none !important;
+    }
+  }
+
+  &__secondary {
+    @extend .list-box__item__secondary;
+    margin-bottom: 4rem !important;
+  }
+
+  .list-icons {
+    display: flex;
+    justify-content: space-between;
+    align-content: space-between;
+    position: relative;
+    z-index: 1;
+
+    & > * {
+      @include blueBox;
+      margin: 2rem;
+      padding: 2rem;
+
+      &::before {
+        margin: -5rem 0 0 -7rem;
+        right: 4rem;
+        height: 10rem;
+        width: 11rem;
+      }
+    }
+
+    &__img {
+      height: 8rem;
+      width: auto;
+    }
+    &__text {
+      text-align: center;
+      @include text;
+      font-size: 1.4rem;
+      font-weight: 500;
+      margin-top: 2rem;
+    }
+  }
+}
