@@ -1,0 +1,104 @@
+.chart-img {
+  height: 25rem;
+  width: auto;
+
+  @include respond(l-phone) {
+    height: 20rem;
+  }
+  @include respond(sm-phone) {
+    height: 15rem;
+  }
+
+  &--1 {
+    @include respond(m-phone) {
+      height: 17rem;
+    }
+    @include respond(sm-phone) {
+      height: 12rem;
+    }
+  }
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+
+.list-support {
+
+  &__primary {
+    @extend .list-box__item__primary;
+    text-align: center;
+
+    &::before {
+      content: none !important;
+    }
+  }
+
+  &__secondary {
+    @extend .list-box__item__secondary;
+    margin-bottom: 4rem !important;
+  }
+
+  .list-icons {
+    display: flex;
+    justify-content: space-between;
+    align-content: space-between;
+    position: relative;
+    z-index: 1;
+
+    & > * {
+      @include blueBox;
+      margin: 2rem;
+      padding: 2rem;
+
+      &::before {
+        margin: -5rem 0 0 -7rem;
+        right: 4rem;
+        height: 10rem;
+        width: 11rem;
+
+        @include respond(xl-phone) {
+          height: 7rem;
+          width: 8rem;
+          right: 3rem;
+          margin: -4rem 0 0 -5rem;
+        }
+
+        @include respond(sm-phone) {
+          height: 5rem;
+          width: 6rem;
+          right: 2rem;
+          margin: -4rem 0 0 -5rem;
+        }
+      }
+
+      @include respond(m-phone) {
+        margin: 0 1rem;
+        padding: 1rem;
+      }
+    }
+
+    &__img {
+      height: 8rem;
+      width: auto;
+
+      @include respond(xl-phone) {
+        height: 6.5rem;
+      }
+      @include respond(sm-phone) {
+        height: 5rem;
+      }
+
+    }
+    &__text {
+      text-align: center;
+      @include text;
+      font-size: 1.4rem;
+      font-weight: 500;
+      margin-top: 2rem;
+    }
+  }
+}
