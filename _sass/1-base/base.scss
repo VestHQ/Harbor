@@ -30,21 +30,38 @@ body{
   box-sizing: border-box;
   font-family: "Avenir Next", $avenir;
   width: 100%;
+  max-width: 1200px;
+  height: 100%;
   margin: 0 auto;
-  min-height: 100vh;
+  //min-height: 100vh;
+  //min-width: 100vw;
   background-color: #fff;
-  overflow: auto;
+  //overflow: auto;
+}
+
+.full-screen {
+  min-height: 100vh;
+  max-height: 100vh;
 }
 
 .wrapper {
   display: flex;
+  flex-direction: column;
   min-height: 100vh;
   max-height: 100vh;
-  //width: 100%;
+  min-width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  flex-direction: column;
   //overflow: auto;
+}
+
+.wrapper-small {
+  display: flex;
+  flex-direction: column;
+  max-height: 75vh;
+  min-height: 500px;
+  min-width: 100vw;
+  max-width: 1200px;
 }
 
 .container {
