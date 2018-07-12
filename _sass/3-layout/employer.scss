@@ -72,6 +72,15 @@
     margin: 6rem auto;
     border: 1px solid $dark-blue;
     border-radius: 2px;
+
+    @include respond(m-phone) {
+      width: 10rem;
+      margin: 4rem auto;
+    }
+  }
+
+  @include respond(m-phone) {
+    font-size: 2rem;
   }
 }
 
@@ -95,7 +104,7 @@
       width: 18rem;
       height: 20rem;
     }
-    @include respond(sm-phone) {
+    @include respond(m-phone) {
       width: 16rem;
       height: 18rem;
     }
@@ -115,7 +124,7 @@
       @include respond(mid-header) {
         height: 10rem;
       }
-      @include respond(sm-phone) {
+      @include respond(m-phone) {
         height: 8rem;
       }
     }
@@ -139,8 +148,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 5% auto 15% auto;
+  margin: 5% auto 0 auto;
 
+  @media screen and (min-width: 800px) {
+    margin: 5% auto 15% auto;
+  }
   @include respond(mid-header) {
     flex-direction: column;
   }
@@ -152,7 +164,7 @@
     background-color: $light1-blue;
     width: 40%;
     height: 42rem;
-    padding: 4rem 0;
+    padding: 4rem 1rem;
 
     @include respond(mid-header) {
        height: 30rem;
@@ -164,14 +176,13 @@
     }
 
     &--blue {
-      //max-width: 380px;
       @include respond(mid-header) {
-        height: 30rem;
+        height: 33rem;
         width: 50%;
       }
       @include respond(l-phone) {
         width: 50%;
-        height: 25rem;
+        height: 28rem;
       }
     }
 
@@ -184,10 +195,13 @@
     &__item {
       align-self: center;
       margin-left: 10%;
-      margin-bottom: 3rem;
       width: 75%;
       position: relative;
       z-index: 1;
+
+      &:not(:last-child) {
+        margin-bottom: 3rem;
+      }
 
       &--3 {
         @include respond(mid-header) {
