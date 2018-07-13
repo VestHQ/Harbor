@@ -17,6 +17,7 @@
     text-transform: uppercase;
     margin-bottom: 2rem;
     font-weight: 500;
+    align-self: flex-start;
 
     @include respond(tab-port) {
       margin-bottom: 1rem;
@@ -29,21 +30,15 @@
     margin-top: 2rem;
   }
 
-
   .footer-group {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    align-items: center;
-
-
-    & > * {
-      margin: 1rem;
-    }
 
     ul {
       list-style-type: none;
     }
+    li { margin-bottom: 2px;}
     a {
       color: $light1-blue;
       text-decoration: none;
@@ -51,24 +46,16 @@
         text-decoration: underline;
       }
     }
-
-    .harbor {
-
-    }
-
     .contact {
-      margin-top: -1.6rem;
+      //margin-top: -1.6rem;
       @media screen and (max-width: 330px) {
         margin-top: 0;
       }
     }
 
-    .social {
-      margin-top: -.6rem;
-    }
-
     .legal {
       width: 30rem;
+      margin-top: .5rem;
       @include respond(m-phone) {
         font-size: 8px;
       }

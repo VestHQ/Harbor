@@ -84,10 +84,13 @@
       &__tertiary {
         color: $grey-blue;
         font-size: 1.4rem;
-        font-weight: 300;
+        font-weight: 400;
         margin-bottom: 2.5rem;
         @media screen and (min-width: 960px) {
           max-width: 445px;
+        }
+        @include respond(sm-phone) {
+          font-weight: 500;
         }
       }
     }
