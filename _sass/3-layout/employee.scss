@@ -102,3 +102,66 @@
     }
   }
 }
+
+.blink-container {
+  position: relative;
+
+  .blink {
+    position: absolute;
+    bottom: 21.3rem; right: 24rem;
+    height: 2rem;
+    width: 2rem;
+    border-radius: 50%;
+    border: .4rem solid $dark-sky-blue;
+    background-color: white;
+
+    @include respond(l-phone) {
+      bottom: 17rem; right: 20rem;
+    }
+    @include respond(m-phone) {
+      bottom: 14rem; right: 16rem;
+    }
+    @include respond(sm-phone) {
+      bottom: 10rem; right: 11rem;
+      height: 1.5rem;
+      width: 1.5rem;
+      border: .3rem solid $dark-sky-blue;
+    }
+  }
+}
+.blink-text {
+  position: absolute;
+  bottom: 21.3rem; right: -20rem;
+  color: $dark-sky-blue;
+  font-size: 2rem;
+  font-weight: 500;
+  min-width: 100%;
+  margin-left: 3rem;
+
+  @include respond(l-phone) {
+    bottom: 18rem; right: -16rem;
+  }
+  @include respond(m-phone) {
+    bottom: 15rem; right: -14rem;
+    font-size: 1.6rem;
+  }
+  @include respond(sm-phone) {
+    bottom: 11rem; right: -10rem;
+    font-size: 1.4rem;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
