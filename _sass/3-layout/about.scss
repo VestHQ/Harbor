@@ -9,11 +9,10 @@
     font-size: 2rem;
     text-align: center;
     text-transform: uppercase;
-    margin: 5% auto 0 auto;
+    margin: 3% auto 0 auto;
+    color: $dark-blue;
+    letter-spacing: 1px;
 
-    //@media screen and (max-width: 960px){
-    //  margin-left: 2rem;
-    //}
     @include respond(column) {
       font-size: 1.6rem;
     }
@@ -34,9 +33,6 @@
       border-right-width: 4px;
     }
 
-    //@media screen and (max-width: 960px){
-    //  margin-left: 2rem;
-    //}
     @include respond(column) {
       height: 2rem;
       width: 2rem;

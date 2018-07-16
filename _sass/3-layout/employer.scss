@@ -21,19 +21,16 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-  }
-
-  .employer {
-    background-color: $hover-light-blue;
-    border-bottom: .5rem solid $dark-sky-blue;
-  }
-
-  .employee {
-    background-color: $non-hover-light-blue;
 
     &:hover {
       border-bottom: .5rem solid $dark-sky-blue;
     }
+  }
+  .employer {
+    background-color: $hover-light-blue;
+  }
+  .employee {
+    background-color: $non-hover-light-blue;
   }
 
   .img {
@@ -51,7 +48,7 @@
 
   .text {
     @include text;
-    font-size: 2rem;
+    font-size: 1.6rem;
   }
 }
 
