@@ -4,14 +4,16 @@
   {% include meta.html %}
 </head>
 <body>
-{% include navigation.html %}
-{% include about.html %}
+<div class="max-width">
+  {% include navigation.html %}
+  {% include about.html %}
 
-{% include employer_employee_choice.html %}
+  {% include choice.html %}
 
-{% include employee.html %}
+  {% include employee.html %}
 
-{% include footer.html %}
+  {% include footer.html %}
+</div>
 
 {% include scripts.html %}
 </body>

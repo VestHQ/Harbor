@@ -108,12 +108,13 @@
 
   .blink {
     position: absolute;
-    bottom: 21.3rem; right: 24rem;
+    bottom: 21rem; right: 24rem;
     height: 2rem;
     width: 2rem;
     border-radius: 50%;
     border: .4rem solid $dark-sky-blue;
     background-color: white;
+    animation: blink 3s ease-out infinite;
 
     @include respond(l-phone) {
       bottom: 17rem; right: 20rem;
@@ -131,41 +132,54 @@
 }
 .blink-text {
   position: absolute;
-  bottom: 21.3rem; right: -20rem;
+  bottom: 21.5rem;
+  right: 7rem;
   color: $dark-sky-blue;
-  font-size: 2rem;
+  font-size: 1.6rem;
   font-weight: 500;
-  min-width: 100%;
   margin-left: 3rem;
 
+  @include respond(tab-port) {
+    right: 9rem;
+  }
+  @include respond(xl-phone) {
+    right: 12rem;
+  }
   @include respond(l-phone) {
-    bottom: 18rem; right: -16rem;
-  }
-  @include respond(m-phone) {
-    bottom: 15rem; right: -14rem;
-    font-size: 1.6rem;
-  }
-  @include respond(sm-phone) {
-    bottom: 11rem; right: -10rem;
+    bottom: 18rem; right: 10rem;
     font-size: 1.4rem;
   }
+  @include respond(m-phone) {
+    bottom: 15rem; right: 6rem;
+    font-size: 1.2rem;
+  }
+  @include respond(sm-phone) {
+    bottom: 5rem; right: 6rem;
+  }
 }
 
-@keyframes shockwave {
+@keyframes blink {
   0% {
-    transform: scale(1);
-    box-shadow: 0 0 2px rgba(0,0,0,0.15), inset 0 0 1px rgba(0,0,0,0.15);
+    box-shadow: 0 0 1rem $grey-blue;
+    opacity: 1;
   }
-  95% {
-    box-shadow: 0 0 50px rgba(0,0,0,0), inset 0 0 30px rgba(0,0,0,0);
+  25% {
+    opacity: 1;
+    box-shadow: 0 0 0 $grey-blue;
+  }
+  50% {
+    opacity: 1;
+    box-shadow: 0 0 3rem $grey-blue;
+  }
+  75% {
+    opacity: 1;
+    box-shadow: 0 0 0 $grey-blue;
   }
   100% {
-    transform: scale(2.25);
-
+    box-shadow: 0 0 1rem $grey-blue;
+    opacity: 1;
   }
 }
-
-
 
 
 
