@@ -30,26 +30,19 @@ body{
   box-sizing: border-box;
   font-family: "Avenir Next", $avenir;
   width: 100%;
+  max-width: 1200px;
   height: 100%;
   margin: 0 auto;
+  //min-height: 100vh;
+  //min-width: 100vw;
   background-color: #fff;
-  overflow-x: hidden;
+  //overflow: auto;
 }
-
-.max-width {
-  max-width: $max-page-width;
-  margin: 0 auto;
-}
-
 
 .full-screen {
   min-height: 100vh;
   max-height: 100vh;
-  margin: 0 auto;
-  max-width: $max-page-width;
 }
-
-
 
 .wrapper {
   display: flex;
