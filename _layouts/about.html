@@ -4,18 +4,13 @@
     {% include meta.html %}
 </head>
 <body>
-      <!--<div class="full-screen">-->
-            {% include navigation.html %}
-            {% include about.html %}
-      <!--</div>-->
-
-
-      {% include employer_employee_choice.html %}
-
-      {% include list_employer.html %}
-
-      {% include footer.html %}
-
+<div class="max-width">
+    <div class="full-screen">
+        {% include navigation.html %}
+        {% include about.html %}
+    </div>
+    {% include choice.html %}
+</div>
       {% include scripts.html %}
 </body>
 </html>

@@ -11,7 +11,7 @@
     font-family: "Avenir Next", $avenir;
     font-weight: 500;
     letter-spacing: 1px;
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     color: $dark-blue;
     margin-right: 3rem;
     margin-left: auto;
@@ -19,6 +19,7 @@
     text-transform: uppercase;
     text-align: center;
     padding: 1rem 1.4rem;
+    border-bottom: 2px solid transparent;
 
     &:hover {
       border-bottom: 2px solid $dark-sky-blue;

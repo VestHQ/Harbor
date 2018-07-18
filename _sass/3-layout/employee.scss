@@ -102,3 +102,81 @@
     }
   }
 }
+
+.blink-container {
+  position: relative;
+
+  .blink {
+    position: absolute;
+    bottom: 21rem; right: 24rem;
+    height: 2rem;
+    width: 2rem;
+    border-radius: 50%;
+    border: .4rem solid $dark-sky-blue;
+    background-color: white;
+    animation: blink 3s ease-out infinite;
+
+    @include respond(l-phone) {
+      bottom: 17rem; right: 20rem;
+    }
+    @include respond(m-phone) {
+      bottom: 14rem; right: 16rem;
+    }
+    @include respond(sm-phone) {
+      bottom: 10rem; right: 11rem;
+      height: 1.5rem;
+      width: 1.5rem;
+      border: .3rem solid $dark-sky-blue;
+    }
+  }
+}
+.blink-text {
+  position: absolute;
+  bottom: 21.5rem;
+  right: 7rem;
+  color: $dark-sky-blue;
+  font-size: 1.6rem;
+  font-weight: 500;
+  margin-left: 3rem;
+
+  @include respond(tab-port) {
+    right: 9rem;
+  }
+  @include respond(xl-phone) {
+    right: 12rem;
+  }
+  @include respond(l-phone) {
+    bottom: 18rem; right: 10rem;
+    font-size: 1.4rem;
+  }
+  @include respond(m-phone) {
+    bottom: 15rem; right: 6rem;
+    font-size: 1.2rem;
+  }
+  @include respond(sm-phone) {
+    bottom: 5rem; right: 6rem;
+  }
+}
+
+@keyframes blink {
+  0% {
+    box-shadow: 0 0 1rem $grey-blue;
+    opacity: 1;
+  }
+  25% {
+    opacity: 1;
+    box-shadow: 0 0 0 $grey-blue;
+  }
+  50% {
+    opacity: 1;
+    box-shadow: 0 0 3rem $grey-blue;
+  }
+  75% {
+    opacity: 1;
+    box-shadow: 0 0 0 $grey-blue;
+  }
+  100% {
+    box-shadow: 0 0 1rem $grey-blue;
+    opacity: 1;
+  }
+}

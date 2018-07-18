@@ -11,6 +11,9 @@
 <loc>http://localhost:4000/employee/</loc>
 </url>
 <url>
+<loc>http://localhost:4000/employer/</loc>
+</url>
+<url>
 <loc>http://localhost:4000/</loc>
 </url>
 <url>
