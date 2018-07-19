@@ -26,6 +26,7 @@
   margin: 5rem 3rem;
 }
 
+.u-margin-top { margin-top: 5.5rem !important; }
 
 .u-margin-left-small {
   margin-left: 2rem;
@@ -64,7 +65,9 @@
     align-self: center;
     display: flex;
     flex-direction: row !important;
-    justify-content: center;
+    justify-content: space-around;
+    align-content: space-around;
+    //align-items: center;
     width: 80% !important;
     margin-bottom: 0 !important;
   }

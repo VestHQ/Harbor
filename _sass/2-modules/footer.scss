@@ -13,21 +13,20 @@
   }
 
   &__title {
-    font-size: 2rem;
+    font-size: 1.6rem;
     text-transform: uppercase;
-    margin-bottom: 2rem;
+    letter-spacing: 1px;
+    margin-bottom: 1.5rem;
     font-weight: 500;
     align-self: flex-start;
 
-    @include respond(tab-port) {
+    @include respond(l-phone) {
       margin-bottom: 1rem;
-      font-size: 1.5rem;
     }
-  }
-
-  .copyright {
-    text-align: center;
-    margin-top: 2rem;
+    @include respond(sm-phone) {
+      font-size: 1.2rem;
+      letter-spacing: .5px;
+    }
   }
 
   .footer-group {
@@ -35,10 +34,19 @@
     flex-wrap: wrap;
     justify-content: space-around;
 
+    @include respond(sm-phone) {
+      justify-content: space-between;
+    }
+
+    & > * {
+      margin-bottom: 2rem;
+    }
     ul {
       list-style-type: none;
     }
-    li { margin-bottom: 2px;}
+    li {
+      margin-bottom: 2px;
+    }
     a {
       color: $light1-blue;
       text-decoration: none;
@@ -46,25 +54,26 @@
         text-decoration: underline;
       }
     }
-    .contact {
-      //margin-top: -1.6rem;
-      @media screen and (max-width: 330px) {
-        margin-top: 0;
-      }
-    }
 
     .legal {
       width: 30rem;
-      margin-top: .5rem;
+      //margin-top: .5rem;
+
+      @include respond(l-phone) {
+        width: 85%;
+      }
       @include respond(m-phone) {
         font-size: 8px;
       }
       @include respond(sm-phone) {
         font-size: 6px;
+        width: 90%;
       }
     }
   }
-
+  .copyright {
+    text-align: center;
+  }
 }
 
 

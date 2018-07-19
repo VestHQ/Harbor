@@ -67,7 +67,7 @@
           margin: -4rem 0 0 -5rem;
         }
 
-        @include respond(sm-phone) {
+        @include respond(m-phone) {
           height: 5rem;
           width: 6rem;
           right: 2rem;
@@ -88,7 +88,7 @@
       @include respond(xl-phone) {
         height: 6.5rem;
       }
-      @include respond(sm-phone) {
+      @include respond(m-phone) {
         height: 5rem;
       }
 

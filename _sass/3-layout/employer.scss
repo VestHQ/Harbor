@@ -29,6 +29,7 @@
 
   @include respond(m-phone) {
     font-size: 2rem;
+    margin: 5rem auto 3rem auto;
   }
 }
 
@@ -60,7 +61,7 @@
     &:not(:last-child) {
       margin-right: 1.3rem;
     }
-    &:first-child, &:hover {
+    &:hover {
       background-color: $light1-blue;
     }
 
@@ -99,7 +100,7 @@
   margin: 5% auto 0 auto;
 
   @media screen and (min-width: 800px) {
-    margin: 5% auto 15% auto;
+    margin: 5% auto;
   }
   @include respond(mid-header) {
     flex-direction: column;
@@ -159,6 +160,9 @@
 
       &--1 {
         @include blueBox;
+        @include respond(sm-phone) {
+          width: 100% !important;
+        }
       }
 
       &__primary {
