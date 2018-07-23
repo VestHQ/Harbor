@@ -27,10 +27,17 @@
 }
 
 .u-margin-top { margin-top: 5.5rem !important; }
+.u-margin-top-neg {
+
+  @media screen and (min-width: 800px) {
+    margin-top: -6rem !important;
+  }
+}
 
 .u-margin-left-small {
   margin-left: 2rem;
 }
+
 
 .u-margin-left-mid {
   margin-left: 4rem;

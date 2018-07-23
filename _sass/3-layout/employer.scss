@@ -15,9 +15,10 @@
   &::after {
     content:' ';
     position: absolute;
-    display: block;
+    //display: block;
     width: 12rem;
     margin: 6rem auto;
+    text-align: center;
     border: 1px solid $dark-blue;
     border-radius: 2px;
 
