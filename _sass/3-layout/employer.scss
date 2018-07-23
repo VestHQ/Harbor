@@ -96,7 +96,8 @@
 .list-container {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  //align-content: center;
   margin: 5% auto 0 auto;
 
   @media screen and (min-width: 800px) {
@@ -104,6 +105,7 @@
   }
   @include respond(mid-header) {
     flex-direction: column;
+    align-items: center;
   }
 
   .list-box {
@@ -139,6 +141,10 @@
       @extend .list-box;
       align-items: center;
       background-color: #fff;
+
+      @media screen and (min-width: 800px) {
+        margin-top: -5rem;
+      }
     }
 
     &__item {

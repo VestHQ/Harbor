@@ -5,7 +5,7 @@
   align-items: center;
   align-content: center;
   max-width: 120rem;
-  margin: 4rem auto;
+  margin-bottom: 2rem;
   font-family: 'Avenir Next', $avenir;
   color: $dark-blue;
 
@@ -40,36 +40,27 @@
       width: 80%;
     }
   }
-
-  @include respond(m-phone) {
-    &__heading {
-      margin: 4rem 0 1rem 0;
-      padding-top: 7rem;
-    }
-  }
 }
 
 // employee icons //
 .employees-container {
+  flex-grow: 1;
+
   display: flex;
-  flex: 1 0 auto;
   flex-wrap: wrap;
   justify-content: center;
-  max-width: 120rem;
-  margin: 2rem auto;
-
-  @include respond(m-phone) {
-    margin: 8rem auto;
-  }
+  max-width: $max-page-width;
+  margin: 1.5rem 3rem;
 
 
   .employees {
     display: flex;
     flex-wrap: wrap;
-    margin: 0 1rem;
+    //margin: 0 1rem;
+    margin-bottom: auto;
 
     @include respond(column) {
-      height: 14rem;
+      height: 16rem;
     }
 
     &:nth-child(2) {
@@ -112,5 +103,4 @@
       }
     }
   }
-
 }

@@ -41,6 +41,11 @@ body{
   margin: 0 auto;
 }
 
+.flex-col-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
 
 .full-screen {
   min-height: 100vh;
@@ -48,8 +53,6 @@ body{
   margin: 0 auto;
   max-width: $max-page-width;
 }
-
-
 
 .wrapper {
   display: flex;
@@ -59,7 +62,6 @@ body{
   min-width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  //overflow: auto;
 }
 
 .wrapper-small {
@@ -72,8 +74,6 @@ body{
 }
 
 .container {
-  font-family: "Avenir Next", $avenir;
   margin: 5rem 5rem 0 5rem;
-  color: $cold-blue;
   flex: 1 0 auto;
 }

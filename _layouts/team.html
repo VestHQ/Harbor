@@ -4,12 +4,10 @@
     {% include meta.html %}
 </head>
 <body>
-    <div class="max-width">
+    <div class="max-width flex-col-wrapper">
         {% include navigation.html %}
-        <div class="wrapper">
-            {% include team.html %}
-            {% include footer.html %}
-        </div>
+        {% include team.html %}
+        {% include footer.html %}
     </div>
 
 {% include scripts.html %}
