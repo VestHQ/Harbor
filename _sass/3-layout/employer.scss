@@ -15,9 +15,12 @@
   &::after {
     content:' ';
     position: absolute;
-    //display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 6rem;
+    margin-bottom: 6rem;
+    left: 0; right: 0;
     width: 12rem;
-    margin: 6rem auto;
     text-align: center;
     border: 1px solid $dark-blue;
     border-radius: 2px;
@@ -69,6 +72,7 @@
     &__img{
       height: 12rem;
       width: auto;
+      margin-bottom: 2rem;
       align-self: center;
 
       @include respond(mid-header) {
@@ -77,13 +81,16 @@
       @include respond(m-phone) {
         height: 8rem;
       }
+      @include respond(xl-phone) {
+        margin-bottom: 1rem;
+      }
     }
 
     &__text {
       @include text;
       align-self: center;
       color: $dark-blue;
-      border-bottom: .5rem solid transparent;
+      border-bottom: 2px solid transparent;
 
       &:hover {
         border-bottom: 2px solid $dark-sky-blue;
@@ -117,6 +124,7 @@
     width: 40%;
     height: 42rem;
     padding: 4rem 1rem;
+    position: relative;
 
     @include respond(mid-header) {
        height: 30rem;
@@ -132,13 +140,10 @@
         height: 33rem;
         width: 50%;
       }
-      @include respond(l-phone) {
-        width: 50%;
-        height: 28rem;
-      }
     }
 
     &--2 {
+      position: relative;
       @extend .list-box;
       align-items: center;
       background-color: #fff;
