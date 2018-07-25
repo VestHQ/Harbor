@@ -17,7 +17,7 @@
     flex-direction: column;
     justify-content: center;
 
-    &:hover {
+    &:hover, &:focus, &:active {
       border-bottom: .5rem solid $dark-sky-blue;
     }
   }
