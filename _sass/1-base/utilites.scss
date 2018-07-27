@@ -1,5 +1,6 @@
 .u-margin-bottom-big {
   margin-bottom: 11rem;
+  padding: 0;
 
   @include respond(big-desktop) {
     margin-bottom: 8.5rem;
@@ -19,7 +20,7 @@
   }
 }
 .u-margin-bottom-large {
-  margin-bottom: 6rem;
+  margin-bottom: 6rem !important;
 }
 
 .u-margin-typewriter {
@@ -27,9 +28,9 @@
 }
 
 .u-margin-top { margin-top: 5.5rem !important; }
-.u-margin-top-neg {
 
-  @media screen and (min-width: 800px) {
+.u-margin-top-neg {
+  @include respond(row) {
     margin-top: -6rem !important;
   }
 }
@@ -63,7 +64,7 @@
     margin: 1rem 0 !important;
   }
 }
-.u-margin-bottom-less {
+.u-margin-bottom-mid {
   margin-bottom: 4rem !important;
 }
 .u-no-margin { margin: 0 !important; }
@@ -81,14 +82,13 @@
     align-content: space-around;
     //align-items: center;
     width: 80% !important;
-    margin-bottom: 0 !important;
+    margin-top: 4rem;
   }
   @include respond(m-phone) {
-    //width: 100% !important;
+    margin-top: 3rem;
   }
   @media screen and (max-width: 515px){
     flex-direction: column !important;
-    margin: 3rem;
     width: 40% !important;
   }
 }

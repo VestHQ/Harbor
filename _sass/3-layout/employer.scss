@@ -105,12 +105,11 @@
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  //align-content: center;
-  margin: 5% auto 0 auto;
-  max-width: 90%;
+  margin: 5% auto;
 
   @media screen and (min-width: 800px) {
-    margin: 5% auto;
+    margin: 10% auto;
+    max-width: 90%;
   }
   @include respond(mid-header) {
     flex-direction: column;
@@ -123,22 +122,19 @@
     justify-content: center;
     background-color: $light1-blue;
     width: 40%;
-    height: 42rem;
-    padding: 4rem 1rem;
-    position: relative;
+    height: auto;
+    padding: 3rem 2rem;
+    border-radius: 3px;
 
     @include respond(mid-header) {
-       height: 30rem;
        width: 60%;
     }
     @include respond(l-phone) {
       width: 75%;
-      height: 25rem;
     }
 
     &--blue {
       @include respond(mid-header) {
-        height: 33rem;
         width: 50%;
       }
     }
@@ -148,10 +144,8 @@
       @extend .list-box;
       align-items: center;
       background-color: #fff;
-
-      @media screen and (min-width: 800px) {
-        margin-top: -5rem;
-      }
+      height: auto;
+      padding: 0;
     }
 
     &__item {
@@ -160,13 +154,15 @@
       width: 75%;
       position: relative;
       z-index: 1;
-      //margin-bottom: 3rem;
 
       &:not(:last-child) {
         margin-bottom: 3rem;
       }
 
       &--3 {
+        &:first-child {
+          margin-top: 3rem;
+        }
         @include respond(mid-header) {
           margin-left: 0;
         }
@@ -214,14 +210,11 @@
         @include text;
         font-size: 1.4rem;
         text-align: left;
-        margin: 2rem auto;
+        margin-bottom: 2rem;
 
         @include respond(l-phone){
-          font-size: 1rem;
+          font-size: 1.2rem;
           letter-spacing: 0;
-        }
-        @include respond(sm-phone){
-          font-size: 6pt;
         }
       }
 
