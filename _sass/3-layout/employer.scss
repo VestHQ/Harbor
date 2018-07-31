@@ -12,6 +12,11 @@
   display: flex;
   justify-content: center;
 
+  &:target {
+    margin-top: -1.2rem;
+    padding-top: 6rem;
+  }
+
   &::after {
     content:' ';
     position: absolute;
@@ -107,6 +112,10 @@
   align-items: flex-start;
   margin: 5% auto;
 
+  &:target {
+    margin-top: -1.2rem;
+    padding-top: 6rem;
+  }
   @media screen and (min-width: 800px) {
     margin: 10% auto;
     max-width: 90%;
@@ -126,6 +135,9 @@
     padding: 3rem 2rem;
     border-radius: 3px;
 
+    @include respond(row) {
+      min-height: 320px;
+    }
     @include respond(mid-header) {
        width: 60%;
     }
