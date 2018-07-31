@@ -1,25 +1,50 @@
 .header {
+  //display: flex;
+  //flex-direction: column;
+  //justify-content: center;
+  //align-items: center;
+
+
+  &__img {
+    height: auto;
+    width: 35rem;
+    margin-bottom: 2rem;
+
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
 
   &__primary {
     color: $dark-blue;
-    font-size: 3.5rem;
+    font-size: 2.5rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-align: center;
+    position: relative;
 
-    @include respond(column) {
-      font-size: 3.7rem;
+    &:before {
+      content: "";
+      position: absolute;
+      margin: 0 auto;
+      border-top: 2px solid $dark-sky-blue;
+      border-radius: 5%;
+      top: 50%; left: 0; right: 0; bottom: 0;
+      width: 90%;
+      z-index: -1;
     }
-    @include respond(sm-phone) {
-      font-size: 3rem;
-    }
-    @media screen and (max-width: 340px) {
-      font-size: 2.7rem;
+    span {
+      background: #fff;
+      padding: 0 15px;
     }
   }
 
   &__secondary {
+    color: $dark-blue;
     font-size: 2rem;
-    font-weight: 500;
-    min-width: 275px;
-    max-width: 530px;
-    margin-right: 2rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
   }
+
 }
