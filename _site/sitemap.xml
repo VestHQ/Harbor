@@ -5,13 +5,13 @@
 <lastmod>2016-06-22T00:00:00-05:00</lastmod>
 </url>
 <url>
-<loc>http://localhost:4000/about/</loc>
-</url>
-<url>
 <loc>http://localhost:4000/employee/</loc>
 </url>
 <url>
 <loc>http://localhost:4000/employer/</loc>
+</url>
+<url>
+<loc>http://localhost:4000/home/</loc>
 </url>
 <url>
 <loc>http://localhost:4000/</loc>
