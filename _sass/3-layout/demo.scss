@@ -1,18 +1,21 @@
-.choice-container {
-  display: flex;
-  justify-content: space-around;
-}
-
+b { font-weight: 600; text-transform: uppercase; }
 .column__img {
   width: 20rem;
   height: auto;
+
+  @include respond(l-phone) {
+    width: 15rem;
+  }
 }
 
 .dropdown-container {
   margin: 2rem auto;
-
   display: flex;
   justify-content: space-around;
+
+  @include respond(tab-port) {
+    flex-direction: column;
+  }
 }
 
 .menu-header{
@@ -25,41 +28,11 @@
   text-align: center;
   margin: 1rem auto;
 }
-//
-//.menu-item ul{
-//  background: $light1-blue;
-//  border-radius: 1rem;
-//  font-size: 13px;
-//  text-align: center;
-//  height: 0; padding: 0;
-//  line-height: 3rem;
-//  overflow: hidden;
-//  transition: height 1s ease;
-//
-//  display: flex;
-//  flex-direction: column;
-//  justify-content: center;
-//}
-//.menu-item:hover ul{
-//  height: 40rem;
-//}
-//
-//.menu-item ul .menu-text{
-//  color: $dark-blue;
-//  display: block;
-//  margin-left: 2rem;
-//}
 
-.ac-sub {
-  color: $dark-blue;
+.ac {
+  box-sizing: border-box;
 
-  &:first-child {
-    //width: 20rem;
-    //height: auto;
-    margin: 0 auto;
-  }
 }
-
 .ac-label {
   font-weight: 700;
   font-family: "Avenir Next", Chivo, sans-serif;
@@ -68,23 +41,26 @@
   color: $dark-blue;
   border-radius: .5rem;
   position: relative;
-  padding: 1rem 1rem;
-  margin-bottom: .5rem;
+  padding: 1rem;
+  margin: 0 auto;
   display: block;
   cursor: pointer;
   background: linear-gradient(to bottom right, $light1-blue, $light2-blue);
-  transition: background-color .15s ease-in-out;
+  transition: background-color .2s ease-in-out;
 
-  &:hover {
-    background: linear-gradient(to bottom left, $light1-blue, $light2-blue);
+  max-width: 40rem;
+
+  @include respond(m-phone) {
+    width: 30rem;
   }
 }
 
 .ac-input:checked + label, .ac-label:hover {
-  background-color: $cold-blue;
+  background: linear-gradient(to bottom left, $light1-blue, $light2-blue 60%);
 }
 
-.ac-label:after, .ac-input:checked + .ac-label:after {
+
+.ac-label::after, .ac-input:checked + .ac-label::after {
   content: "+";
   position: absolute;
   border-radius: .2rem;
@@ -94,15 +70,21 @@
   height: 100%;
   text-align: center;
   background-color: $dark-sky-blue;
-  transition: background-color .15s ease-in-out;
+  transition: background-color .2s ease-in-out;
+
+  @include respond(xl-phone) {
+    line-height: 3em;
+  }
 }
 
-.ac-label:hover::after, .ac-input:checked + .ac-label:after {
-  background: rgba($dark-sky-blue, .8);
+.ac-label:hover::after  {
+  background: rgba($dark-sky-blue, .7);
+  //background: darken($dark-sky-blue, 10%);
 }
 
-.ac-input:checked + .ac-label:after {
+.ac-input:checked + .ac-label::after {
   content: "-";
+  background: rgba($dark-sky-blue, .7);
 }
 
 .ac-input {
@@ -118,37 +100,70 @@
   justify-content: flex-start;
   align-items: flex-start;
 }
-.ac-popup, .ac-sub-text {
+.ac-popup, .ac-sub-popup {
   opacity: 0;
   height: 0;
   transition: opacity .5s ease-in-out;
   overflow: hidden;
-  margin: .5em auto;
+  margin: 0 auto;
   background: linear-gradient(to bottom, #FCFCFC, $light1-blue);
   box-shadow: 4px 1px 1.3rem rgba($grey-blue, .15);
   border-radius: .5rem;
-
-  //display: flex;
-  //flex-direction: column;
-  //justify-content: center;
-  //align-items: center;
 }
 
-.ac-input:checked ~ .ac-popup, .ac-sub .ac-input:checked ~ .ac-sub-text {
+.ac-input:checked ~ .ac-popup, .ac-sub .ac-input:checked ~ .ac-sub-popup {
+  color: $dark-blue;
   opacity: 1;
   height: auto;
+  padding: 1rem 2rem;
+  margin: .75rem auto 1.25rem auto;
+
+  & p {
+    opacity: 0;
+    animation: fadeIn 1.25s ease-in 0s forwards;
+
+    & + p {
+       animation-delay: .3s;
+    }
+    &:nth-child(4) {
+      animation-delay: .7s;
+    }
+    &:nth-child(5) {
+      animation-delay: .9s;
+    }
+  }
 }
 
-// sub-level
 .ac-sub .ac-label {
   background: none;
   font-weight: 600;
-  padding: .5rem 2em;
+  padding: .5rem 3rem;
   margin-bottom: 0;
 }
 
-.ac-sub .ac-label:checked {
-  //background: none;
+.ac-popup {
+  max-width: 40rem;
+  padding: 1rem 2rem;
+  font-size: 1.4rem;
+
+  &__img {
+    margin: 0 auto;
+    display: flex;
+    margin-bottom: 1rem;
+
+    &--1 {
+      width: 35rem;
+      height: auto;
+
+      @include respond(m-phone) {
+        width: 27rem;
+      }
+    }
+  }
+
+  @include respond(m-phone) {
+    max-width: 30rem;
+  }
 }
 
 .ac-sub .ac-label:after, .ac-sub .ac-input:checked + .ac-label:after {
@@ -161,12 +176,17 @@
   background: none;
 }
 
-.ac-sub-text {
-  padding: 0 1em 0 2em;
+.ac-popup p::before {
+  content: "\276F"; // "\203A" --slighty less pointed arrow
+  margin-right: .4rem;
+  font-weight: 600;
+  font-size: 1.2rem;
 }
 
-
-
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
 
 
 
