@@ -137,6 +137,7 @@
 
     @include respond(row) {
       min-height: 320px;
+      padding: 6rem 2rem;
     }
     @include respond(mid-header) {
        width: 60%;
