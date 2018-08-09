@@ -22,6 +22,7 @@
     text-transform: uppercase;
     text-align: center;
     position: relative;
+    overflow: hidden;
 
     &:before {
       content: "";
@@ -32,6 +33,7 @@
       top: 50%; left: 0; right: 0; bottom: 0;
       width: 90%;
       z-index: -1;
+      animation: line ease-in 2s forwards;
     }
     span {
       background: #fff;
@@ -47,4 +49,9 @@
     margin-bottom: 2rem;
   }
 
+}
+
+@keyframes line {
+  from { width: 0; }
+  to { width: 90%; }
 }
