@@ -1,9 +1,4 @@
 .header {
-  //display: flex;
-  //flex-direction: column;
-  //justify-content: center;
-  //align-items: center;
-
 
   &__img {
     height: auto;
@@ -33,7 +28,7 @@
       top: 50%; left: 0; right: 0; bottom: 0;
       width: 90%;
       z-index: -1;
-      animation: line ease-in 2s forwards;
+      animation: line 2s ease-in 0s forwards;
     }
     span {
       background: #fff;
