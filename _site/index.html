@@ -10,7 +10,7 @@
 <meta http-equiv='X-UA-Compatible' content='IE=edge'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0'>
 <link rel="stylesheet" href="/assets/css/main.css" media="screen" title="CSS">
-<base href="/home"/>
+<!--<base href="/home"/>-->
 
 <meta name="google-site-verification" content="3TMNrln3e_YxgDNI896r5_k4mZ9lnvyZ69oxvnMuuBc"/>
 
@@ -79,6 +79,39 @@
 	  'page': '/',
 	  'title': 'Harbor | Modern 401(k)'
 	});
+
+    // contact us modal connected to google sheet
+    const scriptURL = "https://script.google.com/macros/s/AKfycbwaM-iq4ySEsKM5BUBrlRPV-wxcgoBmLGOlUKBiVtDdB8SGCX4J/exec";
+    const form = document.forms['contact'];
+    form.addEventListener('submit', e => {
+        e.preventDefault();
+        fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => console.log('Success!', response))
+            .catch(error => console.error('Error!', error.message))
+    });
+
+    let modal = document.getElementById('contact');
+    let contactBtn = document.getElementById('open-modal');
+
+    let postcard = document.querySelector('.postcard');
+
+    if (window.screen.width <= 560) {
+        postcard.parentNode.removeChild(postcard);
+    }
+
+
+    // let ex = document.getElementsByClassName('.postcard__heading');
+    // let x = window.getComputedStyle(ex,':after');
+    // let x =  document.querySelector('close-btn');
+
+    window.onclick = function(event) {
+        // if(event.target === contactBtn) {
+        //     modal.style.display = "block";
+        // }
+        if (event.target === modal) {
+            modal.style.display = "none";
+        }
+    };
 </script>
 
 
