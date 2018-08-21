@@ -54,6 +54,13 @@ form {
   justify-content: center;
   align-items: center;
 
+  .x {
+    color: $cold-blue;
+    font-size: 3rem;
+    position: absolute;
+    left: 2rem; top: 1.5rem;
+  }
+
   &__heading {
     color: $cold-blue;
     letter-spacing: 1.5px;
@@ -110,16 +117,7 @@ form {
   //  font-size: 3rem;
   //  margin: 1rem 2rem;
   //}
-
-  //.close-btn {
-  //  color: #fcfcfc;
-  //  text-align: right;
-  //  font-size: 3rem;
-  //  margin: 1rem -32rem;
-  //  padding: 0;
-  //  display: block;
-  //}
-
+  
   @include respond(mid-header) {
     width: 65rem;
     height: 37rem;
@@ -136,6 +134,7 @@ input {
   box-sizing: border-box;
   background: $light1-blue;
   border: none;
+  border-radius: 0;
   border-bottom: 1px solid $cold-blue;
   width: 80%;
   margin: 2rem 10%;
