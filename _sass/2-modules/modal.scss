@@ -59,6 +59,10 @@ form {
     font-size: 3rem;
     position: absolute;
     left: 2rem; top: 1.5rem;
+
+    @include respond(sm-phone) {
+      font-size: 4rem;
+    }
   }
 
   &__heading {
