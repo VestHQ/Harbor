@@ -22,24 +22,24 @@
     });
 
     let modal = document.getElementById('contact');
-    let contactBtn = document.getElementById('open-modal');
+    let sendBtn = document.getElementById('sendBtn');
 
-    let postcard = document.querySelector('.postcard');
+    let x = document.querySelector('.x');
 
     if (window.screen.width <= 560) {
         postcard.parentNode.removeChild(postcard);
     }
 
+    // close modal with escape btn
+    document.addEventListener("keydown", function(e) {
+        if (e.which === 27) {
+            modal.style.display = "none";
+        }
+    });
 
-    // let ex = document.getElementsByClassName('.postcard__heading');
-    // let x = window.getComputedStyle(ex,':after');
-    // let x =  document.querySelector('close-btn');
-
+    // close modal on outside click
     window.onclick = function(event) {
-        // if(event.target === contactBtn) {
-        //     modal.style.display = "block";
-        // }
-        if (event.target === modal) {
+        if (event.target === modal || event.target === sendBtn || event.target === x) {
             modal.style.display = "none";
         }
     };
