@@ -75,6 +75,10 @@ form {
     letter-spacing: 1.5px;
     text-transform: uppercase;
     font-size: 2.6rem;
+
+    @include respond(mid-header) {
+      font-size: 2rem;
+    }
   }
   .btn {
     background: $cold-blue;
@@ -95,7 +99,7 @@ form {
 
   @include respond(mid-header) {
     width: 30rem;
-    height: 45rem;
+    height: 48rem;
   }
   @media screen and (max-width: 560px) {
     left: 25%;
@@ -137,7 +141,7 @@ form {
     height: 37rem;
   }
   @include respond(xl-phone) {
-    width: 55rem;
+    width: 60rem;
   }
   @media screen and (max-width: 560px) {
     display: none;
