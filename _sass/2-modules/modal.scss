@@ -10,6 +10,7 @@
     height: 100%;
     width: 100%;
     transition: all .5s ease-in-out;
+    z-index: 1;
   }
   &:target {
 
@@ -39,6 +40,27 @@ form {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  input {
+    box-sizing: border-box;
+    background: $light1-blue;
+    border: none;
+    border-radius: 0;
+    border-bottom: 1px solid $cold-blue;
+    width: 80%;
+    margin: 2rem 10%;
+    color: $cold-blue;
+    font-size: 1.8rem;
+    line-height: 3.5rem;
+    padding-left: 2rem;
+    &::placeholder {
+      color: inherit;
+      letter-spacing: 1px;
+    }
+    &:focus {
+      outline: none;
+    }
+  }
 }
 .form {
   position: absolute;
@@ -148,25 +170,25 @@ form {
   }
 }
 
-input, label {
-  box-sizing: border-box;
-  background: $light1-blue;
-  border: none;
-  border-radius: 0;
-  border-bottom: 1px solid $cold-blue;
-  width: 80%;
-  margin: 2rem 10%;
-  color: $cold-blue;
-  font-size: 1.8rem;
-  line-height: 3.5rem;
-  padding-left: 2rem;
-  &::placeholder {
-    color: inherit;
-    letter-spacing: 1px;
-  }
-  &:focus {
-    outline: none;
-  }
+input {
+  //box-sizing: border-box;
+  //background: $light1-blue;
+  //border: none;
+  //border-radius: 0;
+  //border-bottom: 1px solid $cold-blue;
+  //width: 80%;
+  //margin: 2rem 10%;
+  //color: $cold-blue;
+  //font-size: 1.8rem;
+  //line-height: 3.5rem;
+  //padding-left: 2rem;
+  //&::placeholder {
+  //  color: inherit;
+  //  letter-spacing: 1px;
+  //}
+  //&:focus {
+  //  outline: none;
+  //}
 }
 
 svg {

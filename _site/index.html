@@ -104,18 +104,12 @@
 
     // close modal on outside click
     window.onclick = function(event) {
-        console.log(event.target)
+        // console.log(event.target)
         if (event.target === modal || event.target === sendBtn || event.target === x) {
             modal.style.display = "none";
-            window.location.hash = '';
-        }else {
-            modal.style.display = "block";
-            window.location.hash = 'contact';
+            // window.location.hash = '';
         }
     };
-
-    // on mobile touch of x close modal
-
 </script>
 
 
