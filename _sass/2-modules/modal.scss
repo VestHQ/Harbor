@@ -109,6 +109,7 @@ form {
   border-radius: 5px;
   box-shadow: 2px 0 10px rgba(0,0,0,.1);
   background-image: linear-gradient(top, #3F5A9E, #102A5E);
+  background-image: -webkit-linear-gradient(top, #3F5A9E, #102A5E);
   z-index: -1;
   display: flex;
   justify-content: flex-end;
