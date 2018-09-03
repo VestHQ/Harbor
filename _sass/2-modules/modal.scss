@@ -1,37 +1,22 @@
 .modal {
-  position: relative;
-
-  &:before {
-    content: "";
-    position: fixed;
-    display: none;
-    background-color: rgba(0,0,0,0.4);
-    top: 0; left: 0; right: 0; bottom: 0;
-    height: 100%;
-    width: 100%;
-    transition: all .5s ease-in-out;
-    z-index: 1;
-  }
-  &:target {
-
-    &:before {
-      display: flex;
-      margin: 0 auto;
-    }
-  }
-}
-.modal:target .modal-body {
-  transform: translate(-50%, -50%);
+  content: "";
+  position: fixed;
+  display: none;
+  visibility: hidden;
+  background-color: rgba(0,0,0,0.4);
+  top: 0; left: 0; right: 0; bottom: 0;
+  height: 100%;
+  width: 100%;
+  //transition: all .5s ease-in-out;
+  z-index: 1;
 }
 .modal-body {
+  @include absCenter;
   margin: 5% auto;
-  top: 50%;
-  left: 50%;
   position: fixed;
   z-index: 1;
   width: 65rem;
   height: 55rem;
-  transform: translate(0, 350%);
   //transition: all .3s ease-in-out;
 }
 form {
@@ -86,6 +71,10 @@ form {
     border-radius: 5px;
     padding: 0 1rem .4rem 1rem;
     cursor: pointer;
+
+    &:focus {
+      outline: none;
+    }
 
     @include respond(sm-phone) {
       font-size: 4rem;

@@ -90,10 +90,15 @@
             .catch(error => console.error('Error!', error.message))
     });
 
+    let btn = document.getElementById('open-modal');
     let modal = document.getElementById('contact');
     let sendBtn = document.getElementById('sendBtn');
-
     let x = document.querySelector('.x');
+
+    btn.onclick = function () {
+        modal.style.display = "block";
+        modal.style.visibility = "visible";
+    };
 
     // close modal with escape btn
     document.addEventListener("keydown", function(e) {
@@ -102,12 +107,10 @@
         }
     });
 
-    // close modal on outside click
+    // close modal on outside click, clicking send or x
     window.onclick = function(event) {
-        // console.log(event.target)
         if (event.target === modal || event.target === sendBtn || event.target === x) {
             modal.style.display = "none";
-            // window.location.hash = '';
         }
     };
 </script>
