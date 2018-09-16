@@ -1,0 +1,78 @@
+<main class="calculator-container">
+    <section class="savings-form savings">
+        <h1 class="savings__primary">Harbor Calculator</h1>
+
+        <h3 class="savings__secondary">How long would you like to work?</h3>
+
+        <!--<input type="range" min="0" max="80" step="1" value="30" role="slider">-->
+        <section class="range-slider">
+            <span class="rangeValues"></span>
+            <input value="25" min="0" max="100" step="1" type="range" name="start">
+            <input value="65" min="0" max="100" step="1" type="range" name="finish">
+        </section>
+
+        <h3 class="savings__secondary">How much have you already saved?</h3>
+        <ul class="money-list">
+            <li><button class="money-list__item">$0</button></li>
+            <li><button class="money-list__item">$10K</button></li>
+            <li><button class="money-list__item">$40K</button></li>
+            <li><button class="money-list__item">$100K</button></li>
+            <li><input type="number" min="0" class="money-list__item money-list__item--amount" placeholder="$ Amount" autocomplete="off"></li>
+        </ul>
+
+        <h3 class="savings__secondary">What's your estimated annual income (before tax)?</h3>
+        <ul class="money-list">
+            <li><button class="money-list__item">$0</button></li>
+            <li><button class="money-list__item">$10K</button></li>
+            <li><button class="money-list__item">$40K</button></li>
+            <li><button class="money-list__item">$100K</button></li>
+            <li><input type="number" min="0" class="money-list__item money-list__item--amount" placeholder="$ Amount"></li>
+        </ul>
+
+        <h3 class="savings__secondary">How much do you save every month?</h3>
+        <ul class="money-list">
+            <li><button class="money-list__item">$100</button></li>
+            <li><button class="money-list__item">$250</button></li>
+            <li><button class="money-list__item">$500</button></li>
+            <li><button class="money-list__item">$1000</button></li>
+            <li><input type="number" min="0" class="money-list__item money-list__item--amount" placeholder="$ Amount"></li>
+        </ul>
+    </section>
+
+    <section class="savings-outcome">
+        <h1>~ Savings Outcome ~</h1>
+        <canvas id="myChart" width="400" height="200"></canvas>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script>
+
+        const ctx = document.getElementById("myChart").getContext('2d');
+        let myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+        labels: ["Conservative", "Moderate", "Aggressive"],
+            fill: false,
+        datasets: [{
+        label: 'Something',
+        data: [12, 19, 3, 5, 2, 3],
+        yAxisId: 'data-1',
+        fill: false,
+        backgroundColor: ['rgba(255, 99, 132, 0.2)'],
+        borderColor: ['rgba(255,99,132,1)'],
+        borderWidth: 1
+        }]
+        },
+        options: {
+            elements: {
+                line: {
+                   tension: 0, // disables bezier curves
+                }
+            }
+        }
+        });
+        </script>
+    </section>
+</main>
+
+
+
