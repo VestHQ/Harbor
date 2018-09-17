@@ -5,11 +5,12 @@
         <h3 class="savings__secondary">How long would you like to work?</h3>
 
         <!--<input type="range" min="0" max="80" step="1" value="30" role="slider">-->
-        <section class="range-slider">
+        <form class="range-slider">
             <span class="rangeValues"></span>
-            <input value="25" min="0" max="100" step="1" type="range" name="start">
-            <input value="65" min="0" max="100" step="1" type="range" name="finish">
-        </section>
+            <input value="25" min="1" max="100" step="1" type="range" name="ageStart" id="ageStart">
+            <input value="65" min="100" max="100" step="1" type="range" name="ageFinish" id="ageFinish">
+            <output name="ageRange" for="ageStart, ageFinish"></output>
+        </form>
 
         <h3 class="savings__secondary">How much have you already saved?</h3>
         <ul class="money-list">
@@ -40,7 +41,7 @@
     </section>
 
     <section class="savings-outcome">
-        <h1>~ Savings Outcome ~</h1>
+        <h1 class="savings-outcome__header">Savings Outcome</h1>
         <canvas id="myChart" width="400" height="200"></canvas>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
