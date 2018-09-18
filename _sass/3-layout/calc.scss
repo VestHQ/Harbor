@@ -1,3 +1,7 @@
+.selected-amount {
+  background-color: $light1-blue;
+}
+
 .calculator-container {
   display: flex;
   justify-content: space-between;
@@ -80,7 +84,7 @@
     height: 66.666vh;
     min-height: 45rem;
     width: 45vw;
-    background-image: linear-gradient(to top right, $light1-blue, $light2-blue);
+    //background-image: linear-gradient(to top right, $light1-blue, $light2-blue);
     border-radius: 5px;
     box-shadow: 0 0 1rem rgba(0,0,0,.15);
 
@@ -90,6 +94,32 @@
       text-align: center;
       margin: 2rem auto;
     }
+  }
+}
+.slider {
+
+  &__fill {
+    background-image: linear-gradient(to right, $dark-blue, $cold-blue);
+  }
+
+  &__btn {
+    //padding: 1.25rem .75rem !important;
+    position: absolute !important;
+    top: -.5rem !important;
+    background-color: $dark-blue !important;
+    width: 3rem !important;
+    height: 3rem !important;
+    border-radius: 50% !important;
+    //border-top: solid 2rem $bright-blue !important;
+    //border-left: solid 1.5rem transparent !important;
+    //border-right: solid 1.5rem transparent !important;
+
+    //&::before {
+    //  border-top: solid 2rem red;
+    //}
+  }
+  &__height {
+    padding: .75rem;
   }
 }
 
@@ -222,11 +252,11 @@ input[type=range]:focus::-ms-fill-upper {
 
 
 //// remove auto arrow for number input
-//input[type=number]::-webkit-inner-spin-button,
-//input[type=number]::-webkit-outer-spin-button {
-//  -webkit-appearance: none;
-//  margin: 0;
-//}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
 //
 //.rangeValues {
 //  background-color: red;
