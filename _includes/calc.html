@@ -1,154 +1,8 @@
-<!--<main class="calculator-container">-->
-    <!--<section class="savings-form savings">-->
-        <!--<h1 class="savings__primary">Harbor Calculator</h1>-->
-
-        <!--<h3 class="savings__secondary">How long would you like to work?</h3>-->
-        <!---->
-        <!--<p>-->
-            <!--<label for="amount">Age range:</label>-->
-            <!--<input type="text" id="amount" readonly style="border:0; color:#41ade1; font-weight:bold;">-->
-        <!--</p>-->
-
-        <!--<div id="slider-range"></div>-->
-
-
-        <!--<h3 class="savings__secondary">How much have you already saved?</h3>-->
-        <!--<ul class="money-list" id="money-saved">-->
-            <!--<li><button class="money-list__item" value="0">$0</button></li>-->
-            <!--<li><button class="money-list__item" value="10000">$10K</button></li>-->
-            <!--<li><button class="money-list__item" value="40000">$40K</button></li>-->
-            <!--<li><button class="money-list__item" value="100000">$100K</button></li>-->
-            <!--<li><input type="number" min="0" class="money-list__item money-list__item&#45;&#45;amount" placeholder="$ Amount" autocomplete="off" id="money-saved-input" oninput="getAmount(this.value, this.id)"></li>-->
-        <!--</ul>-->
-        <!--<h3 class="savings__secondary">What's your estimated annual income (before tax)?</h3>-->
-        <!--<ul class="money-list" id="money-income">-->
-            <!--<li><button class="money-list__item" value="0">$0</button></li>-->
-            <!--<li><button class="money-list__item" value="10000">$10K</button></li>-->
-            <!--<li><button class="money-list__item" value="40000">$40K</button></li>-->
-            <!--<li><button class="money-list__item" value="100000">$100K</button></li>-->
-            <!--<li><input type="number" min="0" class="money-list__item money-list__item&#45;&#45;amount" placeholder="$ Amount" id="annual-income" oninput="getAmount(this.value, this.id)"></li>-->
-        <!--</ul>-->
-        <!--<h3 class="savings__secondary">How much do you save every month?</h3>-->
-        <!--<ul class="money-list" id="money-saved-monthly">-->
-            <!--<li><button class="money-list__item" value="100">$100</button></li>-->
-            <!--<li><button class="money-list__item" value="250">$250</button></li>-->
-            <!--<li><button class="money-list__item" value="500">$500</button></li>-->
-            <!--<li><button class="money-list__item" value="1000">$1000</button></li>-->
-            <!--<li><input type="number" min="0" class="money-list__item money-list__item&#45;&#45;amount" placeholder="$ Amount" id="monthly-savings" oninput="getAmount(this.value, this.id)"></li>-->
-        <!--</ul>-->
-    <!--</section>-->
-
-    <!--<section class="savings-outcome">-->
-        <!--<h1 class="savings-outcome__header">Savings Outcome</h1>-->
-        <!--<canvas id="myChart" width="400" height="200"></canvas>-->
-
-        <!--<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">-->
-        <!--<link rel="stylesheet" href="/resources/demos/style.css">-->
-        <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>-->
-        <!--<script src="https://code.jquery.com/jquery-1.12.4.js"></script>-->
-        <!--<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>-->
-        <!--<script>-->
-            <!--const moneySavedInput = document.getElementById('money-saved-input');-->
-            <!--const moneySaved = document.getElementById('money-saved');-->
-            <!--const moneyIncome = document.getElementById('money-income');-->
-            <!--const moneySavedMonthly = document.getElementById('money-saved-monthly');-->
-
-            <!--let btnList1 = moneySaved.querySelectorAll('button');-->
-            <!--let btnList2 = moneyIncome.querySelectorAll('button');-->
-            <!--let btnList3 = moneySavedMonthly.querySelectorAll('button');-->
-            <!--console.log(btnList1[0].value);-->
-            <!--console.log(btnList2[1].value);-->
-            <!--console.log(btnList3[2].value);-->
-            <!--console.log(moneySavedInput.onchange);-->
-            <!--console.log(moneySaved);-->
-
-            <!--let totalSaved;-->
-            <!--let annualIncome;-->
-            <!--let monthlySavings;-->
-
-            <!--// onchange get value-->
-            <!--function getAmount(value, id) {-->
-                <!--if ( id === "money-saved-input") {-->
-                    <!--totalSaved = value;-->
-                <!--} else if ( id === "annual-income") {-->
-                    <!--annualIncome = value;-->
-                <!--} else if (id === "monthly-savings"){-->
-                    <!--monthlySavings = value;-->
-                <!--}-->
-            <!--}-->
-
-
-            <!--let value;-->
-
-            <!--$(function() {-->
-                <!--$("#slider-range").slider({-->
-                    <!--range: true,-->
-                    <!--min: 1,-->
-                    <!--max: 100,-->
-                    <!--minValue: undefined,-->
-                    <!--maxValue: undefined,-->
-                    <!--values: [ 25, 65 ],-->
-                    <!--classes: {-->
-                        <!--"ui-slider": "ui-corner-all slider__height",-->
-                        <!--"ui-slider-handle": "ui-corner-all slider__btn",-->
-                        <!--"ui-slider-range": "ui-corner-all slider__fill"-->
-                    <!--},-->
-                    <!--slide: function( event, ui ) {-->
-                        <!--$("#amount").val(ui.values[0] + " - " + ui.values[1]);-->
-                        <!--this.minValue = ui.values[0];-->
-                        <!--this.maxValue = ui.values[1];-->
-                    <!--}-->
-                <!--});-->
-                <!--$("#amount").val($("#slider-range").slider("values", 0) +-->
-                    <!--" - " + $("#slider-range").slider("values", 1));-->
-            <!--} );-->
-
-            <!--// $("#slider-range").classList.remove('ui-state-default');-->
-            <!--// let slider = $("#slider-range");-->
-            <!--// console.log(slider);-->
-
-
-            <!--const ctx = document.getElementById("myChart").getContext('2d');-->
-            <!--let myChart = new Chart(ctx, {-->
-            <!--type: 'line',-->
-            <!--data: {-->
-            <!--labels: ["Conservative", "Moderate", "Aggressive"],-->
-                <!--fill: false,-->
-            <!--datasets: [{-->
-            <!--label: 'Something',-->
-            <!--data: [25, 50, 65],-->
-            <!--yAxisId: 'data-1',-->
-            <!--fill: false,-->
-            <!--backgroundColor: ['rgba(255, 99, 132, 0.2)'],-->
-            <!--borderColor: ['rgba(255,99,132,1)'],-->
-            <!--borderWidth: 1-->
-            <!--}]-->
-            <!--},-->
-            <!--options: {-->
-                <!--elements: {-->
-                    <!--line: {-->
-                       <!--tension: 0, // disables bezier curves-->
-                    <!--}-->
-                <!--}-->
-            <!--}-->
-            <!--});-->
-        <!--</script>-->
-    <!--</section>-->
-<!--</main>-->
-
 <main class="calculator-container">
     <section class="savings-form savings">
         <h1 class="savings__primary">Harbor Calculator</h1>
 
         <h3 class="savings__secondary">How long would you like to work?</h3>
-
-        <!--<input type="range" min="0" max="80" step="1" value="30" role="slider">-->
-        <!-- <form class="range-slider">
-            <span class="rangeValues"></span>
-            <input value="25" min="1" max="100" step="1" type="range" name="ageStart" id="ageStart">
-            <input value="65" min="100" max="100" step="1" type="range" name="ageFinish" id="ageFinish">
-            <output name="ageRange" for="ageStart, ageFinish"></output>
-        </form> -->
 
         <p>
             <label for="amount">Age range:</label>
@@ -166,14 +20,6 @@
             <li><button class="money-list__item" value="100000">$100K</button></li>
             <li><input type="number" min="0" class="money-list__item money-list__item--amount" placeholder="$ Amount" autocomplete="off" id="money-saved-input" oninput="getAmount(this.value, this.id)"></li>
         </ul>
-        <h3 class="savings__secondary">What's your estimated annual income (before tax)?</h3>
-        <ul class="money-list" id="money-income" onclick="testing(event, this.id)">
-            <li><button class="money-list__item" value="0">$0</button></li>
-            <li><button class="money-list__item" value="10000">$10K</button></li>
-            <li><button class="money-list__item" value="40000">$40K</button></li>
-            <li><button class="money-list__item" value="100000">$100K</button></li>
-            <li><input type="number" min="0" class="money-list__item money-list__item--amount" placeholder="$ Amount" id="annual-income" oninput="getAmount(this.value, this.id)"></li>
-        </ul>
         <h3 class="savings__secondary">How much do you save every month?</h3>
         <ul class="money-list" id="money-saved-monthly" onclick="testing(event, this.id)">
             <li><button class="money-list__item" value="100">$100</button></li>
@@ -182,10 +28,6 @@
             <li><button class="money-list__item" value="1000">$1000</button></li>
             <li><input type="number" min="0" class="money-list__item money-list__item--amount" placeholder="$ Amount" id="monthly-savings" oninput="getAmount(this.value, this.id)"></li>
         </ul>
-
-
-
-        C
     </section>
 
     <section class="savings-outcome">
@@ -198,6 +40,24 @@
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <script>
+            const ctx = document.getElementById("myChart").getContext('2d');
+
+            let totalSaved = 0; // v
+            let annualIncome;
+            let monthlySavings = 0; // c
+            let yearsWantToSave = 30;
+            let totalMonthsOfSaving = yearsWantToSave * 12; // n
+            let aggressive = 1.00716; // r
+            let moderate = 1.0065; // r
+            let conservative = 1.00549; // r
+
+            let minAge;
+            let maxAge;
+
+            for(; minAge <= maxAge; minAge++) {
+
+            }
+
             $(function() {
                 $("#slider-range").slider({
                     range: true,
@@ -213,64 +73,93 @@
                     },
                     slide: function( event, ui ) {
                         $("#amount").val(ui.values[0] + " - " + ui.values[1]);
+                        minAge = ui.values[0];
+                        maxAge = ui.values[1];
                         this.minValue = ui.values[0];
                         this.maxValue = ui.values[1];
-                        console.log(this.minValue);
-                        console.log(this.maxValue);
+                        yearsWantToSave = maxAge - minAge;
+                        // console.log(yearsWantToSave);
+                        updateChart(totalSaved, monthlySavings)
                     }
                 });
                 $("#amount").val($("#slider-range").slider("values", 0) +
                     " - " + $("#slider-range").slider("values", 1));
             } );
 
-            let totalSaved = 50;
-            let annualIncome = 50;
-            let monthlySavings = 50;
+            function calculatePointer(r, total, monthly) {
+                for (let i=0; i < totalMonthsOfSaving; i++) {
+                    totalSaved = (total * r) + monthly;
+                }
+                return totalSaved;
+            }
 
-            const ctx = document.getElementById("myChart").getContext('2d');
-
-            function testing2() {
-                let myChart = new Chart(ctx, {
+            function createChart(conservativePoint, moderatePoint, aggressivePoint) {
+                new Chart(ctx, {
                     type: 'line',
                     data: {
-                        labels: ["Conservative", "Moderate", "Aggressive"],
-                        fill: false,
-                        datasets: [{
-                            label: 'Something',
-                            data: [totalSaved, annualIncome, monthlySavings],
-                            yAxisId: 'data-1',
-                            fill: false,
-                            backgroundColor: ['rgba(255, 99, 132, 0.2)'],
-                            borderColor: ['rgba(255,99,132,1)'],
-                            borderWidth: 1
-                        }]
+                        // TODO labels: [minAge - maxAge]
+                        labels: [25, 30, 35, 40, 45, 50, 55 ,60, 65],
+                        datasets: [
+                            {
+                                label: ["Conservative"],
+                                // TODO [startAge and initialSavingsInput - endAge]
+                                data: [0, 10, 20, 30, 40, 50, 55, 60, 65, conservativePoint],
+                                fill: true,
+                                backgroundColor: ['#102A5E'],
+                                borderColor: ['#102A5E'],
+                                borderWidth: 1
+                            },
+                            {
+                                label: ["Moderate"],
+                                data: [0, 10, 20, 30, 40, 50, 55, 60, 65,moderatePoint],
+                                fill: true,
+                                backgroundColor: ['#3F5A9E'],
+                                borderColor: ['#3F5A9E'],
+                                borderWidth: 1
+                            },
+                            {
+                                label: ["Aggressive"],
+                                data: [0, 10, 20, 30, 40, 50, 55, 60, 65, aggressivePoint],
+                                fill: true,
+                                backgroundColor: ['#41ade1'],
+                                borderColor: ['#41ade1'],
+                                borderWidth: 1
+                            }
+                        ]
                     },
                     options: {
                         elements: {
                             line: {
-                                tension: 0, // disables bezier curves
+                                tension: 0.6, // bezier curves 0-1
+                                spanGaps: true
                             }
+                        },
+                        scales: {
+                            showLines: false,
+                                yAxes: [{
+                                    stacked: true
+                                }]
+                            },
+                        legend: {
+                            display: true, // rectangle labels on top of chart
+                        },
+                        animation: {
+                            easing: 'easeInOutCubic'
                         }
                     }
-                }); }
+                });
+            }
 
-            testing2();
+            createChart(10,11,12);
+
+            function updateChart(total, monthly) {
+                createChart(calculatePointer(conservative, total, monthly), calculatePointer(moderate, total, monthly), calculatePointer(aggressive, total, monthly));
+            }
 
             const moneySavedInput = document.getElementById('money-saved-input');
             const moneySaved = document.getElementById('money-saved');
 
             let buttons = moneySaved.querySelectorAll('button');
-
-            console.log(buttons[0].value);
-            console.log(buttons[1].value);
-            console.log(buttons[2].value);
-            // console.log(moneySavedInput.onchange);
-
-            // function testing(event, id) {
-
-            //     event.target.value;
-            //     console.log(event.target.value)
-            // }
 
             const moneyIncome = document.getElementById('money-income');
             const moneySavedMonthly = document.getElementById('money-saved-monthly');
@@ -280,46 +169,50 @@
                 let nodes = document.getElementById(id).childNodes;
                 // Filters through the inner elements and returns only the li elements
                 let liArray = Array.from(nodes).filter((node)=>{
-                    return node.nodeName == 'LI';
-                })
+                    return node.nodeName === 'LI';
+                });
 
                 // Used to prevent the ul itself from having an unwanted class added, only allows button elements
-                if (event.target.nodeName == 'BUTTON') {
+                if (event.target.nodeName === 'BUTTON') {
                     // Loops through all the sibling buttons and removes the .selected-amount class from the non selected buttons
                     liArray.forEach((li)=>{
-                        if (li.childNodes[0].nodeName == 'INPUT') {
+                        if (li.childNodes[0].nodeName === 'INPUT') {
                             li.childNodes[0].value = '';
-                        } else if (li.childNodes[0].value != event.target.value) {
+                        } else if (li.childNodes[0].value !== event.target.value) {
                             li.childNodes[0].classList.remove('selected-amount');
                         }
 
-                    })
+                    });
 
                     if ( id === "money-saved") {
-                        totalSaved = event.target.value;
+                        totalSaved = Number(event.target.value);
                         event.target.classList.add('selected-amount');
+                        updateChart(Number(event.target.value), monthlySavings);
+
                     } else if ( id === "money-income") {
                         annualIncome = event.target.value;
                         event.target.classList.add('selected-amount');
+
                     } else if (id === "money-saved-monthly"){
-                        monthlySavings = event.target.value;
+                        monthlySavings = Number(event.target.value);
                         event.target.classList.add('selected-amount');
+                        updateChart(totalSaved, Number(event.target.value));
                     }
                 }
-                testing2();
             }
 
             // onchange get value
             function getAmount(value, id) {
                 if ( id === "money-saved-input") {
                     totalSaved = value;
+                    updateChart(value, monthlySavings);
                 } else if ( id === "annual-income") {
                     annualIncome = value;
                 } else if (id === "monthly-savings"){
                     monthlySavings = value;
+                    updateChart(totalSaved, value);
                 }
-                testing2();
-            };
+            }
         </script>
     </section>
 </main>

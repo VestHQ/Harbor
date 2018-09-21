@@ -1,10 +1,18 @@
 .selected-amount {
   background-color: $light1-blue;
+  //border: 1px solid $dark-blue;
 }
 
 .calculator-container {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
+  margin: 3rem;
+
+  // changes at 1040px
+  @media screen and (min-width: 1300px) {
+    flex-direction: row;
+  }
 
   .savings-form {
     display: flex;
@@ -51,9 +59,6 @@
       width: auto;
       outline: none;
 
-      &:active, :focus {
-
-      }
       &:not(:last-child) {
         &:hover, :focus, :active {
           background-color: $light1-blue;
@@ -96,14 +101,22 @@
     }
   }
 }
-.slider {
+#amount {
+  font-size: 2rem;
+}
+#slider-range {
+  width: 40vw;
+  max-width: 55rem;
 
+  @media screen and (min-width: 1300px) {
+
+  }
+}
+.slider {
   &__fill {
     background-image: linear-gradient(to right, $dark-blue, $cold-blue);
   }
-
   &__btn {
-    //padding: 1.25rem .75rem !important;
     position: absolute !important;
     top: -.5rem !important;
     background-color: $dark-blue !important;
@@ -113,10 +126,6 @@
     //border-top: solid 2rem $bright-blue !important;
     //border-left: solid 1.5rem transparent !important;
     //border-right: solid 1.5rem transparent !important;
-
-    //&::before {
-    //  border-top: solid 2rem red;
-    //}
   }
   &__height {
     padding: .75rem;
@@ -199,7 +208,6 @@ input[type=range]::-ms-thumb {
   cursor: pointer;
 }
 
-// TODO make inbetween other color
 
 // style track
 input[type=range]::-webkit-slider-runnable-track {
@@ -257,11 +265,7 @@ input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-//
-//.rangeValues {
-//  background-color: red;
-//  z-index: 1000;
-//}
+
 .range-slider {
   position: relative;
   width: auto;
