@@ -6,12 +6,17 @@
 .calculator-container {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  margin: 3rem;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  //margin: 3rem;
 
   // changes at 1040px
   @media screen and (min-width: 1300px) {
     flex-direction: row;
+    //justify-content: center;
+    //align-items: center;
+    //align-content: center;
   }
 
   .savings-form {
@@ -21,6 +26,12 @@
     @include text;
     text-align: left;
     color: #59d8c4;
+    margin-right: 4rem;
+    margin-bottom: 4rem;
+
+    @include respond(column) {
+      width: 30rem;
+    }
 
     .savings {
       position: relative;
@@ -107,41 +118,67 @@
   }
 
   .savings-outcome {
-    height: 66.666vh;
+    height: 100%;
     min-height: 45rem;
-    width: 45vw;
-    //background-image: linear-gradient(to top right, $light1-blue, $light2-blue);
+    width: 52rem;
+    min-width: 30rem;
     border-radius: 5px;
     box-shadow: 0 0 1rem rgba(0,0,0,.15);
     background-color: #fcfcfc;
-
     padding: 3rem;
 
-    &__header {
-      @include underline;
-      position: relative;
-      z-index: 1;
-      color: $dark-blue;
-      font-size: 2.4rem;
-      margin-left: 2rem;
-      //margin: 2rem auto;
+    @include respond(column) {
+      width: 30rem;
+    }
 
-      &::after {
-        background-color: rgba(#cde4ff, .5);
-        //left: 33.3333%;
-        z-index: -1;
+    .chart-row {
+      display: flex;
+      justify-content: space-between;
+      padding: .5rem 1rem;
+      margin-bottom: 2rem;
+
+      &__heading {
+        color: $dark-blue;
+        font-weight: 500;
+        font-size: 1.8rem;
+
+        &--2 {
+          color: $cold-blue;
+        }
+        &--3 {
+          color: $dark-sky-blue;
+        }
+      }
+      &__header {
+        @include underline;
+        position: relative;
+        z-index: 1;
+        color: $dark-blue;
+        font-size: 2.4rem;
+        margin-left: 2rem;
+
+        &::after {
+          background-color: rgba(#cde4ff, .5);
+          //left: 33.3333%;
+          z-index: -1;
+        }
+      }
+      &__value {
+        font-size: 1.4rem;
       }
     }
   }
 }
+p { margin: 0;}
 #amount {
   font-size: 2rem;
   color: #59d8c4;
   background-color: transparent;
 }
 #slider-range {
-  width: 40vw;
-  max-width: 55rem;
+  width: 40rem;
+  max-width: 50rem;
+  min-width: 30rem;
 }
 .slider {
   &__fill {

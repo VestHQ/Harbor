@@ -1,0 +1,175 @@
+<script>
+    const ctx = document.getElementById("myChart").getContext('2d');
+
+    let totalSaved = 0; // v
+    let annualIncome;
+    let monthlySavings = 0; // c
+    let yearsWantToSave = 30;
+    let totalMonthsOfSaving = yearsWantToSave * 12; // n
+    let aggressive = 1.00716; // r
+    let moderate = 1.0065; // r
+    let conservative = 1.00549; // r
+
+    let minAge;
+    let maxAge;
+
+    for(; minAge <= maxAge; minAge++) {
+
+    }
+
+    $(function() {
+        $("#slider-range").slider({
+            range: true,
+            min: 1,
+            max: 100,
+            minValue: undefined,
+            maxValue: undefined,
+            values: [ 25, 65 ],
+            classes: {
+                "ui-slider": "ui-corner-all slider__height",
+                "ui-slider-handle": "ui-corner-all slider__btn",
+                "ui-slider-range": "ui-corner-all slider__fill"
+            },
+            slide: function( event, ui ) {
+                $("#amount").val(ui.values[0] + " - " + ui.values[1]);
+                minAge = ui.values[0];
+                maxAge = ui.values[1];
+                this.minValue = ui.values[0];
+                this.maxValue = ui.values[1];
+                yearsWantToSave = maxAge - minAge;
+                // console.log(yearsWantToSave);
+                updateChart(totalSaved, monthlySavings)
+            }
+        });
+        $("#amount").val($("#slider-range").slider("values", 0) +
+            " - " + $("#slider-range").slider("values", 1));
+    } );
+
+    function calculatePointer(r, total, monthly) {
+        for (let i=0; i < totalMonthsOfSaving; i++) {
+            totalSaved = (total * r) + monthly;
+        }
+        return totalSaved;
+    }
+
+    function createChart(conservativePoint, moderatePoint, aggressivePoint) {
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                // TODO labels: [minAge - maxAge]
+                labels: [25, 30, 35, 40, 45, 50, 55 ,60, 65],
+                datasets: [
+                    {
+                        label: ["Conservative"],
+                        // TODO [startAge and initialSavingsInput - endAge]
+                        data: [0, 10, 20, 30, 40, 50, 55, 60, 65, conservativePoint],
+                        fill: true,
+                        backgroundColor: ['#102A5E'],
+                        borderColor: ['#102A5E'],
+                        borderWidth: 1
+                    },
+                    {
+                        label: ["Moderate"],
+                        data: [0, 10, 20, 30, 40, 50, 55, 60, 65,moderatePoint],
+                        fill: true,
+                        backgroundColor: ['#3F5A9E'],
+                        borderColor: ['#3F5A9E'],
+                        borderWidth: 1
+                    },
+                    {
+                        label: ["Aggressive"],
+                        data: [0, 10, 20, 30, 40, 50, 55, 60, 65, aggressivePoint],
+                        fill: true,
+                        backgroundColor: ['#41ade1'],
+                        borderColor: ['#41ade1'],
+                        borderWidth: 1
+                    }
+                ]
+            },
+            options: {
+                elements: {
+                    line: {
+                        tension: 0.6, // bezier curves 0-1
+                        spanGaps: true
+                    }
+                },
+                scales: {
+                    showLines: false,
+                    yAxes: [{
+                        stacked: true
+                    }]
+                },
+                legend: {
+                    display: false, // rectangle labels on top of chart
+                },
+                animation: {
+                    easing: 'easeInOutCubic'
+                }
+            }
+        });
+    }
+
+    createChart(10,11,12);
+
+    function updateChart(total, monthly) {
+        createChart(calculatePointer(conservative, total, monthly), calculatePointer(moderate, total, monthly), calculatePointer(aggressive, total, monthly));
+    }
+
+    const moneySavedInput = document.getElementById('money-saved-input');
+    const moneySaved = document.getElementById('money-saved');
+
+    let buttons = moneySaved.querySelectorAll('button');
+
+    const moneyIncome = document.getElementById('money-income');
+    const moneySavedMonthly = document.getElementById('money-saved-monthly');
+
+    function testing(event, id) {
+        // Grabs all the elements from inside the ul whom had its onclick triggered
+        let nodes = document.getElementById(id).childNodes;
+        // Filters through the inner elements and returns only the li elements
+        let liArray = Array.from(nodes).filter((node)=>{
+            return node.nodeName === 'LI';
+        });
+
+        // Used to prevent the ul itself from having an unwanted class added, only allows button elements
+        if (event.target.nodeName === 'BUTTON') {
+            // Loops through all the sibling buttons and removes the .selected-amount class from the non selected buttons
+            liArray.forEach((li)=>{
+                if (li.childNodes[0].nodeName === 'INPUT') {
+                    li.childNodes[0].value = '';
+                } else if (li.childNodes[0].value !== event.target.value) {
+                    li.childNodes[0].classList.remove('selected-amount');
+                }
+
+            });
+
+            if ( id === "money-saved") {
+                totalSaved = Number(event.target.value);
+                event.target.classList.add('selected-amount');
+                updateChart(Number(event.target.value), monthlySavings);
+
+            } else if ( id === "money-income") {
+                annualIncome = event.target.value;
+                event.target.classList.add('selected-amount');
+
+            } else if (id === "money-saved-monthly"){
+                monthlySavings = Number(event.target.value);
+                event.target.classList.add('selected-amount');
+                updateChart(totalSaved, Number(event.target.value));
+            }
+        }
+    }
+
+    // onchange get value
+    function getAmount(value, id) {
+        if ( id === "money-saved-input") {
+            totalSaved = value;
+            updateChart(value, monthlySavings);
+        } else if ( id === "annual-income") {
+            annualIncome = value;
+        } else if (id === "monthly-savings"){
+            monthlySavings = value;
+            updateChart(totalSaved, value);
+        }
+    }
+</script>
