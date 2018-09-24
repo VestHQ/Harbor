@@ -1,12 +1,12 @@
 <main class="calculator-container">
     <section class="savings-form savings">
-        <h1 class="savings__primary">Harbor Calculator</h1>
+        <h1 class="savings__primary">Your Investment</h1>
 
         <h3 class="savings__secondary">How long would you like to work?</h3>
 
         <p>
             <label for="amount">Age range:</label>
-            <input type="text" id="amount" readonly style="border:0; color:#41ade1; font-weight:bold;">
+            <input type="text" id="amount" readonly style="border:0;">
         </p>
 
         <div id="slider-range"></div>
@@ -31,7 +31,7 @@
     </section>
 
     <section class="savings-outcome">
-        <h1 class="savings-outcome__header">Savings Outcome</h1>
+        <h1 class="savings-outcome__header">Your Outcome</h1>
         <canvas id="myChart" width="400" height="200"></canvas>
 
         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -93,6 +93,12 @@
                 return totalSaved;
             }
 
+            // function getYearsWorked (ui) {
+            //     let total = $("#amount").val(ui.values[0] - ui.values[1]);
+            //     console.log(total)
+            // }
+            // getYearsWorked();
+
             function createChart(conservativePoint, moderatePoint, aggressivePoint) {
                 new Chart(ctx, {
                     type: 'line',
@@ -141,7 +147,7 @@
                                 }]
                             },
                         legend: {
-                            display: true, // rectangle labels on top of chart
+                            display: false, // rectangle labels on top of chart
                         },
                         animation: {
                             easing: 'easeInOutCubic'

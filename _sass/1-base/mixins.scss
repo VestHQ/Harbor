@@ -122,3 +122,15 @@
 @mixin shadow {
   box-shadow: 1px 1px 1px #000000, 0 0 1px #0d0d0d;
 }
+
+@mixin underline {
+  &::after {
+    content: "";
+    display: block;
+    position: absolute;
+    background-color: hsla(0,0%,100%,.3);
+    height: 10px;
+    width: 22rem;
+    bottom: 2px;
+  }
+}
