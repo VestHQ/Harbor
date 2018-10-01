@@ -205,20 +205,20 @@
         const finalModerateData = calculateDataPointsByYear(moderate);
         const finalAggressiveData = calculateDataPointsByYear(aggressive);
 
-        document.getElementById("conservativeTotal").innerText = finalConservativeData[finalConservativeData.length-1];
-        document.getElementById("moderateTotal").innerText = finalModerateData[finalModerateData.length-1];
-        document.getElementById("aggressiveTotal").innerText = finalAggressiveData[finalAggressiveData.length-1];
+        document.getElementById("conservativeTotal").innerText = '$' + finalConservativeData[finalConservativeData.length-1].toLocaleString('en');
+        document.getElementById("moderateTotal").innerText = '$' + finalModerateData[finalModerateData.length-1].toLocaleString('en');
+        document.getElementById("aggressiveTotal").innerText = '$' + finalAggressiveData[finalAggressiveData.length-1].toLocaleString('en');
 
         // add selected class to 0 saved & 100/mo by default
         const startValue = document.getElementsByClassName("startValue");
         const conservativeAmt = document.getElementById("conservativeAmt");
-        conservativeAmt.innerText = "$" + Math.floor(startValue[1].value * conservative) + " / mo";
+        conservativeAmt.innerText = "$" + Math.floor(startValue[1].value * conservative).toLocaleString('en') + " / mo";
 
         const moderateAmt =document.getElementById("moderateAmt");
-        moderateAmt.innerText = "$" + Math.floor(startValue[1].value * moderate) + " / mo";
+        moderateAmt.innerText = "$" + Math.floor(startValue[1].value * moderate).toLocaleString('en') + " / mo";
 
         const aggressiveAmt =document.getElementById("aggressiveAmt");
-        aggressiveAmt.innerText = "$" + Math.floor(startValue[1].value * aggressive) + " / mo";
+        aggressiveAmt.innerText = "$" + Math.floor(startValue[1].value * aggressive).toLocaleString('en') + " / mo";
         //////////////////////////////
     }
 
