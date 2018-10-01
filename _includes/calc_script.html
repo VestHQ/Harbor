@@ -1,679 +1,3 @@
-<!--&lt;!&ndash;&lt;!&ndash;<script>&ndash;&gt;&ndash;&gt;-->
-    <!--&lt;!&ndash;&lt;!&ndash;const ctx = document.getElementById("myChart").getContext('2d');&ndash;&gt;&ndash;&gt;-->
-
-    <!--&lt;!&ndash;&lt;!&ndash;// removes all but amount inputs // doesnt respond to resizing&ndash;&gt;&ndash;&gt;-->
-    <!--&lt;!&ndash;&lt;!&ndash;if (window.screen.width <= 600) {&ndash;&gt;&ndash;&gt;-->
-        <!--&lt;!&ndash;&lt;!&ndash;let lis = document.querySelectorAll('ul li');&ndash;&gt;&ndash;&gt;-->
-        <!--&lt;!&ndash;&lt;!&ndash;for(let i=0; li=lis[i]; i++) {&ndash;&gt;&ndash;&gt;-->
-            <!--&lt;!&ndash;&lt;!&ndash;if (i <= 3) {&ndash;&gt;&ndash;&gt;-->
-                <!--&lt;!&ndash;&lt;!&ndash;li.parentNode.removeChild(li);&ndash;&gt;&ndash;&gt;-->
-            <!--&lt;!&ndash;&lt;!&ndash;} else if (i > 4 && i <= 8) {&ndash;&gt;&ndash;&gt;-->
-                <!--&lt;!&ndash;&lt;!&ndash;li.parentNode.removeChild(li);&ndash;&gt;&ndash;&gt;-->
-            <!--&lt;!&ndash;&lt;!&ndash;}&ndash;&gt;&ndash;&gt;-->
-        <!--&lt;!&ndash;&lt;!&ndash;}&ndash;&gt;&ndash;&gt;-->
-    <!--&lt;!&ndash;&lt;!&ndash;}&ndash;&gt;&ndash;&gt;-->
-
-
-
-
-    <!--&lt;!&ndash;&lt;!&ndash;// let yrAtRetirement = currentYr + yearsWantToSave;&ndash;&gt;&ndash;&gt;-->
-    <!--&lt;!&ndash;&lt;!&ndash;document.getElementById("conservativeAmt").innerText = "$" + getAmount() + " /mo";&ndash;&gt;&ndash;&gt;-->
-    <!--&lt;!&ndash;&lt;!&ndash;document.getElementById("moderateAmt").innerText = "$" + 12 + " /mo";&ndash;&gt;&ndash;&gt;-->
-    <!--&lt;!&ndash;&lt;!&ndash;document.getElementById("aggressiveAmt").innerText = "$" + 12 + " /mo";&ndash;&gt;&ndash;&gt;-->
-
-    <!--&lt;!&ndash;&lt;!&ndash;let totalSaved = 0; // v&ndash;&gt;&ndash;&gt;-->
-    <!--&lt;!&ndash;&lt;!&ndash;let annualIncome;&ndash;&gt;&ndash;&gt;-->
-    <!--&lt;!&ndash;&lt;!&ndash;let monthlySavings = 0; // c&ndash;&gt;&ndash;&gt;-->
-    <!--&lt;!&ndash;&lt;!&ndash;let yearsWantToSave = 40;&ndash;&gt;&ndash;&gt;-->
-    <!--&lt;!&ndash;&lt;!&ndash;let totalMonthsOfSaving = yearsWantToSave * 12; // n&ndash;&gt;&ndash;&gt;-->
-    <!--&lt;!&ndash;&lt;!&ndash;let aggressive = 1.00716; // r&ndash;&gt;&ndash;&gt;-->
-    <!--&lt;!&ndash;&lt;!&ndash;let moderate = 1.0065; // r&ndash;&gt;&ndash;&gt;-->
-    <!--&lt;!&ndash;&lt;!&ndash;let conservative = 1.00549; // r&ndash;&gt;&ndash;&gt;-->
-    <!--&lt;!&ndash;&lt;!&ndash;let chartLabels = [];&ndash;&gt;&ndash;&gt;-->
-
-    <!--&lt;!&ndash;&lt;!&ndash;let minAge;&ndash;&gt;&ndash;&gt;-->
-    <!--&lt;!&ndash;&lt;!&ndash;let maxAge;&ndash;&gt;&ndash;&gt;-->
-
-    <!--&lt;!&ndash;&lt;!&ndash;let today = new Date();&ndash;&gt;&ndash;&gt;-->
-    <!--&lt;!&ndash;&lt;!&ndash;let currentYr = today.getFullYear();&ndash;&gt;&ndash;&gt;-->
-    <!--&lt;!&ndash;&lt;!&ndash;document.getElementById('year').innerText = currentYr + yearsWantToSave;&ndash;&gt;&ndash;&gt;-->
-
-    <!--&lt;!&ndash;&lt;!&ndash;$(function() {&ndash;&gt;&ndash;&gt;-->
-        <!--&lt;!&ndash;&lt;!&ndash;$("#slider-range").slider({&ndash;&gt;&ndash;&gt;-->
-            <!--&lt;!&ndash;&lt;!&ndash;range: true,&ndash;&gt;&ndash;&gt;-->
-            <!--&lt;!&ndash;&lt;!&ndash;min: 1,&ndash;&gt;&ndash;&gt;-->
-            <!--&lt;!&ndash;&lt;!&ndash;max: 100,&ndash;&gt;&ndash;&gt;-->
-            <!--&lt;!&ndash;&lt;!&ndash;minValue: undefined,&ndash;&gt;&ndash;&gt;-->
-            <!--&lt;!&ndash;&lt;!&ndash;maxValue: undefined,&ndash;&gt;&ndash;&gt;-->
-            <!--&lt;!&ndash;&lt;!&ndash;values: [ 25, 65 ],&ndash;&gt;&ndash;&gt;-->
-            <!--&lt;!&ndash;&lt;!&ndash;classes: {&ndash;&gt;&ndash;&gt;-->
-                <!--&lt;!&ndash;&lt;!&ndash;"ui-slider": "ui-corner-all slider__height",&ndash;&gt;&ndash;&gt;-->
-                <!--&lt;!&ndash;&lt;!&ndash;"ui-slider-handle": "ui-corner-all slider__btn",&ndash;&gt;&ndash;&gt;-->
-                <!--&lt;!&ndash;&lt;!&ndash;"ui-slider-range": "ui-corner-all slider__fill"&ndash;&gt;&ndash;&gt;-->
-            <!--&lt;!&ndash;&lt;!&ndash;},&ndash;&gt;&ndash;&gt;-->
-            <!--&lt;!&ndash;&lt;!&ndash;slide: function( event, ui ) {&ndash;&gt;&ndash;&gt;-->
-                <!--&lt;!&ndash;&lt;!&ndash;$("#amount").val(ui.values[0] + " - " + ui.values[1]);&ndash;&gt;&ndash;&gt;-->
-                <!--&lt;!&ndash;&lt;!&ndash;this.minValue = ui.values[0];&ndash;&gt;&ndash;&gt;-->
-                <!--&lt;!&ndash;&lt;!&ndash;this.maxValue = ui.values[1];&ndash;&gt;&ndash;&gt;-->
-                <!--&lt;!&ndash;&lt;!&ndash;yearsWantToSave = ui.values[1] - ui.values[0];&ndash;&gt;&ndash;&gt;-->
-                <!--&lt;!&ndash;&lt;!&ndash;calculateLabels(ui.values[0], ui.values[1]);&ndash;&gt;&ndash;&gt;-->
-                <!--&lt;!&ndash;&lt;!&ndash;// age set to 65 in html but updates when slider is triggered here&ndash;&gt;&ndash;&gt;-->
-                <!--&lt;!&ndash;&lt;!&ndash;document.getElementById('age').innerText = ui.values[1];&ndash;&gt;&ndash;&gt;-->
-                <!--&lt;!&ndash;&lt;!&ndash;document.getElementById('year').innerText = currentYr + yearsWantToSave;&ndash;&gt;&ndash;&gt;-->
-                <!--&lt;!&ndash;&lt;!&ndash;updateChart(totalSaved, monthlySavings)&ndash;&gt;&ndash;&gt;-->
-            <!--&lt;!&ndash;&lt;!&ndash;}&ndash;&gt;&ndash;&gt;-->
-        <!--&lt;!&ndash;&lt;!&ndash;});&ndash;&gt;&ndash;&gt;-->
-        <!--&lt;!&ndash;&lt;!&ndash;$("#amount").val($("#slider-range").slider("values", 0) +&ndash;&gt;&ndash;&gt;-->
-            <!--&lt;!&ndash;&lt;!&ndash;" - " + $("#slider-range").slider("values", 1));&ndash;&gt;&ndash;&gt;-->
-    <!--&lt;!&ndash;&lt;!&ndash;} );&ndash;&gt;&ndash;&gt;-->
-
-    <!--&lt;!&ndash;&lt;!&ndash;function calculateLabels(minAge, maxAge) {&ndash;&gt;&ndash;&gt;-->
-        <!--&lt;!&ndash;&lt;!&ndash;let output = [];&ndash;&gt;&ndash;&gt;-->
-        <!--&lt;!&ndash;&lt;!&ndash;for (let x = minAge; x <= maxAge; x++) {&ndash;&gt;&ndash;&gt;-->
-            <!--&lt;!&ndash;&lt;!&ndash;output.push(x);&ndash;&gt;&ndash;&gt;-->
-        <!--&lt;!&ndash;&lt;!&ndash;}&ndash;&gt;&ndash;&gt;-->
-        <!--&lt;!&ndash;&lt;!&ndash;chartLabels = output;&ndash;&gt;&ndash;&gt;-->
-        <!--&lt;!&ndash;&lt;!&ndash;console.log(chartLabels)&ndash;&gt;&ndash;&gt;-->
-    <!--&lt;!&ndash;&lt;!&ndash;}&ndash;&gt;&ndash;&gt;-->
-
-    <!--&lt;!&ndash;&lt;!&ndash;function calculatePointer(r, total, monthly) {&ndash;&gt;&ndash;&gt;-->
-        <!--&lt;!&ndash;&lt;!&ndash;for (let i=0; i < totalMonthsOfSaving; i++) {&ndash;&gt;&ndash;&gt;-->
-            <!--&lt;!&ndash;&lt;!&ndash;totalSaved = (total * r) + monthly;&ndash;&gt;&ndash;&gt;-->
-        <!--&lt;!&ndash;&lt;!&ndash;}&ndash;&gt;&ndash;&gt;-->
-        <!--&lt;!&ndash;&lt;!&ndash;return totalSaved;&ndash;&gt;&ndash;&gt;-->
-    <!--&lt;!&ndash;&lt;!&ndash;}&ndash;&gt;&ndash;&gt;-->
-
-
-    <!--&lt;!&ndash;&lt;!&ndash;function createChart(conservativePoint, moderatePoint, aggressivePoint) {&ndash;&gt;&ndash;&gt;-->
-        <!--&lt;!&ndash;&lt;!&ndash;new Chart(ctx, {&ndash;&gt;&ndash;&gt;-->
-            <!--&lt;!&ndash;&lt;!&ndash;type: 'line',&ndash;&gt;&ndash;&gt;-->
-            <!--&lt;!&ndash;&lt;!&ndash;data: {&ndash;&gt;&ndash;&gt;-->
-                <!--&lt;!&ndash;&lt;!&ndash;// TODO labels: [minAge - maxAge]&ndash;&gt;&ndash;&gt;-->
-                <!--&lt;!&ndash;&lt;!&ndash;labels: chartLabels,&ndash;&gt;&ndash;&gt;-->
-                <!--&lt;!&ndash;&lt;!&ndash;datasets: [&ndash;&gt;&ndash;&gt;-->
-                    <!--&lt;!&ndash;&lt;!&ndash;{&ndash;&gt;&ndash;&gt;-->
-                        <!--&lt;!&ndash;&lt;!&ndash;label: ["Conservative"],&ndash;&gt;&ndash;&gt;-->
-                        <!--&lt;!&ndash;&lt;!&ndash;// TODO [startAge and initialSavingsInput - endAge]&ndash;&gt;&ndash;&gt;-->
-                        <!--&lt;!&ndash;&lt;!&ndash;data: [...chartLabels, conservativePoint],&ndash;&gt;&ndash;&gt;-->
-                        <!--&lt;!&ndash;&lt;!&ndash;fill: true,&ndash;&gt;&ndash;&gt;-->
-                        <!--&lt;!&ndash;&lt;!&ndash;backgroundColor: ['#102A5E'],&ndash;&gt;&ndash;&gt;-->
-                        <!--&lt;!&ndash;&lt;!&ndash;borderColor: ['#102A5E'],&ndash;&gt;&ndash;&gt;-->
-                        <!--&lt;!&ndash;&lt;!&ndash;borderWidth: 1&ndash;&gt;&ndash;&gt;-->
-                    <!--&lt;!&ndash;&lt;!&ndash;},&ndash;&gt;&ndash;&gt;-->
-                    <!--&lt;!&ndash;&lt;!&ndash;{&ndash;&gt;&ndash;&gt;-->
-                        <!--&lt;!&ndash;&lt;!&ndash;label: ["Moderate"],&ndash;&gt;&ndash;&gt;-->
-                        <!--&lt;!&ndash;&lt;!&ndash;data: [...chartLabels, moderatePoint],&ndash;&gt;&ndash;&gt;-->
-                        <!--&lt;!&ndash;&lt;!&ndash;fill: true,&ndash;&gt;&ndash;&gt;-->
-                        <!--&lt;!&ndash;&lt;!&ndash;backgroundColor: ['#3F5A9E'],&ndash;&gt;&ndash;&gt;-->
-                        <!--&lt;!&ndash;&lt;!&ndash;borderColor: ['#3F5A9E'],&ndash;&gt;&ndash;&gt;-->
-                        <!--&lt;!&ndash;&lt;!&ndash;borderWidth: 1&ndash;&gt;&ndash;&gt;-->
-                    <!--&lt;!&ndash;&lt;!&ndash;},&ndash;&gt;&ndash;&gt;-->
-                    <!--&lt;!&ndash;&lt;!&ndash;{&ndash;&gt;&ndash;&gt;-->
-                        <!--&lt;!&ndash;&lt;!&ndash;label: ["Aggressive"],&ndash;&gt;&ndash;&gt;-->
-                        <!--&lt;!&ndash;&lt;!&ndash;data: [...chartLabels, aggressivePoint],&ndash;&gt;&ndash;&gt;-->
-                        <!--&lt;!&ndash;&lt;!&ndash;fill: true,&ndash;&gt;&ndash;&gt;-->
-                        <!--&lt;!&ndash;&lt;!&ndash;backgroundColor: ['#41ade1'],&ndash;&gt;&ndash;&gt;-->
-                        <!--&lt;!&ndash;&lt;!&ndash;borderColor: ['#41ade1'],&ndash;&gt;&ndash;&gt;-->
-                        <!--&lt;!&ndash;&lt;!&ndash;borderWidth: 1&ndash;&gt;&ndash;&gt;-->
-                    <!--&lt;!&ndash;&lt;!&ndash;}&ndash;&gt;&ndash;&gt;-->
-                <!--&lt;!&ndash;&lt;!&ndash;]&ndash;&gt;&ndash;&gt;-->
-            <!--&lt;!&ndash;&lt;!&ndash;},&ndash;&gt;&ndash;&gt;-->
-            <!--&lt;!&ndash;&lt;!&ndash;options: {&ndash;&gt;&ndash;&gt;-->
-                <!--&lt;!&ndash;&lt;!&ndash;elements: {&ndash;&gt;&ndash;&gt;-->
-                    <!--&lt;!&ndash;&lt;!&ndash;line: {&ndash;&gt;&ndash;&gt;-->
-                        <!--&lt;!&ndash;&lt;!&ndash;tension: 0.6, // bezier curves 0-1&ndash;&gt;&ndash;&gt;-->
-                        <!--&lt;!&ndash;&lt;!&ndash;spanGaps: true&ndash;&gt;&ndash;&gt;-->
-                    <!--&lt;!&ndash;&lt;!&ndash;}&ndash;&gt;&ndash;&gt;-->
-                <!--&lt;!&ndash;&lt;!&ndash;},&ndash;&gt;&ndash;&gt;-->
-                <!--&lt;!&ndash;&lt;!&ndash;scales: {&ndash;&gt;&ndash;&gt;-->
-                    <!--&lt;!&ndash;&lt;!&ndash;showLines: false,&ndash;&gt;&ndash;&gt;-->
-                    <!--&lt;!&ndash;&lt;!&ndash;yAxes: [{&ndash;&gt;&ndash;&gt;-->
-                        <!--&lt;!&ndash;&lt;!&ndash;stacked: true&ndash;&gt;&ndash;&gt;-->
-                    <!--&lt;!&ndash;&lt;!&ndash;}]&ndash;&gt;&ndash;&gt;-->
-                <!--&lt;!&ndash;&lt;!&ndash;},&ndash;&gt;&ndash;&gt;-->
-                <!--&lt;!&ndash;&lt;!&ndash;legend: {&ndash;&gt;&ndash;&gt;-->
-                    <!--&lt;!&ndash;&lt;!&ndash;display: false, // rectangle labels on top of chart&ndash;&gt;&ndash;&gt;-->
-                <!--&lt;!&ndash;&lt;!&ndash;},&ndash;&gt;&ndash;&gt;-->
-                <!--&lt;!&ndash;&lt;!&ndash;animation: {&ndash;&gt;&ndash;&gt;-->
-                    <!--&lt;!&ndash;&lt;!&ndash;easing: 'easeInOutCubic'&ndash;&gt;&ndash;&gt;-->
-                <!--&lt;!&ndash;&lt;!&ndash;}&ndash;&gt;&ndash;&gt;-->
-            <!--&lt;!&ndash;&lt;!&ndash;}&ndash;&gt;&ndash;&gt;-->
-        <!--&lt;!&ndash;&lt;!&ndash;});&ndash;&gt;&ndash;&gt;-->
-    <!--&lt;!&ndash;&lt;!&ndash;}&ndash;&gt;&ndash;&gt;-->
-
-    <!--&lt;!&ndash;&lt;!&ndash;createChart(10,11,12,chartLabels);&ndash;&gt;&ndash;&gt;-->
-
-    <!--&lt;!&ndash;&lt;!&ndash;function updateChart(total, monthly) {&ndash;&gt;&ndash;&gt;-->
-        <!--&lt;!&ndash;&lt;!&ndash;createChart(calculatePointer(conservative, total, monthly), calculatePointer(moderate, total, monthly), calculatePointer(aggressive, total, monthly));&ndash;&gt;&ndash;&gt;-->
-    <!--&lt;!&ndash;&lt;!&ndash;}&ndash;&gt;&ndash;&gt;-->
-
-    <!--&lt;!&ndash;&lt;!&ndash;const moneySavedInput = document.getElementById('money-saved-input');&ndash;&gt;&ndash;&gt;-->
-    <!--&lt;!&ndash;&lt;!&ndash;const moneySaved = document.getElementById('money-saved');&ndash;&gt;&ndash;&gt;-->
-
-    <!--&lt;!&ndash;&lt;!&ndash;let buttons = moneySaved.querySelectorAll('button');&ndash;&gt;&ndash;&gt;-->
-
-    <!--&lt;!&ndash;&lt;!&ndash;const moneyIncome = document.getElementById('money-income');&ndash;&gt;&ndash;&gt;-->
-    <!--&lt;!&ndash;&lt;!&ndash;const moneySavedMonthly = document.getElementById('money-saved-monthly');&ndash;&gt;&ndash;&gt;-->
-
-    <!--&lt;!&ndash;&lt;!&ndash;function testing(event, id) {&ndash;&gt;&ndash;&gt;-->
-        <!--&lt;!&ndash;&lt;!&ndash;// Grabs all the elements from inside the ul whom had its onclick triggered&ndash;&gt;&ndash;&gt;-->
-        <!--&lt;!&ndash;&lt;!&ndash;let nodes = document.getElementById(id).childNodes;&ndash;&gt;&ndash;&gt;-->
-        <!--&lt;!&ndash;&lt;!&ndash;// Filters through the inner elements and returns only the li elements&ndash;&gt;&ndash;&gt;-->
-        <!--&lt;!&ndash;&lt;!&ndash;let liArray = Array.from(nodes).filter((node)=>{&ndash;&gt;&ndash;&gt;-->
-            <!--&lt;!&ndash;&lt;!&ndash;return node.nodeName === 'LI';&ndash;&gt;&ndash;&gt;-->
-        <!--&lt;!&ndash;&lt;!&ndash;});&ndash;&gt;&ndash;&gt;-->
-
-        <!--&lt;!&ndash;&lt;!&ndash;// Used to prevent the ul itself from having an unwanted class added, only allows button elements&ndash;&gt;&ndash;&gt;-->
-        <!--&lt;!&ndash;&lt;!&ndash;if (event.target.nodeName === 'BUTTON') {&ndash;&gt;&ndash;&gt;-->
-            <!--&lt;!&ndash;&lt;!&ndash;// Loops through all the sibling buttons and removes the .selected-amount class from the non selected buttons&ndash;&gt;&ndash;&gt;-->
-            <!--&lt;!&ndash;&lt;!&ndash;liArray.forEach((li)=>{&ndash;&gt;&ndash;&gt;-->
-                <!--&lt;!&ndash;&lt;!&ndash;if (li.childNodes[0].nodeName === 'INPUT') {&ndash;&gt;&ndash;&gt;-->
-                    <!--&lt;!&ndash;&lt;!&ndash;li.childNodes[0].value = '';&ndash;&gt;&ndash;&gt;-->
-                <!--&lt;!&ndash;&lt;!&ndash;} else if (li.childNodes[0].value !== event.target.value) {&ndash;&gt;&ndash;&gt;-->
-                    <!--&lt;!&ndash;&lt;!&ndash;li.childNodes[0].classList.remove('selected-amount');&ndash;&gt;&ndash;&gt;-->
-                <!--&lt;!&ndash;&lt;!&ndash;}&ndash;&gt;&ndash;&gt;-->
-
-            <!--&lt;!&ndash;&lt;!&ndash;});&ndash;&gt;&ndash;&gt;-->
-
-            <!--&lt;!&ndash;&lt;!&ndash;if ( id === "money-saved") {&ndash;&gt;&ndash;&gt;-->
-                <!--&lt;!&ndash;&lt;!&ndash;totalSaved = Number(event.target.value);&ndash;&gt;&ndash;&gt;-->
-                <!--&lt;!&ndash;&lt;!&ndash;event.target.classList.add('selected-amount');&ndash;&gt;&ndash;&gt;-->
-                <!--&lt;!&ndash;&lt;!&ndash;updateChart(Number(event.target.value), monthlySavings);&ndash;&gt;&ndash;&gt;-->
-
-            <!--&lt;!&ndash;&lt;!&ndash;} else if ( id === "money-income") {&ndash;&gt;&ndash;&gt;-->
-                <!--&lt;!&ndash;&lt;!&ndash;annualIncome = event.target.value;&ndash;&gt;&ndash;&gt;-->
-                <!--&lt;!&ndash;&lt;!&ndash;event.target.classList.add('selected-amount');&ndash;&gt;&ndash;&gt;-->
-
-            <!--&lt;!&ndash;&lt;!&ndash;} else if (id === "money-saved-monthly"){&ndash;&gt;&ndash;&gt;-->
-                <!--&lt;!&ndash;&lt;!&ndash;monthlySavings = Number(event.target.value);&ndash;&gt;&ndash;&gt;-->
-                <!--&lt;!&ndash;&lt;!&ndash;event.target.classList.add('selected-amount');&ndash;&gt;&ndash;&gt;-->
-                <!--&lt;!&ndash;&lt;!&ndash;updateChart(totalSaved, Number(event.target.value));&ndash;&gt;&ndash;&gt;-->
-            <!--&lt;!&ndash;&lt;!&ndash;}&ndash;&gt;&ndash;&gt;-->
-        <!--&lt;!&ndash;&lt;!&ndash;}&ndash;&gt;&ndash;&gt;-->
-    <!--&lt;!&ndash;&lt;!&ndash;}&ndash;&gt;&ndash;&gt;-->
-
-    <!--&lt;!&ndash;&lt;!&ndash;// onchange get value&ndash;&gt;&ndash;&gt;-->
-    <!--&lt;!&ndash;&lt;!&ndash;function getAmount(value, id) {&ndash;&gt;&ndash;&gt;-->
-        <!--&lt;!&ndash;&lt;!&ndash;if ( id === "money-saved-input") {&ndash;&gt;&ndash;&gt;-->
-            <!--&lt;!&ndash;&lt;!&ndash;totalSaved = value;&ndash;&gt;&ndash;&gt;-->
-            <!--&lt;!&ndash;&lt;!&ndash;updateChart(value, monthlySavings);&ndash;&gt;&ndash;&gt;-->
-        <!--&lt;!&ndash;&lt;!&ndash;} else if ( id === "annual-income") {&ndash;&gt;&ndash;&gt;-->
-            <!--&lt;!&ndash;&lt;!&ndash;annualIncome = value;&ndash;&gt;&ndash;&gt;-->
-        <!--&lt;!&ndash;&lt;!&ndash;} else if (id === "monthly-savings"){&ndash;&gt;&ndash;&gt;-->
-            <!--&lt;!&ndash;&lt;!&ndash;monthlySavings = value;&ndash;&gt;&ndash;&gt;-->
-            <!--&lt;!&ndash;&lt;!&ndash;updateChart(totalSaved, value);&ndash;&gt;&ndash;&gt;-->
-        <!--&lt;!&ndash;&lt;!&ndash;}&ndash;&gt;&ndash;&gt;-->
-    <!--&lt;!&ndash;&lt;!&ndash;}&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;</script>&ndash;&gt;&ndash;&gt;-->
-
-<!--&lt;!&ndash;<script>&ndash;&gt;-->
-    <!--&lt;!&ndash;const ctx = document.getElementById("myChart").getContext('2d');&ndash;&gt;-->
-
-    <!--&lt;!&ndash;// removes all but amount inputs // doesnt respond to resizing&ndash;&gt;-->
-    <!--&lt;!&ndash;if (window.screen.width <= 600) {&ndash;&gt;-->
-        <!--&lt;!&ndash;let lis = document.querySelectorAll('ul li');&ndash;&gt;-->
-        <!--&lt;!&ndash;for(let i=0; li=lis[i]; i++) {&ndash;&gt;-->
-            <!--&lt;!&ndash;if (i <= 3) {&ndash;&gt;-->
-                <!--&lt;!&ndash;li.parentNode.removeChild(li);&ndash;&gt;-->
-            <!--&lt;!&ndash;} else if (i > 4 && i <= 8) {&ndash;&gt;-->
-                <!--&lt;!&ndash;li.parentNode.removeChild(li);&ndash;&gt;-->
-            <!--&lt;!&ndash;}&ndash;&gt;-->
-        <!--&lt;!&ndash;}&ndash;&gt;-->
-    <!--&lt;!&ndash;}&ndash;&gt;-->
-
-
-
-
-    <!--&lt;!&ndash;// let yrAtRetirement = currentYr + yearsWantToSave;&ndash;&gt;-->
-
-
-    <!--&lt;!&ndash;let totalSaved = 0; // v&ndash;&gt;-->
-    <!--&lt;!&ndash;let annualIncome;&ndash;&gt;-->
-    <!--&lt;!&ndash;let monthlySavings = 0; // c&ndash;&gt;-->
-    <!--&lt;!&ndash;let yearsWantToSave = 40;&ndash;&gt;-->
-    <!--&lt;!&ndash;let totalMonthsOfSaving = yearsWantToSave * 12; // n&ndash;&gt;-->
-    <!--&lt;!&ndash;let aggressive = 1.00716; // r&ndash;&gt;-->
-    <!--&lt;!&ndash;let moderate = 1.0065; // r&ndash;&gt;-->
-    <!--&lt;!&ndash;let conservative = 1.00549; // r&ndash;&gt;-->
-    <!--&lt;!&ndash;let chartLabels = [];&ndash;&gt;-->
-
-    <!--&lt;!&ndash;let minAge;&ndash;&gt;-->
-    <!--&lt;!&ndash;let maxAge;&ndash;&gt;-->
-
-    <!--&lt;!&ndash;document.getElementById("conservativeAmt").innerText = "$" + getAmount() + " /mo";&ndash;&gt;-->
-    <!--&lt;!&ndash;document.getElementById("moderateAmt").innerText = "$" + 12 + " /mo";&ndash;&gt;-->
-   <!--&lt;!&ndash;document.getElementById("aggressiveAmt").innerText = "$" + 12 + " /mo";&ndash;&gt;-->
-
-    <!--&lt;!&ndash;let today = new Date();&ndash;&gt;-->
-    <!--&lt;!&ndash;let currentYr = today.getFullYear();&ndash;&gt;-->
-    <!--&lt;!&ndash;document.getElementById('year').innerText = currentYr + yearsWantToSave;&ndash;&gt;-->
-
-    <!--&lt;!&ndash;$(function() {&ndash;&gt;-->
-        <!--&lt;!&ndash;$("#slider-range").slider({&ndash;&gt;-->
-            <!--&lt;!&ndash;range: true,&ndash;&gt;-->
-            <!--&lt;!&ndash;min: 1,&ndash;&gt;-->
-            <!--&lt;!&ndash;max: 100,&ndash;&gt;-->
-            <!--&lt;!&ndash;minValue: undefined,&ndash;&gt;-->
-            <!--&lt;!&ndash;maxValue: undefined,&ndash;&gt;-->
-            <!--&lt;!&ndash;values: [ 25, 65 ],&ndash;&gt;-->
-            <!--&lt;!&ndash;classes: {&ndash;&gt;-->
-                <!--&lt;!&ndash;"ui-slider": "ui-corner-all slider__height",&ndash;&gt;-->
-                <!--&lt;!&ndash;"ui-slider-handle": "ui-corner-all slider__btn",&ndash;&gt;-->
-                <!--&lt;!&ndash;"ui-slider-range": "ui-corner-all slider__fill"&ndash;&gt;-->
-            <!--&lt;!&ndash;},&ndash;&gt;-->
-            <!--&lt;!&ndash;slide: function( event, ui ) {&ndash;&gt;-->
-                <!--&lt;!&ndash;$("#amount").val(ui.values[0] + " - " + ui.values[1]);&ndash;&gt;-->
-                <!--&lt;!&ndash;this.minValue = ui.values[0];&ndash;&gt;-->
-                <!--&lt;!&ndash;this.maxValue = ui.values[1];&ndash;&gt;-->
-                <!--&lt;!&ndash;yearsWantToSave = ui.values[0] - ui.values[1];&ndash;&gt;-->
-                <!--&lt;!&ndash;calculateLabels(ui.values[0], ui.values[1]);&ndash;&gt;-->
-                <!--&lt;!&ndash;// age set to 65 in html but updates when slider is triggered here&ndash;&gt;-->
-                <!--&lt;!&ndash;document.getElementById('age').innerText = ui.values[1];&ndash;&gt;-->
-                <!--&lt;!&ndash;document.getElementById('year').innerText = currentYr + yearsWantToSave;&ndash;&gt;-->
-                <!--&lt;!&ndash;updateChart(totalSaved, monthlySavings)&ndash;&gt;-->
-            <!--&lt;!&ndash;}&ndash;&gt;-->
-        <!--&lt;!&ndash;});&ndash;&gt;-->
-        <!--&lt;!&ndash;$("#amount").val($("#slider-range").slider("values", 0) +&ndash;&gt;-->
-            <!--&lt;!&ndash;" - " + $("#slider-range").slider("values", 1));&ndash;&gt;-->
-    <!--&lt;!&ndash;} );&ndash;&gt;-->
-
-    <!--&lt;!&ndash;function calculateLabels(minAge, maxAge) {&ndash;&gt;-->
-        <!--&lt;!&ndash;let output = [];&ndash;&gt;-->
-        <!--&lt;!&ndash;for (let x = minAge; x <= maxAge; x++) {&ndash;&gt;-->
-            <!--&lt;!&ndash;output.push(x);&ndash;&gt;-->
-        <!--&lt;!&ndash;}&ndash;&gt;-->
-        <!--&lt;!&ndash;chartLabels = output;&ndash;&gt;-->
-        <!--&lt;!&ndash;console.log(chartLabels)&ndash;&gt;-->
-    <!--&lt;!&ndash;}&ndash;&gt;-->
-    <!--&lt;!&ndash;calculateLabels(25,65);&ndash;&gt;-->
-
-    <!--&lt;!&ndash;function calculatePointer(r, total, monthly) {&ndash;&gt;-->
-        <!--&lt;!&ndash;for (let i=0; i < totalMonthsOfSaving; i++) {&ndash;&gt;-->
-            <!--&lt;!&ndash;totalSaved = (total * r) + monthly;&ndash;&gt;-->
-        <!--&lt;!&ndash;}&ndash;&gt;-->
-        <!--&lt;!&ndash;return totalSaved;&ndash;&gt;-->
-    <!--&lt;!&ndash;}&ndash;&gt;-->
-
-
-    <!--&lt;!&ndash;function createChart(conservativePoint, moderatePoint, aggressivePoint) {&ndash;&gt;-->
-        <!--&lt;!&ndash;new Chart(ctx, {&ndash;&gt;-->
-            <!--&lt;!&ndash;type: 'line',&ndash;&gt;-->
-            <!--&lt;!&ndash;data: {&ndash;&gt;-->
-                <!--&lt;!&ndash;labels: chartLabels,&ndash;&gt;-->
-                <!--&lt;!&ndash;datasets: [&ndash;&gt;-->
-                    <!--&lt;!&ndash;{&ndash;&gt;-->
-                        <!--&lt;!&ndash;label: ["Conservative"],&ndash;&gt;-->
-                        <!--&lt;!&ndash;data: [...chartLabels, conservativePoint],&ndash;&gt;-->
-                        <!--&lt;!&ndash;fill: true,&ndash;&gt;-->
-                        <!--&lt;!&ndash;backgroundColor: ['#102A5E'],&ndash;&gt;-->
-                        <!--&lt;!&ndash;borderColor: ['#102A5E'],&ndash;&gt;-->
-                        <!--&lt;!&ndash;borderWidth: 1&ndash;&gt;-->
-                    <!--&lt;!&ndash;},&ndash;&gt;-->
-                    <!--&lt;!&ndash;{&ndash;&gt;-->
-                        <!--&lt;!&ndash;label: ["Moderate"],&ndash;&gt;-->
-                        <!--&lt;!&ndash;data: [...chartLabels, moderatePoint],&ndash;&gt;-->
-                        <!--&lt;!&ndash;fill: true,&ndash;&gt;-->
-                        <!--&lt;!&ndash;backgroundColor: ['#3F5A9E'],&ndash;&gt;-->
-                        <!--&lt;!&ndash;borderColor: ['#3F5A9E'],&ndash;&gt;-->
-                        <!--&lt;!&ndash;borderWidth: 1&ndash;&gt;-->
-                    <!--&lt;!&ndash;},&ndash;&gt;-->
-                    <!--&lt;!&ndash;{&ndash;&gt;-->
-                        <!--&lt;!&ndash;label: ["Aggressive"],&ndash;&gt;-->
-                        <!--&lt;!&ndash;data: [...chartLabels, aggressivePoint],&ndash;&gt;-->
-                        <!--&lt;!&ndash;fill: true,&ndash;&gt;-->
-                        <!--&lt;!&ndash;backgroundColor: ['#41ade1'],&ndash;&gt;-->
-                        <!--&lt;!&ndash;borderColor: ['#41ade1'],&ndash;&gt;-->
-                        <!--&lt;!&ndash;borderWidth: 1&ndash;&gt;-->
-                    <!--&lt;!&ndash;}&ndash;&gt;-->
-                <!--&lt;!&ndash;]&ndash;&gt;-->
-            <!--&lt;!&ndash;},&ndash;&gt;-->
-            <!--&lt;!&ndash;options: {&ndash;&gt;-->
-                <!--&lt;!&ndash;elements: {&ndash;&gt;-->
-                    <!--&lt;!&ndash;line: {&ndash;&gt;-->
-                        <!--&lt;!&ndash;tension: 0.6, // bezier curves 0-1&ndash;&gt;-->
-                        <!--&lt;!&ndash;spanGaps: true&ndash;&gt;-->
-                    <!--&lt;!&ndash;}&ndash;&gt;-->
-                <!--&lt;!&ndash;},&ndash;&gt;-->
-                <!--&lt;!&ndash;scales: {&ndash;&gt;-->
-                    <!--&lt;!&ndash;showLines: false,&ndash;&gt;-->
-                    <!--&lt;!&ndash;yAxes: [{&ndash;&gt;-->
-                        <!--&lt;!&ndash;stacked: true&ndash;&gt;-->
-                    <!--&lt;!&ndash;}]&ndash;&gt;-->
-                <!--&lt;!&ndash;},&ndash;&gt;-->
-                <!--&lt;!&ndash;legend: {&ndash;&gt;-->
-                    <!--&lt;!&ndash;display: false, // rectangle labels on top of chart&ndash;&gt;-->
-                <!--&lt;!&ndash;},&ndash;&gt;-->
-                <!--&lt;!&ndash;animation: {&ndash;&gt;-->
-                    <!--&lt;!&ndash;easing: 'easeInOutCubic'&ndash;&gt;-->
-                <!--&lt;!&ndash;}&ndash;&gt;-->
-            <!--&lt;!&ndash;}&ndash;&gt;-->
-        <!--&lt;!&ndash;});&ndash;&gt;-->
-    <!--&lt;!&ndash;}&ndash;&gt;-->
-
-    <!--&lt;!&ndash;createChart(10,11,12,chartLabels);&ndash;&gt;-->
-
-    <!--&lt;!&ndash;function updateChart(total, monthly) {&ndash;&gt;-->
-        <!--&lt;!&ndash;createChart(calculatePointer(conservative, total, monthly), calculatePointer(moderate, total, monthly), calculatePointer(aggressive, total, monthly));&ndash;&gt;-->
-    <!--&lt;!&ndash;}&ndash;&gt;-->
-
-    <!--&lt;!&ndash;const moneySavedInput = document.getElementById('money-saved-input');&ndash;&gt;-->
-    <!--&lt;!&ndash;const moneySaved = document.getElementById('money-saved');&ndash;&gt;-->
-
-    <!--&lt;!&ndash;let buttons = moneySaved.querySelectorAll('button');&ndash;&gt;-->
-
-    <!--&lt;!&ndash;const moneyIncome = document.getElementById('money-income');&ndash;&gt;-->
-    <!--&lt;!&ndash;const moneySavedMonthly = document.getElementById('money-saved-monthly');&ndash;&gt;-->
-
-    <!--&lt;!&ndash;function testing(event, id) {&ndash;&gt;-->
-        <!--&lt;!&ndash;// Grabs all the elements from inside the ul whom had its onclick triggered&ndash;&gt;-->
-        <!--&lt;!&ndash;let nodes = document.getElementById(id).childNodes;&ndash;&gt;-->
-        <!--&lt;!&ndash;// Filters through the inner elements and returns only the li elements&ndash;&gt;-->
-        <!--&lt;!&ndash;let liArray = Array.from(nodes).filter((node)=>{&ndash;&gt;-->
-            <!--&lt;!&ndash;return node.nodeName === 'LI';&ndash;&gt;-->
-        <!--&lt;!&ndash;});&ndash;&gt;-->
-
-        <!--&lt;!&ndash;// Used to prevent the ul itself from having an unwanted class added, only allows button elements&ndash;&gt;-->
-        <!--&lt;!&ndash;if (event.target.nodeName === 'BUTTON') {&ndash;&gt;-->
-            <!--&lt;!&ndash;// Loops through all the sibling buttons and removes the .selected-amount class from the non selected buttons&ndash;&gt;-->
-            <!--&lt;!&ndash;liArray.forEach((li)=>{&ndash;&gt;-->
-                <!--&lt;!&ndash;if (li.childNodes[0].nodeName === 'INPUT') {&ndash;&gt;-->
-                    <!--&lt;!&ndash;li.childNodes[0].value = '';&ndash;&gt;-->
-                <!--&lt;!&ndash;} else if (li.childNodes[0].value !== event.target.value) {&ndash;&gt;-->
-                    <!--&lt;!&ndash;li.childNodes[0].classList.remove('selected-amount');&ndash;&gt;-->
-                <!--&lt;!&ndash;}&ndash;&gt;-->
-
-            <!--&lt;!&ndash;});&ndash;&gt;-->
-
-            <!--&lt;!&ndash;if ( id === "money-saved") {&ndash;&gt;-->
-                <!--&lt;!&ndash;totalSaved = Number(event.target.value);&ndash;&gt;-->
-                <!--&lt;!&ndash;event.target.classList.add('selected-amount');&ndash;&gt;-->
-                <!--&lt;!&ndash;updateChart(Number(event.target.value), monthlySavings);&ndash;&gt;-->
-
-            <!--&lt;!&ndash;} else if ( id === "money-income") {&ndash;&gt;-->
-                <!--&lt;!&ndash;annualIncome = event.target.value;&ndash;&gt;-->
-                <!--&lt;!&ndash;event.target.classList.add('selected-amount');&ndash;&gt;-->
-
-            <!--&lt;!&ndash;} else if (id === "money-saved-monthly"){&ndash;&gt;-->
-                <!--&lt;!&ndash;monthlySavings = Number(event.target.value);&ndash;&gt;-->
-                <!--&lt;!&ndash;event.target.classList.add('selected-amount');&ndash;&gt;-->
-                <!--&lt;!&ndash;updateChart(totalSaved, Number(event.target.value));&ndash;&gt;-->
-            <!--&lt;!&ndash;}&ndash;&gt;-->
-        <!--&lt;!&ndash;}&ndash;&gt;-->
-    <!--&lt;!&ndash;}&ndash;&gt;-->
-
-    <!--&lt;!&ndash;// onchange get value&ndash;&gt;-->
-    <!--&lt;!&ndash;function getAmount(value, id) {&ndash;&gt;-->
-        <!--&lt;!&ndash;if ( id === "money-saved-input") {&ndash;&gt;-->
-            <!--&lt;!&ndash;totalSaved = value;&ndash;&gt;-->
-            <!--&lt;!&ndash;updateChart(value, monthlySavings);&ndash;&gt;-->
-        <!--&lt;!&ndash;} else if ( id === "annual-income") {&ndash;&gt;-->
-            <!--&lt;!&ndash;annualIncome = value;&ndash;&gt;-->
-        <!--&lt;!&ndash;} else if (id === "monthly-savings"){&ndash;&gt;-->
-            <!--&lt;!&ndash;monthlySavings = value;&ndash;&gt;-->
-            <!--&lt;!&ndash;updateChart(totalSaved, value);&ndash;&gt;-->
-        <!--&lt;!&ndash;}&ndash;&gt;-->
-    <!--&lt;!&ndash;}&ndash;&gt;-->
-<!--&lt;!&ndash;</script>&ndash;&gt;-->
-
-<!--<script>-->
-    <!--const ctx = document.getElementById("myChart").getContext('2d');-->
-
-    <!--// removes all but amount inputs // doesnt respond to resizing-->
-    <!--if (window.screen.width <= 600) {-->
-        <!--let lis = document.querySelectorAll('ul li');-->
-        <!--for(let i=0; li=lis[i]; i++) {-->
-            <!--if (i <= 3) {-->
-                <!--li.parentNode.removeChild(li);-->
-            <!--} else if (i > 4 && i <= 8) {-->
-                <!--li.parentNode.removeChild(li);-->
-            <!--}-->
-        <!--}-->
-    <!--}-->
-
-
-
-
-    <!--// let yrAtRetirement = currentYr + yearsWantToSave;-->
-
-
-    <!--let totalSaved = 0; // v-->
-    <!--let annualIncome;-->
-    <!--let monthlySavings = 0; // c-->
-    <!--let yearsWantToSave = 40;-->
-    <!--let totalMonthsOfSaving = yearsWantToSave * 12; // n-->
-    <!--let aggressive = 1.00716; // r-->
-    <!--let moderate = 1.0065; // r-->
-    <!--let conservative = 1.00549; // r-->
-    <!--let chartLabels = [];-->
-
-    <!--let minAge;-->
-    <!--let maxAge;-->
-
-    <!--let today = new Date();-->
-    <!--let currentYr = today.getFullYear();-->
-    <!--document.getElementById('year').innerText = currentYr + yearsWantToSave;-->
-
-    <!--function getPointerValues() {-->
-
-    <!--}-->
-
-    <!--$(function() {-->
-        <!--$("#slider-range").slider({-->
-            <!--range: true,-->
-            <!--min: 1,-->
-            <!--max: 100,-->
-            <!--minValue: undefined,-->
-            <!--maxValue: undefined,-->
-            <!--values: [ 25, 65 ],-->
-            <!--classes: {-->
-                <!--"ui-slider": "ui-corner-all slider__height",-->
-                <!--"ui-slider-handle": "ui-corner-all slider__btn",-->
-                <!--"ui-slider-range": "ui-corner-all slider__fill"-->
-            <!--},-->
-            <!--slide: function( event, ui ) {-->
-                <!--$("#amount").val(ui.values[0] + " - " + ui.values[1]);-->
-                <!--this.minValue = ui.values[0];-->
-                <!--this.maxValue = ui.values[1];-->
-                <!--yearsWantToSave = ui.values[1] - ui.values[0];-->
-                <!--calculateLabels(ui.values[0], ui.values[1]);-->
-                <!--// age set to 65 in html but updates when slider is triggered here-->
-                <!--document.getElementById('age').innerText = ui.values[1];-->
-                <!--document.getElementById('year').innerText = currentYr + yearsWantToSave;-->
-                <!--updateChart(totalSaved, monthlySavings)-->
-            <!--}-->
-        <!--});-->
-        <!--$("#amount").val($("#slider-range").slider("values", 0) +-->
-            <!--" - " + $("#slider-range").slider("values", 1));-->
-    <!--} );-->
-
-    <!--function calculateLabels(minAge, maxAge) {-->
-        <!--let output = [];-->
-        <!--for (let x = minAge; x <= maxAge; x++) {-->
-            <!--output.push(x);-->
-        <!--}-->
-        <!--chartLabels = output;-->
-    <!--}-->
-    <!--calculateLabels(25,65);-->
-
-    <!--// Calculates the total saved amount-->
-    <!--function calculatePointer(r, total, monthly) {-->
-        <!--for (let i=0; i < totalMonthsOfSaving; i++) {-->
-            <!--totalSaved = (total * r) + monthly;-->
-        <!--}-->
-        <!--return totalSaved;-->
-    <!--}-->
-
-    <!--function calculateDataPointsByYear(total, aggressiveness, monthly) {-->
-        <!--let output = [];-->
-        <!--let accumulated = total;-->
-
-        <!--for (let i = 0; i < chartLabels.length; i++ ) {-->
-            <!--for (let x = 0; x < 12; x++) {-->
-                <!--accumulated = (accumulated * aggressiveness) + monthly;-->
-                <!--// accumulated + test;-->
-                <!--// console.log(x)-->
-            <!--}-->
-            <!--output.push(accumulated);-->
-        <!--}-->
-
-        <!--console.log(output);-->
-
-        <!--return output;-->
-    <!--}-->
-
-    <!--let listOfCharts = [{-->
-        <!--destroy: function(){-->
-            <!--return true;-->
-        <!--}-->
-    <!--}];-->
-
-    <!--function destroyPreviousChart() {-->
-        <!--listOfCharts[0].destroy();-->
-        <!--listOfCharts = listOfCharts.slice(1);-->
-        <!--if (listOfCharts.length == 0) {-->
-            <!--return true;-->
-        <!--}-->
-    <!--}-->
-
-    <!--function createChart(conservativePoint, moderatePoint, aggressivePoint) {-->
-        <!--var promise = new Promise(function(resolve, reject) {-->
-            <!--if (destroyPreviousChart()) {-->
-                <!--resolve("Stuff worked!");-->
-            <!--} else {-->
-                <!--reject(Error("It broke"));-->
-            <!--}-->
-        <!--});-->
-
-        <!--promise.then(function(){-->
-            <!--let chart = new Chart(ctx, {-->
-                <!--type: 'line',-->
-                <!--data: {-->
-                    <!--labels: chartLabels,-->
-                    <!--datasets: [-->
-                        <!--{-->
-                            <!--label: ["Conservative"],-->
-                            <!--// TODO [startAge and initialSavingsInput - endAge]-->
-                            <!--data: calculateDataPointsByYear(totalSaved, conservative, monthlySavings),-->
-                            <!--fill: true,-->
-                            <!--backgroundColor: ['#102A5E'],-->
-                            <!--borderColor: ['#102A5E'],-->
-                            <!--borderWidth: 1-->
-                        <!--},-->
-                        <!--{-->
-                            <!--label: ["Moderate"],-->
-                            <!--data: calculateDataPointsByYear(totalSaved, moderate, monthlySavings),-->
-                            <!--fill: true,-->
-                            <!--backgroundColor: ['#3F5A9E'],-->
-                            <!--borderColor: ['#3F5A9E'],-->
-                            <!--borderWidth: 1-->
-                        <!--},-->
-                        <!--{-->
-                            <!--label: ["Aggressive"],-->
-                            <!--data: calculateDataPointsByYear(totalSaved, aggressive, monthlySavings),-->
-                            <!--fill: true,-->
-                            <!--backgroundColor: ['#41ade1'],-->
-                            <!--borderColor: ['#41ade1'],-->
-                            <!--borderWidth: 1-->
-                        <!--}-->
-                    <!--]-->
-                <!--},-->
-                <!--options: {-->
-                    <!--elements: {-->
-                        <!--line: {-->
-                            <!--tension: 0.6, // bezier curves 0-1-->
-                            <!--spanGaps: true-->
-                        <!--}-->
-                    <!--},-->
-                    <!--scales: {-->
-                        <!--showLines: false,-->
-                        <!--yAxes: [{-->
-                            <!--stacked: true-->
-                        <!--}]-->
-                    <!--},-->
-                    <!--legend: {-->
-                        <!--display: false, // rectangle labels on top of chart-->
-                    <!--},-->
-                    <!--animation: {-->
-                        <!--easing: 'easeInOutCubic'-->
-                    <!--}-->
-                <!--}-->
-            <!--});-->
-            <!--listOfCharts.push(chart);-->
-        <!--});-->
-    <!--}-->
-
-    <!--createChart(10,11,12);-->
-
-    <!--function updateChart(total, monthly) {-->
-        <!--createChart(calculatePointer(conservative, total, monthly), calculatePointer(moderate, total, monthly), calculatePointer(aggressive, total, monthly));-->
-    <!--}-->
-
-    <!--let conservativeAmt = document.getElementById("conservativeAmt");-->
-    <!--let aggressiveAmt =document.getElementById("aggressiveAmt");-->
-    <!--let moderateAmt =document.getElementById("moderateAmt");-->
-
-    <!--const moneySavedInput = document.getElementById('money-saved-input');-->
-    <!--const moneySaved = document.getElementById('money-saved');-->
-
-    <!--let buttons = moneySaved.querySelectorAll('button');-->
-    <!--// buttons[0].checked;-->
-    <!--// console.log(buttons[0])-->
-
-    <!--const moneyIncome = document.getElementById('money-income');-->
-    <!--const moneySavedMonthly = document.getElementById('money-saved-monthly');-->
-
-    <!--function testing(event, id) {-->
-        <!--// Grabs all the elements from inside the ul whom had its onclick triggered-->
-        <!--let nodes = document.getElementById(id).childNodes;-->
-        <!--// Filters through the inner elements and returns only the li elements-->
-        <!--let liArray = Array.from(nodes).filter((node)=>{-->
-            <!--return node.nodeName === 'LI';-->
-        <!--});-->
-
-        <!--// Used to prevent the ul itself from having an unwanted class added, only allows button elements-->
-        <!--if (event.target.nodeName === 'BUTTON') {-->
-            <!--// Loops through all the sibling buttons and removes the .selected-amount class from the non selected buttons-->
-            <!--liArray.forEach((li)=>{-->
-
-                <!--if (li.childNodes[0].nodeName === 'INPUT') {-->
-                    <!--li.childNodes[0].value = '';-->
-                <!--} else if (li.childNodes[0].value !== event.target.value) {-->
-                    <!--li.childNodes[0].classList.remove('selected-amount');-->
-                <!--}-->
-
-            <!--});-->
-
-            <!--if ( id === "money-saved") {-->
-                <!--totalSaved = Number(event.target.value);-->
-                <!--event.target.classList.add('selected-amount');-->
-                <!--updateChart(Number(event.target.value), monthlySavings);-->
-
-            <!--} else if ( id === "money-income") {-->
-                <!--annualIncome = event.target.value;-->
-                <!--event.target.classList.add('selected-amount');-->
-
-            <!--} else if (id === "money-saved-monthly"){-->
-                <!--monthlySavings = Number(event.target.value);-->
-                <!--event.target.classList.add('selected-amount');-->
-                <!--updateChart(totalSaved, Number(event.target.value));-->
-            <!--}-->
-        <!--}-->
-    <!--}-->
-
-    <!--// onchange get value-->
-    <!--function getAmount(value, id) {-->
-        <!--if ( id === "money-saved-input") {-->
-            <!--totalSaved = value;-->
-            <!--updateChart(value, monthlySavings);-->
-        <!--} else if ( id === "annual-income") {-->
-            <!--annualIncome = value;-->
-        <!--} else if (id === "monthly-savings"){-->
-            <!--monthlySavings = value;-->
-            <!--updateChart(totalSaved, value);-->
-        <!--}-->
-    <!--}-->
-<!--</script>-->
-
 <script>
     const ctx = document.getElementById("myChart").getContext('2d');
 
@@ -692,12 +16,12 @@
 
     let totalSaved = 0; // v
     let annualIncome;
-    let monthlySavings = 0; // c
+    let monthlySavings = 100; // c
     let yearsWantToSave = 40;
     let totalMonthsOfSaving = yearsWantToSave * 12; // n
-    let aggressive = 1.00716; // r
-    let moderate = 1.0065; // r
-    let conservative = 1.00549; // r
+    const aggressive = 1.00716; // r
+    const moderate = 1.0065; // r
+    const conservative = 1.00549; // r
     let chartLabels = [];
 
     let minAge;
@@ -747,7 +71,6 @@
         }
         chartLabels = output;
     }
-    calculateLabels(25,65);
 
     // Calculates the total saved amount
     function calculatePointer(r, total, monthly) {
@@ -761,14 +84,12 @@
         let output = [];
         let accumulated = totalSaved;
 
-        for (let i = 0; i < chartLabels.length; i++ ) {
+        for (let i = 0; i < chartLabels.length; i++) {
             for (let x = 0; x < 12; x++) {
-                accumulated = (accumulated * aggressiveness) + monthlySavings;
+                accumulated = (Math.floor(accumulated * aggressiveness)) + monthlySavings;
             }
             output.push(accumulated);
         }
-
-        console.log(output);
         return output;
     }
 
@@ -832,12 +153,39 @@
                         line: {
                             tension: 0.6, // bezier curves 0-1
                             spanGaps: true
+                        },
+                        toolTips: {
+                            callbacks: {
+                                label: function (tooltipItem, data) {
+                                    var label = data.datasets[tooltipItem.datasetIndex].label || '';
+
+                                    if (label) {
+                                        label += 'age: ';
+                                    }
+                                    label += Math.round(tooltipItem.yLabel * 100) / 100;
+                                    return label;
+                                }
+                            }
                         }
                     },
                     scales: {
                         showLines: false,
                         yAxes: [{
-                            stacked: true
+                            ticks: {
+                            // remove money values from left
+                                callback: function (value) {
+                                    return null;
+                                }
+                            }
+                        }],
+                        xAxes: [{
+                            stacked: false,
+                            ticks: {
+                                // remove age values but keep the vertical lines
+                                callback: function (value) {
+                                    return '';
+                                }
+                            }
                         }]
                     },
                     legend: {
@@ -852,24 +200,29 @@
         });
     }
 
-    createChart(10,11,12);
+    function updateTotalValues() {
+        const finalConservativeData = calculateDataPointsByYear(conservative);
+        const finalModerateData = calculateDataPointsByYear(moderate);
+        const finalAggressiveData = calculateDataPointsByYear(aggressive);
 
-    // function updateChart() {
-    //     createChart();
-    // }
-    let conservativeAmt = document.getElementById("conservativeAmt");
-    document.getElementById("conservativeAmt").innerText = monthlySavings;
+        document.getElementById("conservativeTotal").innerText = finalConservativeData[finalConservativeData.length-1];
+        document.getElementById("moderateTotal").innerText = finalModerateData[finalModerateData.length-1];
+        document.getElementById("aggressiveTotal").innerText = finalAggressiveData[finalAggressiveData.length-1];
 
+        // add selected class to 0 saved & 100/mo by default
+        const startValue = document.getElementsByClassName("startValue");
+        const conservativeAmt = document.getElementById("conservativeAmt");
+        conservativeAmt.innerText = "$" + Math.floor(startValue[1].value * conservative) + " / mo";
 
-    const moneySavedInput = document.getElementById('money-saved-input');
-    const moneySaved = document.getElementById('money-saved');
+        const moderateAmt =document.getElementById("moderateAmt");
+        moderateAmt.innerText = "$" + Math.floor(startValue[1].value * moderate) + " / mo";
 
-    let buttons = moneySaved.querySelectorAll('button');
+        const aggressiveAmt =document.getElementById("aggressiveAmt");
+        aggressiveAmt.innerText = "$" + Math.floor(startValue[1].value * aggressive) + " / mo";
+        //////////////////////////////
+    }
 
-    const moneyIncome = document.getElementById('money-income');
-    const moneySavedMonthly = document.getElementById('money-saved-monthly');
-
-    function testing(event, id) {
+    function updateChart(event, id) {
         // Grabs all the elements from inside the ul whom had its onclick triggered
         let nodes = document.getElementById(id).childNodes;
         // Filters through the inner elements and returns only the li elements
@@ -880,7 +233,6 @@
         // Used to prevent the ul itself from having an unwanted class added, only allows button elements
         if (event.target.nodeName === 'BUTTON') {
             // Loops through all the sibling buttons and removes the .selected-amount class from the non selected buttons
-            
             liArray.forEach((li)=>{
                 if (li.childNodes[0].nodeName === 'INPUT') {
                     li.childNodes[0].value = '';
@@ -890,13 +242,13 @@
 
             });
 
-            if ( id === "money-saved") {
+            if (id === "money-saved") {
                 totalSaved = Number(event.target.value);
                 event.target.classList.add('selected-amount');
                 // updateChart(Number(event.target.value), monthlySavings);
                 createChart();
 
-            } else if ( id === "money-income") {
+            } else if (id === "money-income") {
                 annualIncome = event.target.value;
                 event.target.classList.add('selected-amount');
 
@@ -907,6 +259,8 @@
                 // updateChart(totalSaved, Number(event.target.value));
             }
         }
+
+        updateTotalValues();
     }
 
     // onchange get value
@@ -923,4 +277,11 @@
             createChart();
         }
     }
+
+    calculateLabels(25,65);
+    createChart();
+    updateTotalValues();
+    const startValue = document.getElementsByClassName("startValue");
+    startValue[0].classList.add('selected-amount'); // 0 saved
+    startValue[1].classList.add('selected-amount'); // 100 will save /mo
 </script>

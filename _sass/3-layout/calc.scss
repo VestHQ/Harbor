@@ -29,7 +29,7 @@ html {
     //justify-content: flex-start;
     @include text;
     text-align: left;
-    color: #59d8c4;
+    color: lighten($dark-sky-blue, 30%);
     margin-right: 4rem;
     margin-bottom: 4rem;
     display: block;
@@ -62,7 +62,9 @@ html {
       }
 
       &__secondary {
-        font-size: 1.6rem;
+        font-size: 1.8rem;
+        font-weight: 600;
+        font-family: "Avenir Next", Chivo, sans-serif;
         text-transform: capitalize;
         margin: 2rem 0;
       }
@@ -187,7 +189,7 @@ html {
         margin-left: 2rem;
 
         &::after {
-          background-color: rgba(#cde4ff, .5);
+          background-color: lighten($dark-sky-blue, 35%);
           z-index: -1;
         }
       }
@@ -200,7 +202,7 @@ html {
 p { margin: 0;}
 #amount {
   font-size: 2rem;
-  color: #59d8c4;
+  color: $dark-sky-blue;
   background-color: transparent;
 }
 #slider-range {

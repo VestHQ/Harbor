@@ -12,16 +12,16 @@
 
 
         <h2 class="savings__secondary">How much have you already saved?</h2>
-        <ul class="money-list" id="money-saved" onclick="testing(event, this.id)">
-            <li><button class="money-list__item" value="0">$0</button></li>
+        <ul class="money-list" id="money-saved" onclick="updateChart(event, this.id)">
+            <li><button class="money-list__item startValue" value="0">$0</button></li>
             <li><button class="money-list__item" value="10000">$10K</button></li>
             <li><button class="money-list__item" value="40000">$40K</button></li>
             <li><button class="money-list__item" value="100000">$100K</button></li>
             <li><input type="number" min="0" class="money-list__item money-list__item--amount" placeholder="$ Amount" autocomplete="off" id="money-saved-input" oninput="getAmount(this.value, this.id)"></li>
         </ul>
         <h2 class="savings__secondary">How much do you save every month?</h2>
-        <ul class="money-list" id="money-saved-monthly" onclick="testing(event, this.id)">
-            <li><button class="money-list__item" value="100">$100</button></li>
+        <ul class="money-list" id="money-saved-monthly" onclick="updateChart(event, this.id)">
+            <li><button class="money-list__item startValue" value="100">$100</button></li>
             <li><button class="money-list__item" value="250">$250</button></li>
             <li><button class="money-list__item" value="500">$500</button></li>
             <li><button class="money-list__item" value="1000">$1000</button></li>
@@ -43,9 +43,9 @@
         </div>
         <div class="chart-row u-line-bottom">
             <p class="chart-row__heading">Investment Total:</p>
-            <p class="chart-row__value" id="conservativeTotal">$$</p>
-            <p class="chart-row__value" id="moderateTotal">$$</p>
-            <p class="chart-row__value" id="aggressiveTotal">$$</p>
+            <p class="chart-row__value" id="conservativeTotal">&nbsp;</p>
+            <p class="chart-row__value" id="moderateTotal">&nbsp;</p>
+            <p class="chart-row__value" id="aggressiveTotal">&nbsp;</p>
         </div>
         <div class="chart-row u-line-bottom">
             <p class="chart-row__heading">Retirement Income:</p>
