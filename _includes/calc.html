@@ -1,0 +1,65 @@
+<main class="calculator-container">
+    <section class="savings-form">
+        <h1 class="savings-form__header">Your Investment</h1>
+        <h2 class="savings savings__secondary">How long would you like to work?</h2>
+
+        <p>
+            <label for="amount">Age range:</label>
+            <input type="text" id="amount" readonly style="border:0;">
+        </p>
+
+        <div id="slider-range"></div>
+
+
+        <h2 class="savings__secondary">How much have you already saved?</h2>
+        <ul class="money-list" id="money-saved" onclick="updateChart(event, this.id)">
+            <li><button class="money-list__item startValue" value="0">$0</button></li>
+            <li><button class="money-list__item" value="10000">$10K</button></li>
+            <li><button class="money-list__item" value="40000">$40K</button></li>
+            <li><button class="money-list__item" value="100000">$100K</button></li>
+            <li><input type="number" min="0" class="money-list__item money-list__item--amount" placeholder="$ Amount" autocomplete="off" id="money-saved-input" oninput="getAmount(this.value, this.id)"></li>
+        </ul>
+        <h2 class="savings__secondary">How much do you save every month?</h2>
+        <ul class="money-list" id="money-saved-monthly" onclick="updateChart(event, this.id)">
+            <li><button class="money-list__item startValue" value="100">$100</button></li>
+            <li><button class="money-list__item" value="250">$250</button></li>
+            <li><button class="money-list__item" value="500">$500</button></li>
+            <li><button class="money-list__item" value="1000">$1000</button></li>
+            <li><input type="number" min="0" class="money-list__item money-list__item--amount" placeholder="$ Amount" id="monthly-savings" oninput="getAmount(this.value, this.id)"></li>
+        </ul>
+    </section>
+
+    <section class="savings-outcome">
+        <div class="chart-row">
+            <h1 class="chart-row__header">Your Outcome</h1>
+            <p class="chart-heading">Age: <span id="age">65</span></p>
+            <p class="chart-heading">Year: <span id="year"></span></p>
+        </div>
+        <div class="chart-row">
+            <p class="chart-row__heading">&nbsp;</p>
+            <p class="chart-row__heading">Conservative</p>
+            <p class="chart-row__heading chart-row__heading--2">Moderate</p>
+            <p class="chart-row__heading chart-row__heading--3">Aggressive</p>
+        </div>
+        <div class="chart-row u-line-bottom">
+            <p class="chart-row__heading">Investment Total:</p>
+            <p class="chart-row__value" id="conservativeTotal">&nbsp;</p>
+            <p class="chart-row__value" id="moderateTotal">&nbsp;</p>
+            <p class="chart-row__value" id="aggressiveTotal">&nbsp;</p>
+        </div>
+        <div class="chart-row u-line-bottom">
+            <p class="chart-row__heading">Retirement Income:</p>
+            <p class="chart-row__value" id="conservativeAmt"></p>
+            <p class="chart-row__value" id="moderateAmt"></p>
+            <p class="chart-row__value" id="aggressiveAmt"></p>
+        </div>
+
+        <canvas id="myChart" width="400" height="200"></canvas>
+
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <!--<link rel="stylesheet" href="/resources/demos/style.css">-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    </section>
+</main>
