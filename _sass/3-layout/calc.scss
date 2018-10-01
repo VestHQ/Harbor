@@ -18,9 +18,9 @@ html {
   // changes at 1040px
   @media screen and (min-width: 1300px) {
     flex-direction: row;
-    //justify-content: center;
-    //align-items: center;
-    //align-content: center;
+    justify-content: space-evenly;
+    align-content: flex-start;
+    align-items: flex-start;
   }
 
   .savings-form {
@@ -30,7 +30,7 @@ html {
     @include text;
     text-align: left;
     color: lighten($dark-sky-blue, 30%);
-    margin-right: 4rem;
+    //margin-right: 4rem;
     margin-bottom: 4rem;
     display: block;
 
