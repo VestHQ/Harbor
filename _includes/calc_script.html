@@ -24,8 +24,9 @@
     const conservative = 1.00549; // r
     let chartLabels = [];
 
-    let minAge;
-    let maxAge;
+    let minAge = 25;
+    let maxAge = 65;
+    let endAge = 78.5;
 
     let today = new Date();
     let currentYr = today.getFullYear();
@@ -42,7 +43,7 @@
             max: 100,
             minValue: undefined,
             maxValue: undefined,
-            values: [ 25, 65 ],
+            values: [ minAge, maxAge ],
             classes: {
                 "ui-slider": "ui-corner-all slider__height",
                 "ui-slider-handle": "ui-corner-all slider__btn",
@@ -52,6 +53,8 @@
                 $("#amount").val(ui.values[0] + " - " + ui.values[1]);
                 this.minValue = ui.values[0];
                 this.maxValue = ui.values[1];
+                minAge = ui.values[0];
+                maxAge = ui.values[1];
                 yearsWantToSave = ui.values[1] - ui.values[0];
                 calculateLabels(ui.values[0], ui.values[1]);
                 // age set to 65 in html but updates when slider is triggered here
@@ -211,15 +214,15 @@
 
         // add selected class to 0 saved & 100/mo by default
         const startValue = document.getElementsByClassName("startValue");
+
         const conservativeAmt = document.getElementById("conservativeAmt");
-        conservativeAmt.innerText = "$" + Math.floor(startValue[1].value * conservative).toLocaleString('en') + " / mo";
+        conservativeAmt.innerText = "$" + Math.floor(finalConservativeData[finalConservativeData.length-1] / ((endAge - maxAge) * 12)).toLocaleString('en') + " / mo";
 
         const moderateAmt =document.getElementById("moderateAmt");
-        moderateAmt.innerText = "$" + Math.floor(startValue[1].value * moderate).toLocaleString('en') + " / mo";
+        moderateAmt.innerText = "$" + Math.floor(finalModerateData[finalModerateData.length-1] / ((endAge - maxAge) * 12)).toLocaleString('en') + " / mo";
 
         const aggressiveAmt =document.getElementById("aggressiveAmt");
-        aggressiveAmt.innerText = "$" + Math.floor(startValue[1].value * aggressive).toLocaleString('en') + " / mo";
-        //////////////////////////////
+        aggressiveAmt.innerText = "$" + Math.floor(finalAggressiveData[finalAggressiveData.length-1] / ((endAge - maxAge) * 12)).toLocaleString('en') + " / mo";
     }
 
     function updateChart(event, id) {
@@ -278,7 +281,7 @@
         }
     }
 
-    calculateLabels(25,65);
+    calculateLabels(minAge,maxAge);
     createChart();
     updateTotalValues();
     const startValue = document.getElementsByClassName("startValue");
