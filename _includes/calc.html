@@ -11,7 +11,7 @@
             <li><button class="money-list__item" value="10000">$10K</button></li>
             <li><button class="money-list__item" value="40000">$40K</button></li>
             <li><button class="money-list__item" value="100000">$100K</button></li>
-            <li><input type="number" min="0" class="money-list__item money-list__item--amount" placeholder="$ Amount" autocomplete="off" id="money-saved-input"></li>
+            <li><input type="number" min="0" class="money-list__item money-list__item--amount" placeholder="$ Amount" autocomplete="off" id="money-saved-input" oninput="onInputControlUpdate(event, this.id)"></li>
         </ul>
         <h2 class="savings__secondary">How much do you save every month?</h2>
         <ul class="money-list" id="money-saved-monthly" onclick="onInputControlUpdate(event, this.id)">
@@ -19,7 +19,7 @@
             <li><button class="money-list__item" value="250">$250</button></li>
             <li><button class="money-list__item" value="500">$500</button></li>
             <li><button class="money-list__item" value="1000">$1000</button></li>
-            <li><input type="number" min="0" class="money-list__item money-list__item--amount" placeholder="$ Amount" id="monthly-savings"></li>
+            <li><input type="number" min="0" class="money-list__item money-list__item--amount" placeholder="$ Amount" id="money-saved-monthly-input" oninput="onInputControlUpdate(event, this.id)"></li>
         </ul>
     </section>
 
