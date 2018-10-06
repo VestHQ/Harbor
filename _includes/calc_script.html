@@ -45,15 +45,7 @@
         }
     }
 
-    Chart.defaults.global.tooltips.backgroundColor = '#fcfcfc';
-    // Chart.defaults.global.tooltips.titleFontColor = '#fcfcfc';
-    Chart.defaults.global.tooltips.bodyFontColor = '#474747';
-    Chart.defaults.global.tooltips.borderColor = '#474747';
-    Chart.defaults.global.tooltips.borderWidth = 1;
-    Chart.defaults.global.tooltips.bodyFontFamily = 'Avenir Next, Chivo, sans-serif';
-    Chart.defaults.global.tooltips.displayColors = false; //remove color box
-    Chart.defaults.global.tooltips.yPadding = 6;
-    Chart.defaults.global.tooltips.position = 'average';
+    // Chart.defaults.global.options.showXLabels = 10;
 
     function createChart(chartLabels, conservativeDataPoints, moderateDataPoints, aggressiveDataPoints) {
         var promise = new Promise(function(resolve, reject) {
@@ -72,7 +64,7 @@
                         {
                             label: ["Conservative"],
                             data: conservativeDataPoints,
-                            fill: true,
+                            fill: false,
                             backgroundColor: ['#102A5E'],
                             borderColor: ['#102A5E'],
                             borderWidth: 1
@@ -80,7 +72,7 @@
                         {
                             label: ["Moderate"],
                             data: moderateDataPoints,
-                            fill: true,
+                            fill: false,
                             backgroundColor: ['#3F5A9E'],
                             borderColor: ['#3F5A9E'],
                             borderWidth: 1
@@ -88,7 +80,7 @@
                         {
                             label: ["Aggressive"],
                             data: aggressiveDataPoints,
-                            fill: true,
+                            fill: false,
                             backgroundColor: ['#41ade1'],
                             borderColor: ['#41ade1'],
                             borderWidth: 1
@@ -99,40 +91,65 @@
                     elements: {
                         line: {
                             tension: 0.6, // bezier curves 0-1
-                            spanGaps: true
                         },
                         point: {
-                            radius: .5
+                            radius: 2
                         }
                     },
-                    toolTips: {
+                    tooltips: {
+                        backgroundColor: '#fcfcfc',
+                        titleFontColor: '#474747',
+                        bodyFontColor: '#474747',
+                        borderColor: '#474747',
+                        borderWidth: 1,
+                        bodyFontFamily: 'Avenir Next, Chivo, sans-serif',
+                        displayColors: false, //remove color box
+                        yPadding: 6,
+                        position: 'average',
                         callbacks: {
-                            label: function (tooltipItem, data) {
-                                var label = data.datasets[tooltipItem.datasetIndex].label || '';
-                                if (label) {
-                                    label += 'age: ';
-                                }
-                                label += Math.round(tooltipItem.yLabel * 100) / 100;
-                                return label;
+                            title: function(tooltipItem, data) {
+                                return tooltipItem['xLabel']; // remove age
+                            },
+                            label: function(tooltipItem, data) {
+                                console.log(tooltipItem['yLabel']);
+                                return '$' + tooltipItem['yLabel'].toLocaleString('en');
                             }
                         }
                     },
                     scales: {
-                        showLines: false,
                         yAxes: [{
+                            // stacked: true,
+                            // display: false,
                             ticks: {
-                                // remove money values from left
+                                // beginAtZero: false,
+                                // showLabelBackdrop: false,
+                                // stepSize: 5,
+                                // autoSkip: true,
+                                maxTicksLimit: 4,
                                 callback: function (value) {
-                                    return null;
+                                    return '$' + value.toLocaleString('en');
                                 }
-                            }
+                            },
+                            gridLines: {
+                                drawOnChartArea: false, // keep values but not lines
+                            },
                         }],
                         xAxes: [{
-                            stacked: false,
+                            // showXLabels: 5,
                             ticks: {
-                                // remove age values but keep the vertical lines
+                                // max: 5,
+                                // maxTicksLimit: 4,
+                                // showLabelBackdrop: true,
+                                // offsetGridLines: false,
+                                // drawTicks: true,
+                                // stepSize: 5,
+                                // autoSkip: true,
+                                // maxTicksLimit: 5,
                                 callback: function (value) {
-                                    return '';
+                                    return value % 10 === 0 ? value : ''; // display some ages
+                                },
+                                gridLines: {
+                                    drawOnChartArea: true,
                                 }
                             }
                         }]
