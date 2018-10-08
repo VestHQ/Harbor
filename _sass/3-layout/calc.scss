@@ -236,7 +236,9 @@ html {
   }
 }
 p { margin: 0;}
+label {font-family: "Avenir Next", Chivo, sans-serif; text-transform: capitalize}
 #amount {
+  font-family: "Avenir Next", Chivo, sans-serif;
   font-size: 2rem;
   color: $dark-sky-blue;
   background-color: transparent;
