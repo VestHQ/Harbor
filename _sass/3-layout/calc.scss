@@ -284,11 +284,15 @@ canvas { cursor: pointer;}
   width: 40rem;
   position: relative;
   outline: none;
+
+  @include respond(l-phone) {
+    width: 30rem;
+  }
 }
 
 #flat-slider.ui-slider .ui-slider-handle {
-  width: 20px;
-  height: 20px;
+  width: 3rem;
+  height: 3rem;
   border-radius: 50% 50% 0;
   border-color: transparent;
   transition: border 0.4s ease; }
@@ -302,13 +306,14 @@ canvas { cursor: pointer;}
   transition: all 0.4s ease; }
 
 #flat-slider.ui-slider.ui-slider-horizontal {
-  height: .8rem; }
+  height: 1rem; }
 
 #flat-slider.ui-slider.ui-slider-horizontal .ui-slider-handle {
-  -webkit-transform: rotateZ(45deg);
-  transform: rotateZ(45deg) scale(1.4);
-  top: -25px;
-  margin-left: -10px;
+  //-webkit-transform: rotateZ(45deg);
+  //transform: rotateZ(45deg) scale(1.4);
+  top: -30px; // -22
+  margin-left: -29px; //-21
+  outline: none;
 }
 
 #flat-slider.ui-slider.ui-slider-horizontal .ui-slider-pip {
@@ -336,7 +341,8 @@ canvas { cursor: pointer;}
   -webkit-transform: rotateZ(0deg);
   transform: rotateZ(0deg);
   //background-color: rgba(pink, .6);
-
+  position: absolute;
+  top: .5rem; left: .5rem;
   color: $dark-blue;
   font-size: 1.6rem;
   font-weight: 700;
