@@ -1,7 +1,3 @@
-html {
-  font-size: 62.5% !important;
-}
-
 .selected-amount {
   background-color: hsla(0,0%,85%,.2) !important;
   box-shadow: 0 0 14px hsla(0,0%,100%,.25);
@@ -44,7 +40,14 @@ html {
 
       &::after {
         z-index: -1;
-        width: 22rem;
+        width: 20rem;
+
+        @include respond(mid-header){
+          width: 17rem;
+        }
+        @include respond(xl-phone){
+          width: 15rem;
+        }
       }
     }
 
