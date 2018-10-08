@@ -1,98 +1,32 @@
 <script>
     const ctx = document.getElementById("myChart").getContext('2d');
 
-    // removes all but amount inputs // doesnt respond to resizing
-    if (window.screen.width <= 600) {
-        let lis = document.querySelectorAll('ul li');
-        for(let i=0; li=lis[i]; i++) {
-            if (i <= 3) {
-                li.parentNode.removeChild(li);
-            } else if (i > 4 && i <= 8) {
-                li.parentNode.removeChild(li);
-            }
-        }
-    }
-
-
-    let totalSaved = 0; // v
-    let annualIncome;
-    let monthlySavings = 100; // c
-    let yearsWantToSave = 40;
-    let totalMonthsOfSaving = yearsWantToSave * 12; // n
     const aggressive = 1.00716; // r
     const moderate = 1.0065; // r
     const conservative = 1.00549; // r
-    let chartLabels = [];
-
+    const endAge = 78.5;
     let minAge = 25;
     let maxAge = 65;
-    let endAge = 78.5;
+    let startSavings = 0;
+    let monthlySavings = 100;
+    let totalSaved = 0;
 
-    let today = new Date();
-    let currentYr = today.getFullYear();
-    document.getElementById('year').innerText = currentYr + yearsWantToSave;
-
-    function getPointerValues() {
-
-    }
-
-    $(function() {
-        $("#slider-range").slider({
-            range: true,
-            min: 1,
-            max: 78,
-            minValue: undefined,
-            maxValue: undefined,
-            values: [ minAge, maxAge ],
-            classes: {
-                "ui-slider": "ui-corner-all slider__height",
-                "ui-slider-handle": "ui-corner-all slider__btn",
-                "ui-slider-range": "ui-corner-all slider__fill"
-            },
-            slide: function( event, ui ) {
-                $("#amount").val(ui.values[0] + " - " + ui.values[1]);
-                this.minValue = ui.values[0];
-                this.maxValue = ui.values[1];
-                minAge = ui.values[0];
-                maxAge = ui.values[1];
-                yearsWantToSave = ui.values[1] - ui.values[0];
-                calculateLabels(ui.values[0], ui.values[1]);
-                // age set to 65 in html but updates when slider is triggered here
-                document.getElementById('age').innerText = ui.values[1];
-                document.getElementById('year').innerText = currentYr + yearsWantToSave;
-                createChart();
-                updateTotalValues();
-            }
-        });
-        $("#amount").val($("#slider-range").slider("values", 0) +
-            " - " + $("#slider-range").slider("values", 1));
-    } );
-
-    function calculateLabels(minAge, maxAge) {
-        let output = [];
-        for (let x = minAge; x <= maxAge; x++) {
-            output.push(x);
-        }
-        chartLabels = output;
-    }
-
-    // Calculates the total saved amount
-    function calculatePointer(r, total, monthly) {
-        for (let i=0; i < totalMonthsOfSaving; i++) {
-            totalSaved = (total * r) + monthly;
-        }
-        return totalSaved;
-    }
-
-    function calculateDataPointsByYear(aggressiveness) {
+    function calculateDataPointsByYear(minAge, maxAge, startSavings, monthlySavings, aggressiveness) {
         let output = [];
         let accumulated = totalSaved;
-
-        for (let i = 0; i < chartLabels.length; i++) {
-            for (let x = 0; x < 12; x++) {
+        for (let i=0; i < maxAge - minAge; i++) {
+            for (let x=0; x < 12; x++) {
                 accumulated = (Math.floor(accumulated * aggressiveness)) + monthlySavings;
             }
             output.push(accumulated);
+        }
+        return output;
+    }
+
+    function generateLabels(minAge, maxAge) {
+        let output = [];
+        for (let x = minAge; x <= maxAge; x++) {
+            output.push(x);
         }
         return output;
     }
@@ -111,7 +45,35 @@
         }
     }
 
-    function createChart() {
+    Chart.defaults.LineWithLine = Chart.defaults.line;
+    Chart.controllers.LineWithLine = Chart.controllers.line.extend({
+        draw: function(ease) {
+            Chart.controllers.line.prototype.draw.call(this, ease);
+
+            if (this.chart.tooltip._active && this.chart.tooltip._active.length) {
+                var activePoint = this.chart.tooltip._active[0],
+                    ctx = this.chart.ctx,
+                    x = activePoint.tooltipPosition().x,
+                    topY = this.chart.scales['y-axis-0'].top,
+                    bottomY = this.chart.scales['y-axis-0'].bottom;
+
+                // draw line
+                ctx.save();
+                ctx.beginPath();
+                ctx.moveTo(x, topY);
+                ctx.lineTo(x, bottomY);
+                ctx.lineWidth = 1;
+                ctx.strokeStyle = '#b4b7bb';
+                ctx.stroke();
+                ctx.restore();
+
+                // TODO return x value here
+                // console.log(this.chart.tooltip[0])
+            }
+        }
+    });
+
+    function createChart(chartLabels, conservativeDataPoints, moderateDataPoints, aggressiveDataPoints) {
         var promise = new Promise(function(resolve, reject) {
             if (destroyPreviousChart()) {
                 resolve("Stuff worked!");
@@ -119,36 +81,43 @@
                 reject(Error("It broke"));
             }
         });
-
         promise.then(function(){
+
+            // let ageNow = function () {
+            //     // Chart.options.scales.xAxes['ticks'] = currentAge;
+            //     console.log(currentAge)
+            //     return currentAge;
+            // };
+
             let chart = new Chart(ctx, {
-                type: 'line',
+
+                type: 'LineWithLine',
                 data: {
                     labels: chartLabels,
                     datasets: [
                         {
                             label: ["Conservative"],
-                            data: calculateDataPointsByYear(conservative),
-                            fill: true,
+                            data: conservativeDataPoints,
+                            fill: false,
                             backgroundColor: ['#102A5E'],
                             borderColor: ['#102A5E'],
-                            borderWidth: 1
+                            borderWidth: 3
                         },
                         {
                             label: ["Moderate"],
-                            data: calculateDataPointsByYear(moderate),
-                            fill: true,
+                            data: moderateDataPoints,
+                            fill: false,
                             backgroundColor: ['#3F5A9E'],
                             borderColor: ['#3F5A9E'],
-                            borderWidth: 1
+                            borderWidth: 3
                         },
                         {
                             label: ["Aggressive"],
-                            data: calculateDataPointsByYear(aggressive),
-                            fill: true,
+                            data: aggressiveDataPoints,
+                            fill: false,
                             backgroundColor: ['#41ade1'],
                             borderColor: ['#41ade1'],
-                            borderWidth: 1
+                            borderWidth: 3
                         }
                     ]
                 },
@@ -156,38 +125,56 @@
                     elements: {
                         line: {
                             tension: 0.6, // bezier curves 0-1
-                            spanGaps: true
                         },
-                        toolTips: {
-                            callbacks: {
-                                label: function (tooltipItem, data) {
-                                    var label = data.datasets[tooltipItem.datasetIndex].label || '';
-
-                                    if (label) {
-                                        label += 'age: ';
-                                    }
-                                    label += Math.round(tooltipItem.yLabel * 100) / 100;
-                                    return label;
-                                }
+                        point: {
+                            radius: 0
+                        }
+                    },
+                    tooltips: {
+                        backgroundColor: '#fcfcfc',
+                        titleFontColor: '#474747',
+                        bodyFontColor: '#474747',
+                        borderColor: '#474747',
+                        borderWidth: 1,
+                        bodyFontFamily: 'Avenir Next, Chivo, sans-serif',
+                        displayColors: false, //remove color box
+                        yPadding: 6,
+                        intersect: false,
+                        callbacks: {
+                            title: function(tooltipItem){
+                                return '';
+                            },
+                            afterBody: function(tooltipItem, data) {
+                                 return tooltipItem[0].xLabel + ' years old';
+                            },
+                            label: function(tooltipItem, data) {
+                                return '$' + tooltipItem['yLabel'].toLocaleString('en');
                             }
                         }
                     },
                     scales: {
-                        showLines: false,
                         yAxes: [{
                             ticks: {
-                            // remove money values from left
+                                beginAtZero: false,
+                                maxTicksLimit: 4,
                                 callback: function (value) {
-                                    return null;
+                                    return '$' + value.toLocaleString('en');
                                 }
-                            }
+                            },
+                            gridLines: {
+                                drawOnChartArea: false, // keep values but not lines
+                            },
                         }],
                         xAxes: [{
-                            stacked: false,
+                            // display: false,
                             ticks: {
-                                // remove age values but keep the vertical lines
-                                callback: function (value) {
-                                    return '';
+                                display: false,
+                                callback: function(value) {
+                                    return value;
+                                    // return value % 10 === 0 ? value : ''; // display some ages
+                                },
+                                gridLines: {
+                                    drawOnChartArea: true,
                                 }
                             }
                         }]
@@ -204,87 +191,102 @@
         });
     }
 
-    function updateTotalValues() {
-        const finalConservativeData = calculateDataPointsByYear(conservative);
-        const finalModerateData = calculateDataPointsByYear(moderate);
-        const finalAggressiveData = calculateDataPointsByYear(aggressive);
+    function renderChart(minAge, maxAge, startSavings, monthlySavings) {
+        const conservativeData = calculateDataPointsByYear(minAge, maxAge, startSavings, monthlySavings, conservative);
+        const moderateData = calculateDataPointsByYear(minAge, maxAge, startSavings, monthlySavings, moderate);
+        const aggressiveData = calculateDataPointsByYear(minAge, maxAge, startSavings, monthlySavings, aggressive);
 
-        document.getElementById("conservativeTotal").innerText = '$' + finalConservativeData[finalConservativeData.length-1].toLocaleString('en');
-        document.getElementById("moderateTotal").innerText = '$' + finalModerateData[finalModerateData.length-1].toLocaleString('en');
-        document.getElementById("aggressiveTotal").innerText = '$' + finalAggressiveData[finalAggressiveData.length-1].toLocaleString('en');
+        const yearsWantToSave = maxAge - minAge;
+        const monthWantToSpend = (endAge - maxAge) * 12;
+        document.getElementById('age').innerText = maxAge;
+        document.getElementById('year').innerText = (new Date().getFullYear() - 1) + yearsWantToSave;
 
-        // add selected class to 0 saved & 100/mo by default
-        const startValue = document.getElementsByClassName("startValue");
+        document.getElementById("conservativeTotal").innerText = '$' + conservativeData[conservativeData.length-1].toLocaleString('en');
+        document.getElementById("moderateTotal").innerText = '$' + moderateData[moderateData.length-1].toLocaleString('en');
+        document.getElementById("aggressiveTotal").innerText = '$' + aggressiveData[aggressiveData.length-1].toLocaleString('en');
 
-        const conservativeAmt = document.getElementById("conservativeAmt");
-        conservativeAmt.innerText = "$" + Math.floor(finalConservativeData[finalConservativeData.length-1] / ((endAge - maxAge) * 12)).toLocaleString('en') + " / mo";
+        document.getElementById("conservativeAmt").innerText = "$" + Math.floor(conservativeData[conservativeData.length-1] / monthWantToSpend).toLocaleString('en') + " / mo";
+        document.getElementById("moderateAmt").innerText = "$" + Math.floor(moderateData[moderateData.length-1] / monthWantToSpend).toLocaleString('en') + " / mo";
+        document.getElementById("aggressiveAmt").innerText = "$" + Math.floor(aggressiveData[aggressiveData.length-1] / monthWantToSpend).toLocaleString('en') + " / mo";
 
-        const moderateAmt =document.getElementById("moderateAmt");
-        moderateAmt.innerText = "$" + Math.floor(finalModerateData[finalModerateData.length-1] / ((endAge - maxAge) * 12)).toLocaleString('en') + " / mo";
-
-        const aggressiveAmt =document.getElementById("aggressiveAmt");
-        aggressiveAmt.innerText = "$" + Math.floor(finalAggressiveData[finalAggressiveData.length-1] / ((endAge - maxAge) * 12)).toLocaleString('en') + " / mo";
+        const labels = generateLabels(minAge, maxAge);
+        createChart(labels, conservativeData, moderateData, aggressiveData);
     }
 
-    function updateChart(event, id) {
-        // Grabs all the elements from inside the ul whom had its onclick triggered
+    function updateChart() {
+        // later -- query the state of the input widgets
+        renderChart(minAge, maxAge, startSavings, monthlySavings);
+    }
+
+    function onInputControlUpdate(event, id) {
         let nodes = document.getElementById(id).childNodes;
-        // Filters through the inner elements and returns only the li elements
-        let liArray = Array.from(nodes).filter((node)=>{
+        let liArray = Array.from(nodes).filter((node) => {
             return node.nodeName === 'LI';
         });
 
-        // Used to prevent the ul itself from having an unwanted class added, only allows button elements
-        if (event.target.nodeName === 'BUTTON') {
-            // Loops through all the sibling buttons and removes the .selected-amount class from the non selected buttons
-            liArray.forEach((li)=>{
-                if (li.childNodes[0].nodeName === 'INPUT') {
-                    li.childNodes[0].value = '';
-                } else if (li.childNodes[0].value !== event.target.value) {
+        // li.childNodes[0].value = '';
+
+        if (event.target.nodeName === 'INPUT') {
+            liArray.forEach((li) => {
+                if (li.childNodes[0].value !== event.target.value) {
                     li.childNodes[0].classList.remove('selected-amount');
                 }
-
             });
-
-            if (id === "money-saved") {
+            if (id === "money-saved-input") {
                 totalSaved = Number(event.target.value);
                 event.target.classList.add('selected-amount');
-                // updateChart(Number(event.target.value), monthlySavings);
-                createChart();
-
-            } else if (id === "money-income") {
-                annualIncome = event.target.value;
-                event.target.classList.add('selected-amount');
-
-            } else if (id === "money-saved-monthly"){
+            }
+            else if (id === "money-saved-monthly-input") {
                 monthlySavings = Number(event.target.value);
                 event.target.classList.add('selected-amount');
-                createChart();
-                // updateChart(totalSaved, Number(event.target.value));
             }
         }
 
-        updateTotalValues();
-    }
 
-    // onchange get value
-    function getAmount(value, id) {
-        if ( id === "money-saved-input") {
-            totalSaved = value;
-            // updateChart(value, monthlySavings);
-            createChart();
-        } else if ( id === "annual-income") {
-            annualIncome = value;
-        } else if (id === "monthly-savings"){
-            monthlySavings = value;
-            // updateChart(totalSaved, value);
-            createChart();
+        if (event.target.nodeName === 'BUTTON') {
+            liArray.forEach((li) => {
+                if (li.childNodes[0].value !== event.target.value) {
+                    li.childNodes[0].classList.remove('selected-amount');
+                }
+            });
+            if (id === "money-saved") {
+                totalSaved = Number(event.target.value);
+                event.target.classList.add('selected-amount');
+            }
+            else if (id === "money-saved-monthly") {
+                monthlySavings = Number(event.target.value);
+                event.target.classList.add('selected-amount');
+            }
         }
+        updateChart();
     }
 
-    calculateLabels(minAge,maxAge);
-    createChart();
-    updateTotalValues();
+    $(function() {
+        $("#flat-slider")
+            .slider({
+                range: true,
+                min: 1,
+                max: 78,
+                values: [25, 65],
+                slide: function( event, ui ) {
+                    $("#amount").val(ui.values[0] + " - " + ui.values[1]);
+                    minAge = ui.values[0];
+                    maxAge = ui.values[1];
+                    // age set to 65 in html but updates when slider is triggered here
+                    document.getElementById('age').innerText = ui.values[1];
+                    document.getElementById('year').innerText = (new Date().getFullYear() - 1)+ (maxAge - minAge);
+                    updateChart();
+                }
+            });
+        $("#flat-slider").slider("float", {
+            first: "label",
+            last: "label",
+            labels: [minAge, maxAge]
+        });
+    });
+
+    updateChart();
+
     const startValue = document.getElementsByClassName("startValue");
     startValue[0].classList.add('selected-amount'); // 0 saved
     startValue[1].classList.add('selected-amount'); // 100 will save /mo
