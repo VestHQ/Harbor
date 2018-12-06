@@ -58,6 +58,7 @@
     flex-wrap: wrap;
     //margin: 0 1rem;
     margin-bottom: auto;
+    min-width: 27rem;
 
     @include respond(column) {
       height: 16rem;
