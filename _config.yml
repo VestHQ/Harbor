@@ -21,6 +21,7 @@ google_analytics: UA-122850848-1
 plugins:
   - jekyll-sitemap
   - jekyll-autoprefixer
+  - jekyll-redirect-from
 
 autoprefixer:
   browsers:
